@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CirkleUp - Invite-only social platform. Join the exclusive waitlist.">
+    <meta name="keywords" content="social media, invite-only, creators, influencers">
+    <meta name="author" content="CirkleUp">
+    
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:title" content="CirkleUp - Invite-Only Social Platform">
+    <meta property="og:description" content="Social media is broken. Join the platform built for creators.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cirkleup.com">
+    <!-- <meta property="og:image" content="https://cirkleup.com/assets/images/og-image.jpg"> -->
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CirkleUp - Invite-Only Social Platform">
+    <meta name="twitter:description" content="Social media is broken. Join the platform built for creators.">
+    
+    <!-- Title -->
+    <title>CirkleUp - Join the Waitlist</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔵</text></svg>">
+    
+    <!-- Preconnect to Google Fonts (Performance) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Font: Inter (Modern, Clean) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Preload Critical CSS (Performance) -->
+    <link rel="preload" href="css/styles.css" as="style">
+</head>
+<body>
+    
+    <!-- Main Container -->
+    <main class="container">
+        
+        <!-- Logo (Optional) -->
+        <div class="logo" aria-label="CirkleUp Logo">
+            <h1>CirkleUp</h1>
+        </div>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            
+            <!-- Problem-Focused Headline -->
+            <h2 class="headline">Social media is broken.</h2>
+            
+            <!-- Exclusivity Statement -->
+            <p class="subheadline">Join the invite-only platform built for creators who deserve better.</p>
+            
+            <!-- Email Form -->
+            <form id="waitlistForm" class="form" novalidate>
+                <div class="form-group">
+                    <label for="email" class="visually-hidden">Email address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email"
+                        required
+                        autocomplete="email"
+                        aria-required="true"
+                        aria-describedby="emailError"
+                    >
+                    <span id="emailError" class="error-message" role="alert"></span>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <span class="btn-text">Request Invite</span>
+                    <span class="btn-loading" aria-hidden="true">
+                        <span class="spinner"></span>
+                    </span>
+                </button>
+            </form>
+            
+            <!-- Urgency/Scarcity Note -->
+            <p class="form-note">⚡ Limited invites released weekly</p>
+            
+        </section>
+        
+        <!-- Success State (Hidden by default) -->
+        <div id="successMessage" class="success-message" role="status" aria-live="polite" hidden>
+            <div class="success-icon">✓</div>
+            <h3>You're on the list!</h3>
+            <p>Check your email to confirm your spot.</p>
+        </div>
+        
+    </main>
+    
+    <!-- Footer (Optional) -->
+    <footer class="footer">
+        <p>&copy; 2026 CirkleUp. <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
+    </footer>
+    
+    <!-- JavaScript (Deferred for Performance) -->
+    <script src="js/main.js" defer></script>
+    
+</body>
+</html>
