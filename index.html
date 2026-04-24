@@ -1,459 +1,905 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CirkleUp — Social Media, Fixed.</title>
+<meta name="description" content="Invite-only. Creator-first. No algorithms. Join 1,247+ creators on the waitlist."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
 
-  <!-- ── SEO ── -->
-  <title>CirkleUp — The Social Platform Built for Creators</title>
-  <meta name="description" content="Social media is broken. Algorithms kill your reach, bots flood your comments, platforms take your revenue. CirkleUp is invite-only, creator-first, and built differently. Request your invite." />
-  <meta name="keywords" content="creator platform, invite-only social media, monetize content, no algorithm, CirkleUp" />
+/* ══════════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#0e0e12;overflow-x:hidden;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+ul,ol{list-style:none;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+img{max-width:100%;display:block;}
 
-  <!-- ── Open Graph ── -->
-  <meta property="og:title"       content="CirkleUp — Social Media Fixed" />
-  <meta property="og:description" content="Invite-only. Creator-first. No algorithms. Request your spot on the waitlist." />
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cirkleup.com" />
+/* ══════════════════════════════════════════════
+   CSS VARIABLES (Xurya design system)
+══════════════════════════════════════════════ */
+:root{
+  --bg:       #ffffff;
+  --bg-soft:  #f7f7fa;
+  --bg-dark:  #0e0e12;
+  --bg-dark2: #13131a;
+  --bg-dark3: #1a1a26;
 
-  <!-- ── Favicon placeholder ── -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2322c55e'/><circle cx='16' cy='16' r='10' stroke='white' stroke-width='2.5' fill='none'/><circle cx='16' cy='16' r='4' fill='white'/></svg>" />
+  --ink:       #0e0e12;
+  --ink-soft:  #5a5a72;
+  --ink-muted: #9696ab;
 
-  <!-- ── Stylesheet ── -->
-  <link rel="stylesheet" href="css/styles.css" />
+  --ink-w:     #ffffff;
+  --ink-ws:    rgba(255,255,255,0.60);
+  --ink-wm:    rgba(255,255,255,0.35);
+
+  --accent:     #22c55e;
+  --accent-lt:  #dcfce7;
+  --accent-dk:  #16a34a;
+  --accent-gl:  rgba(34,197,94,0.25);
+
+  --border:    #e4e4ef;
+  --border-d:  rgba(255,255,255,0.08);
+  --border-dh: rgba(255,255,255,0.16);
+
+  --r-sm:  10px;
+  --r-md:  16px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-pill:100px;
+
+  --shadow-sm: 0 2px 12px rgba(14,14,18,0.06);
+  --shadow-md: 0 4px 32px rgba(14,14,18,0.08);
+  --shadow-lg: 0 8px 48px rgba(14,14,18,0.12);
+
+  --container: 1160px;
+  --px: 5%;
+}
+
+/* ══════════════════════════════════════════════
+   LAYOUT UTILS
+══════════════════════════════════════════════ */
+.wrap{width:100%;max-width:var(--container);margin:0 auto;padding:0 var(--px);}
+.section{padding:88px 0;}
+.section--soft{background:var(--bg-soft);}
+.section--dark{background:var(--bg-dark);}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+
+.section-tag{
+  display:inline-block;
+  font-family:'Syne',sans-serif;
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:12px;
+}
+.section-header{text-align:center;margin-bottom:56px;}
+.section-header h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.8rem,3.5vw,2.7rem);
+  font-weight:800;line-height:1.1;letter-spacing:-0.025em;
+}
+.section-header h2 em{font-style:normal;color:var(--ink-soft);}
+.section-header h2 em.on-dark{color:var(--ink-ws);}
+
+/* ══════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Syne',sans-serif;font-weight:700;border-radius:var(--r-pill);
+  transition:all 0.22s ease;white-space:nowrap;cursor:pointer;
+}
+.btn:active{transform:scale(0.97)!important;}
+.btn .arr{display:inline-block;transition:transform 0.18s ease;}
+.btn:hover .arr{transform:translateX(3px);}
+
+.btn-sm{font-size:0.82rem;padding:9px 20px;}
+.btn-md{font-size:0.9rem;padding:13px 28px;}
+.btn-lg{font-size:1rem;padding:15px 34px;}
+
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-dk);transform:translateY(-2px);box-shadow:0 8px 28px var(--accent-gl);}
+
+.btn-dark{background:var(--ink);color:#fff;}
+.btn-dark:hover{background:#222233;transform:translateY(-1px);}
+
+.btn-outline-w{background:transparent;border:1.5px solid var(--border-d);color:#fff;}
+.btn-outline-w:hover{border-color:var(--border-dh);transform:translateY(-1px);}
+
+/* ══════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:64px;display:flex;align-items:center;
+  background:rgba(14,14,18,0.82);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-d);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;
+  color:#fff;letter-spacing:-0.02em;
+}
+.logo-mark{
+  width:32px;height:32px;border-radius:8px;background:var(--accent);
+  display:grid;place-items:center;flex-shrink:0;
+}
+.logo-mark svg{width:16px;height:16px;}
+
+/* ══════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════ */
+.hero{
+  background:var(--bg-dark);
+  padding:140px var(--px) 100px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;
+}
+.hero-bg{position:absolute;inset:0;pointer-events:none;}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 100% 100% at 50% 50%,black 30%,transparent 100%);
+}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(100px);}
+.hero-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(34,197,94,0.14) 0%,transparent 70%);top:-200px;left:-200px;}
+.hero-orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(91,76,245,0.10) 0%,transparent 70%);bottom:-100px;right:-100px;}
+.hero-orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(34,197,94,0.08) 0%,transparent 70%);top:30%;right:18%;}
+
+.hero-content{
+  position:relative;z-index:2;
+  max-width:700px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* Badge */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.07);border:1px solid var(--border-d);
+  border-radius:var(--r-pill);padding:6px 16px;
+  font-size:0.8rem;font-weight:600;color:var(--ink-ws);
+  margin-bottom:28px;
+  animation:fadeUp 0.6s ease 0.05s both;
+}
+.badge-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--accent);
+  animation:pulseDot 2s ease-in-out infinite;
+}
+
+/* Headline */
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.8rem,6.5vw,5rem);
+  font-weight:800;line-height:1.05;letter-spacing:-0.035em;
+  color:#fff;margin-bottom:20px;
+  animation:fadeUp 0.7s ease 0.15s both;
+}
+.hero h1 .green{color:var(--accent);}
+
+.hero-sub{
+  font-size:1.05rem;color:var(--ink-ws);line-height:1.68;
+  max-width:520px;margin-bottom:36px;
+  animation:fadeUp 0.7s ease 0.25s both;
+}
+
+/* Form */
+.hero-form-wrap{
+  width:100%;max-width:480px;
+  animation:fadeUp 0.7s ease 0.35s both;
+}
+.hero-form{display:flex;gap:8px;width:100%;}
+.hero-input{
+  flex:1;background:rgba(255,255,255,0.08);
+  border:1px solid var(--border-d);border-radius:var(--r-pill);
+  padding:13px 22px;font-family:'DM Sans',sans-serif;font-size:0.95rem;
+  color:#fff;outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;
+}
+.hero-input::placeholder{color:var(--ink-wm);}
+.hero-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-gl);background:rgba(255,255,255,0.12);}
+.hero-input.err{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,0.15);}
+.input-err{font-size:0.78rem;color:#ef4444;margin-top:6px;padding-left:4px;display:none;}
+.input-err.show{display:block;}
+
+.invite-note{
+  margin-top:10px;font-size:0.78rem;color:var(--ink-wm);
+  text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.invite-note::before{
+  content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);
+  display:inline-block;flex-shrink:0;animation:pulseDot 2s ease-in-out infinite;
+}
+
+/* Avatar stack */
+.social-proof{
+  margin-top:52px;display:flex;flex-direction:column;align-items:center;gap:14px;
+  animation:fadeUp 0.7s ease 0.5s both;
+}
+.avatar-stack{display:flex;align-items:center;}
+.av{
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;
+  font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;color:#fff;
+  border:2.5px solid var(--bg-dark);
+  margin-left:-12px;
+  position:relative;
+  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  /* 3D sphere effect */
+  box-shadow:
+    inset -4px -4px 8px rgba(0,0,0,0.35),
+    inset 3px 3px 6px rgba(255,255,255,0.18),
+    0 4px 16px rgba(0,0,0,0.3);
+}
+.av:first-child{margin-left:0;}
+.av:hover{transform:translateY(-7px) scale(1.13);z-index:10;}
+.av-1{background:linear-gradient(135deg,#7c3aed,#4f46e5);}
+.av-2{background:linear-gradient(135deg,#0ea5e9,#06b6d4);}
+.av-3{background:linear-gradient(135deg,#22c55e,#16a34a);}
+.av-4{background:linear-gradient(135deg,#f59e0b,#ef4444);}
+.av-5{background:linear-gradient(135deg,#ec4899,#f43f5e);}
+
+.proof-text{font-size:0.88rem;color:var(--ink-ws);text-align:center;}
+.proof-text strong{color:#fff;font-weight:600;}
+
+/* ══════════════════════════════════════════════
+   STATS BAR — positioned INSIDE a normal flow section
+   (no translateY tricks that swallow content)
+══════════════════════════════════════════════ */
+.stats-section{
+  background:var(--bg);
+  padding:0 var(--px);
+}
+.stats-inner{
+  max-width:var(--container);margin:0 auto;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:36px 48px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  box-shadow:var(--shadow-md);
+  position:relative;z-index:10;
+  margin-top:-52px; /* overlap hero bottom only by 52px — safe */
+  margin-bottom:0;
+}
+.stat{
+  text-align:center;
+  border-right:1px solid var(--border);
+  padding:0 32px;
+}
+.stat:first-child{padding-left:0;}
+.stat:last-child{border-right:none;padding-right:0;}
+.stat-num{
+  font-family:'Syne',sans-serif;
+  font-size:2.2rem;font-weight:800;letter-spacing:-0.03em;
+  color:var(--ink);line-height:1;margin-bottom:6px;
+}
+.stat-label{font-size:0.83rem;color:var(--ink-soft);line-height:1.45;}
+
+/* ══════════════════════════════════════════════
+   PROBLEM SECTION
+══════════════════════════════════════════════ */
+.problem-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.problem-card{
+  background:var(--bg-dark2);border:1px solid var(--border-d);
+  border-radius:var(--r-lg);padding:28px 24px;color:#fff;
+  transition:border-color 0.22s,box-shadow 0.22s,transform 0.22s;
+}
+.problem-card:hover{
+  border-color:rgba(239,68,68,0.35);
+  box-shadow:0 8px 40px rgba(239,68,68,0.09);
+  transform:translateY(-4px);
+}
+.prob-icon{font-size:1.6rem;display:block;margin-bottom:14px;}
+.problem-card h3{
+  font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;
+  margin-bottom:8px;color:#fff;
+}
+.problem-card p{font-size:0.855rem;color:var(--ink-ws);line-height:1.62;}
+
+/* ══════════════════════════════════════════════
+   FEATURES / SOLUTION
+══════════════════════════════════════════════ */
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;border-radius:var(--r-xl);overflow:hidden;
+  border:1px solid var(--border);
+}
+.feat-card{
+  background:#fff;padding:32px 26px;
+  transition:background 0.2s;
+  position:relative;
+}
+/* right border between cols */
+.feat-card:not(:nth-child(3n))::after{
+  content:'';position:absolute;top:16px;right:0;bottom:16px;
+  width:1px;background:var(--border);
+}
+/* bottom border between rows */
+.feat-card:not(:nth-child(n+4))::before{
+  content:'';position:absolute;bottom:0;left:16px;right:16px;
+  height:1px;background:var(--border);
+}
+.feat-card:hover{background:var(--accent-lt);}
+.feat-icon{
+  font-size:1.4rem;width:46px;height:46px;
+  border-radius:var(--r-sm);background:var(--bg-soft);
+  display:grid;place-items:center;margin-bottom:18px;
+  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),background 0.2s;
+}
+.feat-card:hover .feat-icon{transform:scale(1.1) rotate(-4deg);background:rgba(34,197,94,0.15);}
+.feat-card h3{font-family:'Syne',sans-serif;font-size:0.98rem;font-weight:700;margin-bottom:8px;}
+.feat-card p{font-size:0.855rem;color:var(--ink-soft);line-height:1.65;}
+
+/* ══════════════════════════════════════════════
+   HOW IT WORKS
+══════════════════════════════════════════════ */
+.steps-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+  position:relative;
+}
+.steps-grid::before{
+  content:'';position:absolute;
+  top:27px;left:calc(16.67% + 28px);right:calc(16.67% + 28px);
+  height:2px;
+  background:repeating-linear-gradient(90deg,var(--border) 0,var(--border) 6px,transparent 6px,transparent 12px);
+}
+.step{text-align:center;position:relative;z-index:1;}
+.step-num{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;
+  display:grid;place-items:center;margin:0 auto 20px;
+  box-shadow:0 0 0 8px var(--accent-lt),0 8px 24px var(--accent-gl);
+  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.step:hover .step-num{transform:scale(1.08);}
+.step h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px;}
+.step p{font-size:0.875rem;color:var(--ink-soft);line-height:1.65;max-width:260px;margin:0 auto;}
+
+/* ══════════════════════════════════════════════
+   COMPARISON TABLE
+══════════════════════════════════════════════ */
+.table-wrap{
+  overflow-x:auto;
+  border-radius:var(--r-xl);border:1px solid var(--border-d);
+}
+.cmp-table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+.cmp-table thead{background:var(--bg-dark2);}
+.cmp-table th{
+  padding:16px 22px;font-family:'Syne',sans-serif;
+  font-size:0.85rem;font-weight:700;color:#fff;text-align:left;
+  border-bottom:1px solid var(--border-d);
+}
+.cmp-table th.col-us{color:var(--accent);}
+.cmp-table th.col-us::after{
+  content:'✦ Us';font-size:0.62rem;background:var(--accent);color:#fff;
+  border-radius:100px;padding:2px 7px;margin-left:7px;vertical-align:middle;
+}
+.cmp-table td{
+  padding:14px 22px;border-bottom:1px solid var(--border-d);
+  color:var(--ink-ws);vertical-align:middle;
+}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table tr:nth-child(odd) td{background:rgba(255,255,255,0.018);}
+.cmp-table td.col-feat{font-size:0.85rem;color:rgba(255,255,255,0.45);}
+.cmp-table td.col-us{color:#fff;font-weight:600;}
+.ck{color:var(--accent);font-size:1.05rem;}
+.cx{color:#444455;font-size:0.95rem;}
+
+/* ══════════════════════════════════════════════
+   FINAL CTA
+══════════════════════════════════════════════ */
+.cta-section{
+  background:var(--bg-dark);position:relative;overflow:hidden;
+  padding:100px var(--px);text-align:center;
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 55% 70% at 20% 50%,rgba(34,197,94,0.09) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 65% at 80% 50%,rgba(91,76,245,0.07) 0%,transparent 60%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;max-width:660px;margin:0 auto;}
+.cta-eyebrow{
+  font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;
+}
+.cta-inner h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,4vw,3.1rem);font-weight:800;
+  letter-spacing:-0.03em;line-height:1.1;color:#fff;margin-bottom:16px;
+}
+.cta-inner p{font-size:1rem;color:var(--ink-ws);line-height:1.68;margin-bottom:28px;}
+.cta-checks{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:32px;}
+.cta-check{display:flex;align-items:center;gap:8px;font-size:0.875rem;color:var(--ink-ws);}
+.cta-dot{
+  width:18px;height:18px;border-radius:50%;background:var(--accent);
+  display:grid;place-items:center;color:#fff;font-size:0.6rem;font-weight:900;flex-shrink:0;
+}
+.cta-form{display:flex;gap:8px;max-width:430px;margin:0 auto;}
+.cta-form .hero-input{flex:1;}
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+.footer{
+  background:var(--bg-dark);
+  border-top:1px solid var(--border-d);
+  padding:72px var(--px) 28px;
+}
+.footer-top{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:52px;
+}
+.footer-brand-desc{
+  font-size:0.875rem;color:var(--ink-ws);line-height:1.7;
+  margin:12px 0 20px;max-width:260px;
+}
+.footer-socials{display:flex;gap:8px;}
+.soc-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.06);border:1px solid var(--border-d);
+  display:grid;place-items:center;
+  color:var(--ink-ws);font-size:0.78rem;font-family:'Syne',sans-serif;font-weight:700;
+  transition:background 0.18s,color 0.18s,border-color 0.18s;
+}
+.soc-btn:hover{background:rgba(255,255,255,0.13);color:#fff;border-color:var(--border-dh);}
+.footer-col-title{
+  font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--ink-wm);margin-bottom:14px;
+}
+.footer-links{display:flex;flex-direction:column;gap:9px;}
+.footer-links a{font-size:0.875rem;color:var(--ink-ws);transition:color 0.15s;}
+.footer-links a:hover{color:#fff;}
+.footer-bottom{
+  border-top:1px solid var(--border-d);padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:0.8rem;color:var(--ink-wm);}
+.footer-legal{display:flex;gap:20px;}
+.footer-legal a{font-size:0.8rem;color:var(--ink-wm);transition:color 0.15s;}
+.footer-legal a:hover{color:var(--ink-ws);}
+
+/* ══════════════════════════════════════════════
+   SUCCESS MODAL
+══════════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(14,14,18,0.88);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:grid;place-items:center;padding:24px;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s ease;
+}
+.modal-overlay.open{opacity:1;pointer-events:auto;}
+.modal{
+  background:var(--bg-dark2);border:1px solid var(--border-d);
+  border-radius:var(--r-xl);padding:48px 40px;
+  max-width:420px;width:100%;text-align:center;position:relative;
+  transform:scale(0.9) translateY(16px);
+  transition:transform 0.38s cubic-bezier(0.34,1.56,0.64,1);
+}
+.modal-overlay.open .modal{transform:scale(1) translateY(0);}
+.modal-ico{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--accent-lt);border:1px solid rgba(34,197,94,0.25);
+  display:grid;place-items:center;font-size:2rem;
+  margin:0 auto 20px;
+}
+.modal h2{
+  font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;
+  letter-spacing:-0.025em;color:#fff;margin-bottom:10px;
+}
+.modal p{font-size:0.9rem;color:var(--ink-ws);line-height:1.65;margin-bottom:20px;}
+.modal-ref{
+  font-size:0.75rem;color:var(--ink-wm);
+  padding:8px 16px;background:var(--bg-dark3);border-radius:var(--r-sm);
+  display:inline-block;margin-bottom:24px;
+  font-family:'Courier New',monospace;letter-spacing:0.05em;
+}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,0.06);border:1px solid var(--border-d);
+  display:grid;place-items:center;
+  color:var(--ink-ws);font-size:1.1rem;line-height:1;
+  transition:background 0.15s,color 0.15s;
+}
+.modal-close:hover{background:rgba(255,255,255,0.13);color:#fff;}
+
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:0.08s;}.d2{transition-delay:0.16s;}.d3{transition-delay:0.24s;}.d4{transition-delay:0.32s;}
+
+/* ══════════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.75);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+.spin{animation:spin 0.75s linear infinite;display:inline-block;}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .problem-grid{grid-template-columns:repeat(2,1fr);}
+  .features-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .stats-inner{padding:28px 28px;}
+}
+@media(max-width:768px){
+  :root{--px:6%;}
+  .hero{padding:110px var(--px) 80px;min-height:auto;}
+  .stats-section{padding:0 var(--px);}
+  .stats-inner{
+    grid-template-columns:1fr;margin-top:-32px;
+    padding:24px;gap:0;border-radius:var(--r-lg);
+  }
+  .stat{border-right:none;border-bottom:1px solid var(--border);padding:16px 0;}
+  .stat:last-child{border-bottom:none;padding-bottom:0;}
+  .stat:first-child{padding-top:0;}
+  .problem-grid{grid-template-columns:1fr;}
+  .features-grid{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr;gap:28px;}
+  .steps-grid::before{display:none;}
+  .hero-form{flex-direction:column;}
+  .cta-form{flex-direction:column;max-width:100%;}
+  .footer-top{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .modal{padding:32px 24px;}
+  .section{padding:64px 0;}
+  .cta-section{padding:72px var(--px);}
+}
+@media(max-width:480px){
+  .av{width:38px;height:38px;font-size:0.65rem;margin-left:-10px;}
+  .cta-checks{flex-direction:column;align-items:center;gap:12px;}
+  .stats-inner{margin-top:-20px;}
+}
+
+</style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  NAVIGATION                                             -->
-<!-- ════════════════════════════════════════════════════════ -->
-<header class="nav" role="banner">
-  <div class="container nav__inner">
-
-    <!-- Logo -->
-    <a href="#" class="nav__logo" aria-label="CirkleUp home">
-      <div class="nav__logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="2"/>
-          <circle cx="8" cy="8" r="2.5" fill="white"/>
-        </svg>
+<!-- ════════════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════════ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="2"/><circle cx="8" cy="8" r="2.5" fill="white"/></svg>
       </div>
       CirkleUp
     </a>
-
-    <!-- CTA -->
-    <div class="nav__cta">
-      <a href="#waitlist" class="btn btn--primary btn--sm">
-        Request Invite <span class="arrow" aria-hidden="true">↗</span>
-      </a>
-    </div>
-
+    <a href="#waitlist" class="btn btn-primary btn-sm">Request Invite <span class="arr">↗</span></a>
   </div>
 </header>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  HERO                                                   -->
-<!-- ════════════════════════════════════════════════════════ -->
-<section class="hero" id="home" aria-labelledby="hero-headline">
-
-  <!-- Background effects -->
-  <div class="hero__bg" aria-hidden="true">
-    <div class="hero__grid"></div>
-    <div class="hero__orb hero__orb--1"></div>
-    <div class="hero__orb hero__orb--2"></div>
-    <div class="hero__orb hero__orb--3"></div>
+<!-- ════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
   </div>
 
-  <div class="hero__content">
+  <div class="hero-content">
 
-    <!-- Badge -->
-    <div class="hero__badge">
-      <span class="badge badge--dark">
-        <span class="badge-dot" aria-hidden="true"></span>
-        🚀 Launching Soon
-      </span>
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      🚀 Launching Soon
     </div>
 
-    <!-- Headline -->
-    <h1 class="hero__headline" id="hero-headline">
-      Social media is broken.<br />
-      <span class="accent-word">We're fixing it.</span>
-    </h1>
+    <h1>Social media is broken.<br><span class="green">We're fixing it.</span></h1>
 
-    <!-- Sub -->
-    <p class="hero__sub">
-      Algorithms suppress your reach. Bots drown your community. Platforms take 45% of your revenue. CirkleUp is invite-only, creator-owned, and built around real connection — not engagement farming.
+    <p class="hero-sub">
+      Algorithms kill your reach. Bots flood your comments. Platforms pocket 45% of your revenue. CirkleUp is invite-only, creator-owned, and built around real connection — not engagement farming.
     </p>
 
-    <!-- Email Form -->
-    <div class="hero__form-wrap" id="waitlist">
-      <form class="hero__form js-invite-form" novalidate aria-label="Join the waitlist">
-        <label for="hero-email" class="sr-only">Your email address</label>
-        <input
-          type="email"
-          id="hero-email"
-          class="input js-email-input"
-          placeholder="your@email.com"
-          autocomplete="email"
-          required
-          aria-required="true"
-          aria-describedby="hero-email-error"
-        />
-        <button type="submit" class="btn btn--primary btn--md">
-          Request Invite <span class="arrow" aria-hidden="true">→</span>
+    <div class="hero-form-wrap" id="waitlist">
+      <form class="hero-form" id="heroForm" novalidate>
+        <label for="heroEmail" class="sr-only">Email address</label>
+        <input type="email" id="heroEmail" class="hero-input" placeholder="your@email.com" autocomplete="email" required/>
+        <button type="submit" class="btn btn-primary btn-md" id="heroBtn">
+          Request Invite <span class="arr">→</span>
         </button>
       </form>
-      <span id="hero-email-error" class="input-error-msg" role="alert"></span>
-      <p class="hero__invite-note">
-        Limited invites released every Monday — no credit card needed
-      </p>
+      <span class="input-err" id="heroErr">Please enter a valid email address.</span>
+      <p class="invite-note">Limited invites released every Monday — no credit card needed</p>
     </div>
 
-    <!-- Social proof avatars -->
-    <div class="hero__social-proof" aria-label="1,247+ creators already on the waitlist">
-      <div class="avatar-stack" role="img" aria-label="Avatars of waitlist members">
-        <div class="avatar avatar--1" title="MR — Designer">MR</div>
-        <div class="avatar avatar--2" title="JS — Developer">JS</div>
-        <div class="avatar avatar--3" title="AK — Creator">AK</div>
-        <div class="avatar avatar--4" title="TC — Filmmaker">TC</div>
-        <div class="avatar avatar--5" title="LP — Musician">LP</div>
+    <div class="social-proof">
+      <div class="avatar-stack">
+        <div class="av av-1" title="MR">MR</div>
+        <div class="av av-2" title="JS">JS</div>
+        <div class="av av-3" title="AK">AK</div>
+        <div class="av av-4" title="TC">TC</div>
+        <div class="av av-5" title="LP">LP</div>
       </div>
-      <p class="social-proof__text">
-        Join <strong>1,247+ creators</strong> already on the waitlist
-      </p>
+      <p class="proof-text">Join <strong>1,247+ creators</strong> already on the waitlist</p>
     </div>
 
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  STATS BAR (Xurya-style overlapping card)              -->
-<!-- ════════════════════════════════════════════════════════ -->
-<div class="stats-bar" aria-label="Platform statistics">
-  <div class="stats-bar__inner reveal">
-
+<!-- ════════════════════════════════════════════════════
+     STATS BAR
+════════════════════════════════════════════════════ -->
+<div class="stats-section">
+  <div class="stats-inner reveal">
     <div class="stat">
-      <p class="stat__num js-counter" data-target="1247" data-suffix="+">1,247+</p>
-      <p class="stat__label">Creators on the waitlist</p>
+      <p class="stat-num">1,247+</p>
+      <p class="stat-label">Creators on the waitlist</p>
     </div>
-
     <div class="stat">
-      <p class="stat__num js-counter" data-target="90" data-suffix="%">90%</p>
-      <p class="stat__label">Revenue goes to you</p>
+      <p class="stat-num">90%</p>
+      <p class="stat-label">Revenue goes straight to you</p>
     </div>
-
     <div class="stat">
-      <p class="stat__num js-counter" data-prefix="0" data-target="0" data-suffix=" algos">Zero</p>
-      <p class="stat__label">Algorithms suppressing your content</p>
+      <p class="stat-num">Zero</p>
+      <p class="stat-label">Algorithms suppressing your content</p>
     </div>
-
   </div>
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  PROBLEM SECTION                                        -->
-<!-- ════════════════════════════════════════════════════════ -->
-<section class="section section--dark" id="problem" aria-labelledby="problem-title">
-  <div class="container">
-
+<!-- ════════════════════════════════════════════════════
+     PROBLEM
+════════════════════════════════════════════════════ -->
+<section class="section section--dark" id="problem">
+  <div class="wrap">
     <div class="section-header">
       <p class="section-tag reveal">The Problem</p>
-      <h2 class="t-h2 headline-split-light reveal reveal-delay-1" id="problem-title">
-        Why every creator is <em>frustrated</em>
-      </h2>
+      <h2 class="reveal d1">Why every creator is <em class="on-dark">frustrated</em></h2>
     </div>
-
-    <div class="problem__grid" role="list">
-
-      <article class="problem-card reveal" role="listitem">
-        <span class="problem-card__icon" aria-hidden="true">📉</span>
+    <div class="problem-grid">
+      <article class="problem-card reveal">
+        <span class="prob-icon">📉</span>
         <h3>Algorithm manipulation</h3>
-        <p>Platforms decide who sees your content — and it's never the people who actually want to see it. Reach down 90% unless you pay to boost.</p>
+        <p>Platforms decide who sees your content — and it's rarely the people who actually want to. Organic reach is down 90% unless you pay to boost.</p>
       </article>
-
-      <article class="problem-card reveal reveal-delay-1" role="listitem">
-        <span class="problem-card__icon" aria-hidden="true">🤖</span>
+      <article class="problem-card reveal d1">
+        <span class="prob-icon">🤖</span>
         <h3>Bots everywhere</h3>
-        <p>Your comments, your DMs, your follower count — all inflated by bots. Engagement metrics are meaningless and your real audience is drowned out.</p>
+        <p>Your comments, your DMs, your follower count — all inflated by bots. Engagement metrics are meaningless while your real audience drowns.</p>
       </article>
-
-      <article class="problem-card reveal reveal-delay-2" role="listitem">
-        <span class="problem-card__icon" aria-hidden="true">💸</span>
+      <article class="problem-card reveal d2">
+        <span class="prob-icon">💸</span>
         <h3>Platform takes the cut</h3>
-        <p>Spotify takes 70%. YouTube takes 45%. OnlyFans takes 20%. You do the work, you build the audience, they take the money. Enough.</p>
+        <p>YouTube takes 45%. Spotify takes 70%. You do the work, build the audience, and they take the money. You're a revenue source, not a partner.</p>
       </article>
-
-      <article class="problem-card reveal reveal-delay-3" role="listitem">
-        <span class="problem-card__icon" aria-hidden="true">🎯</span>
+      <article class="problem-card reveal d3">
+        <span class="prob-icon">🎯</span>
         <h3>You don't own your audience</h3>
-        <p>Get banned, go viral for the wrong reason, or watch your account get shadowbanned — and every follower you built vanishes overnight.</p>
+        <p>Get shadowbanned, go viral for the wrong reason, or simply wake up to a policy change — and every follower you built disappears overnight.</p>
       </article>
-
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  SOLUTION / FEATURES SECTION                           -->
-<!-- ════════════════════════════════════════════════════════ -->
-<section class="section section--soft" id="features" aria-labelledby="features-title">
-  <div class="container">
-
+<!-- ════════════════════════════════════════════════════
+     SOLUTION / FEATURES
+════════════════════════════════════════════════════ -->
+<section class="section section--soft" id="features">
+  <div class="wrap">
     <div class="section-header">
       <p class="section-tag reveal">The Solution</p>
-      <h2 class="t-h2 headline-split reveal reveal-delay-1" id="features-title">
-        We offer quality, <em>with the tools<br />creators actually need</em>
-      </h2>
+      <h2 class="reveal d1">We offer quality, <em>with tools<br>creators actually need</em></h2>
     </div>
-
-    <div class="features__grid reveal reveal-delay-1" role="list">
-
-      <article class="feature-card" role="listitem">
-        <div class="feature-card__icon" aria-hidden="true">🔒</div>
+    <div class="features-grid reveal d1">
+      <article class="feat-card">
+        <div class="feat-icon">🔒</div>
         <h3>Invite-only access</h3>
-        <p>No bots. No trolls. No spam. Every member is vouched for by someone already inside, keeping the quality of your community high by default.</p>
+        <p>No bots. No trolls. No spam accounts. Every member is vouched for by someone already inside — quality control by design, not moderation.</p>
       </article>
-
-      <article class="feature-card" role="listitem">
-        <div class="feature-card__icon" aria-hidden="true">🌳</div>
+      <article class="feat-card">
+        <div class="feat-icon">🌳</div>
         <h3>Network tree</h3>
         <p>See exactly how your network grows — who you invited, who they brought in, and how your influence compounds through real human connections.</p>
       </article>
-
-      <article class="feature-card" role="listitem">
-        <div class="feature-card__icon" aria-hidden="true">🚫</div>
+      <article class="feat-card">
+        <div class="feat-icon">🚫</div>
         <h3>No algorithms</h3>
-        <p>Your content reaches your subscribers — every time. Chronological feeds, real engagement, and zero suppression. Your audience, your rules.</p>
+        <p>Your content reaches every subscriber — every single time. Chronological feeds, zero suppression. Your audience, your rules, always.</p>
       </article>
-
-      <article class="feature-card" role="listitem">
-        <div class="feature-card__icon" aria-hidden="true">💰</div>
+      <article class="feat-card">
+        <div class="feat-icon">💰</div>
         <h3>Keep 90% revenue</h3>
-        <p>Subscriptions, tips, products — you keep 90 cents of every dollar your community spends. We take 10% to keep the lights on. That's the deal.</p>
+        <p>Subscriptions, tips, digital products — you keep 90 cents of every dollar your community spends. We take 10% to keep the lights on.</p>
       </article>
-
-      <article class="feature-card" role="listitem">
-        <div class="feature-card__icon" aria-hidden="true">🎟️</div>
+      <article class="feat-card">
+        <div class="feat-icon">🎟️</div>
         <h3>Ticketed events</h3>
         <p>Run paid live sessions, virtual workshops, and exclusive drops. Sell tickets, stream live, and interact with your real audience — all in one place.</p>
       </article>
-
-      <article class="feature-card" role="listitem">
-        <div class="feature-card__icon" aria-hidden="true">📺</div>
+      <article class="feat-card">
+        <div class="feat-icon">📺</div>
         <h3>Content library</h3>
-        <p>Upload your videos, courses, and audio to a permanent, searchable library. Your content stays findable — not buried by a 48-hour news cycle.</p>
+        <p>Upload videos, courses, and audio to a permanent, searchable library. Your content stays findable — not buried by a 48-hour news cycle.</p>
       </article>
-
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  HOW IT WORKS                                           -->
-<!-- ════════════════════════════════════════════════════════ -->
-<section class="section" id="how-it-works" aria-labelledby="how-title">
-  <div class="container">
-
+<!-- ════════════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════════════ -->
+<section class="section" id="how-it-works">
+  <div class="wrap">
     <div class="section-header">
       <p class="section-tag reveal">Simple by design</p>
-      <h2 class="t-h2 headline-split reveal reveal-delay-1" id="how-title">
-        How it works, <em>in three steps</em>
-      </h2>
+      <h2 class="reveal d1">How it works, <em>in three steps</em></h2>
     </div>
-
-    <div class="how__steps">
-
+    <div class="steps-grid">
       <div class="step reveal">
-        <div class="step__num" aria-hidden="true">01</div>
+        <div class="step-num">01</div>
         <h3>Request your invite</h3>
-        <p>Drop your email on the waitlist. Every Monday we release a new batch of invites — highest-quality creators get priority access first.</p>
+        <p>Drop your email on the waitlist. Every Monday we release a batch of invites — highest-quality creators get priority access first.</p>
       </div>
-
-      <div class="step reveal reveal-delay-1">
-        <div class="step__num" aria-hidden="true">02</div>
+      <div class="step reveal d1">
+        <div class="step-num">02</div>
         <h3>Build your Cirkle</h3>
-        <p>Set up your profile, import your content, set your subscription price, and invite the people you want — with complete control over who gets in.</p>
+        <p>Set up your profile, upload your content, set your subscription price, and invite the people you want — with full control over who gets in.</p>
       </div>
-
-      <div class="step reveal reveal-delay-2">
-        <div class="step__num" aria-hidden="true">03</div>
+      <div class="step reveal d2">
+        <div class="step-num">03</div>
         <h3>Grow and earn</h3>
-        <p>Host events, sell content, build genuine community — and watch your monthly revenue grow without ever fighting an algorithm for visibility.</p>
+        <p>Host events, sell content, build genuine community — and watch your monthly revenue grow without fighting an algorithm for visibility.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  COMPARISON TABLE                                       -->
-<!-- ════════════════════════════════════════════════════════ -->
-<section class="section section--dark" id="comparison" aria-labelledby="compare-title">
-  <div class="container">
-
+<!-- ════════════════════════════════════════════════════
+     COMPARISON TABLE
+════════════════════════════════════════════════════ -->
+<section class="section section--dark" id="comparison">
+  <div class="wrap">
     <div class="section-header">
-      <p class="section-tag reveal">See how we compare</p>
-      <h2 class="t-h2 headline-split-light reveal reveal-delay-1" id="compare-title">
-        CirkleUp vs <em>the rest</em>
-      </h2>
+      <p class="section-tag reveal">Honest comparison</p>
+      <h2 class="reveal d1">CirkleUp vs <em class="on-dark">the rest</em></h2>
     </div>
-
-    <div class="comparison-wrap reveal reveal-delay-1" role="region" aria-label="Platform comparison table">
-      <table class="comparison-table" aria-label="CirkleUp compared to Instagram, TikTok, and YouTube">
+    <div class="table-wrap reveal d1">
+      <table class="cmp-table">
         <thead>
           <tr>
-            <th scope="col" class="col--feature">Feature</th>
-            <th scope="col" class="col--cirkleup">CirkleUp</th>
-            <th scope="col">Instagram</th>
-            <th scope="col">TikTok</th>
-            <th scope="col">YouTube</th>
+            <th class="col-feat">Feature</th>
+            <th class="col-us">CirkleUp</th>
+            <th>Instagram</th>
+            <th>TikTok</th>
+            <th>YouTube</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="col--feature">Algorithm-free feed</td>
-            <td class="col--cirkleup"><span class="check" aria-label="Yes">✓</span> Always</td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="No">✗</span></td>
+            <td class="col-feat">Algorithm-free feed</td>
+            <td class="col-us"><span class="ck">✓</span> Always</td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cx">✗</span></td>
           </tr>
           <tr>
-            <td class="col--feature">Revenue share to creator</td>
-            <td class="col--cirkleup"><span class="check" aria-label="Yes">✓</span> 90%</td>
+            <td class="col-feat">Revenue share to creator</td>
+            <td class="col-us"><span class="ck">✓</span> 90%</td>
             <td>~55%</td>
             <td>~54%</td>
             <td>~55%</td>
           </tr>
           <tr>
-            <td class="col--feature">Bot-free community</td>
-            <td class="col--cirkleup"><span class="check" aria-label="Yes">✓</span> Guaranteed</td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="No">✗</span></td>
+            <td class="col-feat">Bot-free community</td>
+            <td class="col-us"><span class="ck">✓</span> Guaranteed</td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cx">✗</span></td>
           </tr>
           <tr>
-            <td class="col--feature">Audience data ownership</td>
-            <td class="col--cirkleup"><span class="check" aria-label="Yes">✓</span> You own it</td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="Partial">~</span> Limited</td>
+            <td class="col-feat">You own your audience data</td>
+            <td class="col-us"><span class="ck">✓</span> Fully yours</td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cx">✗</span></td>
+            <td>~ Limited</td>
           </tr>
           <tr>
-            <td class="col--feature">Invite-only quality control</td>
-            <td class="col--cirkleup"><span class="check" aria-label="Yes">✓</span> Built-in</td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="No">✗</span></td>
+            <td class="col-feat">Invite-only quality control</td>
+            <td class="col-us"><span class="ck">✓</span> Built-in</td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cx">✗</span></td>
           </tr>
           <tr>
-            <td class="col--feature">Built-in ticketed live events</td>
-            <td class="col--cirkleup"><span class="check" aria-label="Yes">✓</span> Native</td>
-            <td><span class="cross" aria-label="Partial">~</span> Basic</td>
-            <td><span class="cross" aria-label="No">✗</span></td>
-            <td><span class="cross" aria-label="Partial">~</span> Basic</td>
+            <td class="col-feat">Native ticketed live events</td>
+            <td class="col-us"><span class="ck">✓</span> Native</td>
+            <td>~ Basic</td>
+            <td><span class="cx">✗</span></td>
+            <td>~ Basic</td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  FINAL CTA                                              -->
-<!-- ════════════════════════════════════════════════════════ -->
-<section class="section cta-section" id="cta" aria-labelledby="cta-title">
-  <div class="cta-section__bg" aria-hidden="true"></div>
-  <div class="container">
-    <div class="cta__inner">
-
-      <p class="cta__eyebrow reveal">Exclusive access</p>
-
-      <h2 class="cta__headline reveal reveal-delay-1" id="cta-title">
-        Not everyone gets in.
-      </h2>
-
-      <p class="cta__sub reveal reveal-delay-2">
-        We're building this for creators who are serious about their craft and their community. Spots are limited. Every week a small batch opens up — and they go fast.
-      </p>
-
-      <div class="cta__checks reveal reveal-delay-2" aria-label="Platform promises">
-        <div class="cta__check">
-          <div class="cta__check-dot" aria-hidden="true">✓</div>
-          No credit card required
-        </div>
-        <div class="cta__check">
-          <div class="cta__check-dot" aria-hidden="true">✓</div>
-          Invites drop every Monday
-        </div>
-        <div class="cta__check">
-          <div class="cta__check-dot" aria-hidden="true">✓</div>
-          Cancel anytime
-        </div>
-      </div>
-
-      <div class="cta__form-wrap reveal reveal-delay-3">
-        <form class="cta__form js-invite-form" novalidate aria-label="Join the waitlist">
-          <label for="cta-email" class="sr-only">Your email address</label>
-          <input
-            type="email"
-            id="cta-email"
-            class="input js-email-input"
-            placeholder="your@email.com"
-            autocomplete="email"
-            required
-            aria-required="true"
-            aria-describedby="cta-email-error"
-          />
-          <button type="submit" class="btn btn--primary btn--lg">
-            Request Invite <span class="arrow" aria-hidden="true">→</span>
-          </button>
-        </form>
-        <span id="cta-email-error" class="input-error-msg" role="alert"></span>
-      </div>
-
+<!-- ════════════════════════════════════════════════════
+     FINAL CTA
+════════════════════════════════════════════════════ -->
+<section class="cta-section" id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <p class="cta-eyebrow reveal">Exclusive access</p>
+    <h2 class="reveal d1">Not everyone gets in.</h2>
+    <p class="reveal d2">We're building CirkleUp for creators who are serious about their craft and their community. Spots are limited. Every week a small batch opens up — and they go fast.</p>
+    <div class="cta-checks reveal d2">
+      <div class="cta-check"><div class="cta-dot">✓</div>No credit card required</div>
+      <div class="cta-check"><div class="cta-dot">✓</div>Invites drop every Monday</div>
+      <div class="cta-check"><div class="cta-dot">✓</div>Cancel anytime</div>
+    </div>
+    <div class="reveal d3">
+      <form class="cta-form" id="ctaForm" novalidate>
+        <label for="ctaEmail" class="sr-only">Email address</label>
+        <input type="email" id="ctaEmail" class="hero-input" placeholder="your@email.com" autocomplete="email" required/>
+        <button type="submit" class="btn btn-primary btn-lg" id="ctaBtn">
+          Request Invite <span class="arr">→</span>
+        </button>
+      </form>
+      <span class="input-err" id="ctaErr">Please enter a valid email address.</span>
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  FOOTER                                                 -->
-<!-- ════════════════════════════════════════════════════════ -->
-<footer class="footer" role="contentinfo">
-  <div class="container footer__inner">
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
 
-    <div class="footer__top">
-
-      <!-- Brand column -->
-      <div class="footer__brand">
-        <a href="#" class="nav__logo" aria-label="CirkleUp home" style="margin-bottom: 12px; display: inline-flex;">
-          <div class="nav__logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="2"/><circle cx="8" cy="8" r="2.5" fill="white"/></svg>
-          </div>
+      <!-- Brand -->
+      <div>
+        <a href="#" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+          <div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="2"/><circle cx="8" cy="8" r="2.5" fill="white"/></svg></div>
           CirkleUp
         </a>
-        <p class="footer__brand-desc">
-          The invite-only social platform where creators own their audience, keep their revenue, and build real community — without algorithms getting in the way.
-        </p>
-        <div class="footer__socials" aria-label="Social media links">
-          <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
-          <a href="#" class="social-btn" aria-label="X / Twitter">𝕏</a>
-          <a href="#" class="social-btn" aria-label="Instagram">ig</a>
-          <a href="#" class="social-btn" aria-label="TikTok">tt</a>
+        <p class="footer-brand-desc">The invite-only social platform where creators own their audience, keep their revenue, and build real community — without algorithms in the way.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn" aria-label="LinkedIn">in</a>
+          <a href="#" class="soc-btn" aria-label="X">𝕏</a>
+          <a href="#" class="soc-btn" aria-label="Instagram">ig</a>
+          <a href="#" class="soc-btn" aria-label="TikTok">tt</a>
         </div>
       </div>
 
-      <!-- Product column -->
-      <nav class="footer__col" aria-label="Product links">
-        <p class="footer__col-title">Product</p>
-        <ul class="footer__links">
+      <!-- Product -->
+      <nav aria-label="Product">
+        <p class="footer-col-title">Product</p>
+        <ul class="footer-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#comparison">Compare</a></li>
@@ -461,10 +907,10 @@
         </ul>
       </nav>
 
-      <!-- Company column -->
-      <nav class="footer__col" aria-label="Company links">
-        <p class="footer__col-title">Company</p>
-        <ul class="footer__links">
+      <!-- Company -->
+      <nav aria-label="Company">
+        <p class="footer-col-title">Company</p>
+        <ul class="footer-links">
           <li><a href="#">About Us</a></li>
           <li><a href="#">Blog</a></li>
           <li><a href="#">Careers</a></li>
@@ -472,10 +918,10 @@
         </ul>
       </nav>
 
-      <!-- Legal column -->
-      <nav class="footer__col" aria-label="Legal links">
-        <p class="footer__col-title">Legal</p>
-        <ul class="footer__links">
+      <!-- Legal -->
+      <nav aria-label="Legal">
+        <p class="footer-col-title">Legal</p>
+        <ul class="footer-links">
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
           <li><a href="#">Cookie Policy</a></li>
@@ -485,53 +931,155 @@
 
     </div>
 
-    <div class="footer__bottom">
-      <p class="footer__copy">© 2024 CirkleUp Inc. All rights reserved.</p>
-      <div class="footer__legal">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 CirkleUp Inc. All rights reserved.</p>
+      <div class="footer-legal">
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
         <a href="#">Cookies</a>
       </div>
     </div>
-
   </div>
 </footer>
 
 
-<!-- ════════════════════════════════════════════════════════ -->
-<!--  SUCCESS MODAL                                          -->
-<!-- ════════════════════════════════════════════════════════ -->
-<div
-  class="modal-overlay"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modal-title"
-  aria-describedby="modal-desc"
->
+<!-- ════════════════════════════════════════════════════
+     SUCCESS MODAL
+════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal">
-
-    <button class="modal__close" aria-label="Close this dialog">×</button>
-
-    <div class="modal__icon" aria-hidden="true">🎉</div>
-
-    <h2 class="modal__title" id="modal-title">You're on the list!</h2>
-
-    <p class="modal__body" id="modal-desc">
-      We've added you to the CirkleUp waitlist. Invites drop every Monday — keep an eye on your inbox. The quality of what you're joining is worth the wait.
-    </p>
-
-    <p class="modal__ref" id="modal-ref" aria-label="Your invite reference code"></p>
-
-    <button class="btn btn--primary btn--md" onclick="document.querySelector('.modal-overlay').classList.remove('is-open'); document.body.style.overflow='';">
-      Got it — I'll watch my inbox <span class="arrow" aria-hidden="true">→</span>
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-ico">🎉</div>
+    <h2 id="modalTitle">You're on the list!</h2>
+    <p>We've added you to the CirkleUp waitlist. Invites drop every Monday — keep an eye on your inbox. The quality of what you're joining is worth the wait.</p>
+    <p class="modal-ref" id="modalRef"></p>
+    <button class="btn btn-primary btn-md" id="modalCloseBtn">
+      Got it — I'll watch my inbox <span class="arr">→</span>
     </button>
-
   </div>
 </div>
 
 
-<!-- ── Script ── -->
-<script src="js/script.js" defer></script>
+<script>
+/* ══════════════════════════════════════════════
+   SCRIPT
+══════════════════════════════════════════════ */
+'use strict';
 
+/* ── Scroll Reveal ── */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => io.observe(el));
+
+/* ── Helpers ── */
+function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
+
+function refCode(email) {
+  let h = 5381;
+  for (let i = 0; i < email.length; i++) h = (h * 33) ^ email.charCodeAt(i);
+  return Math.abs(h).toString(36).toUpperCase().slice(0, 7);
+}
+
+/* ── Modal ── */
+const modal = document.getElementById('modal');
+function openModal(email) {
+  document.getElementById('modalRef').textContent = 'Reference: #' + refCode(email);
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ── Form Handler ── */
+async function handleSubmit(form, input, errEl, btn) {
+  const email = input.value.trim();
+  input.classList.remove('err');
+  errEl.classList.remove('show');
+
+  if (!email || !validEmail(email)) {
+    input.classList.add('err');
+    errEl.classList.add('show');
+    input.focus();
+    return;
+  }
+
+  const orig = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin">⟳</span> Joining…';
+
+  /* Swap for your real endpoint: */
+  /* await fetch('https://your-endpoint.com/waitlist', {
+       method:'POST',
+       headers:{'Content-Type':'application/json'},
+       body: JSON.stringify({ email, ts: Date.now() })
+     }); */
+  await new Promise(r => setTimeout(r, 1200)); // simulated delay
+
+  try { localStorage.setItem('cu_wl', JSON.stringify({ email, ts: Date.now() })); } catch(_) {}
+
+  btn.disabled = false;
+  btn.innerHTML = orig;
+  input.value = '';
+  openModal(email);
+}
+
+document.getElementById('heroForm').addEventListener('submit', e => {
+  e.preventDefault();
+  handleSubmit(
+    e.target,
+    document.getElementById('heroEmail'),
+    document.getElementById('heroErr'),
+    document.getElementById('heroBtn')
+  );
+});
+
+document.getElementById('ctaForm').addEventListener('submit', e => {
+  e.preventDefault();
+  handleSubmit(
+    e.target,
+    document.getElementById('ctaEmail'),
+    document.getElementById('ctaErr'),
+    document.getElementById('ctaBtn')
+  );
+});
+
+/* Clear errors on input */
+['heroEmail','ctaEmail'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function() {
+    this.classList.remove('err');
+    const errId = id === 'heroEmail' ? 'heroErr' : 'ctaErr';
+    document.getElementById(errId).classList.remove('show');
+  });
+});
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 68, behavior: 'smooth' });
+  });
+});
+
+/* ── Prior waitlist check ── */
+try {
+  const p = JSON.parse(localStorage.getItem('cu_wl'));
+  if (p?.email) {
+    document.querySelectorAll('.invite-note').forEach(el => {
+      el.textContent = '✓ ' + p.email + ' is already on the list!';
+      el.style.color = 'var(--accent)';
+    });
+  }
+} catch(_) {}
+</script>
 </body>
 </html>
