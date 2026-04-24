@@ -1,108 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CirkleUp - Invite-only social platform. Join the exclusive waitlist.">
-    <meta name="keywords" content="social media, invite-only, creators, influencers">
-    <meta name="author" content="CirkleUp">
+    <meta name="description" content="CirkleUp - Invite-only social platform for creators. Join the waitlist.">
     
-    <!-- Open Graph (Social Sharing) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="CirkleUp - Invite-Only Social Platform">
     <meta property="og:description" content="Social media is broken. Join the platform built for creators.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://cirkleup.com">
-    <!-- <meta property="og:image" content="https://cirkleup.com/assets/images/og-image.jpg"> -->
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CirkleUp - Invite-Only Social Platform">
-    <meta name="twitter:description" content="Social media is broken. Join the platform built for creators.">
-    
-    <!-- Title -->
     <title>CirkleUp - Join the Waitlist</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔵</text></svg>">
+    <!-- Favicon (emoji for now) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔵</text></svg>">
     
-    <!-- Preconnect to Google Fonts (Performance) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Font: Inter (Modern, Clean) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Preload Critical CSS (Performance) -->
-    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     
-    <!-- Main Container -->
-    <main class="container">
-        
-        <!-- Logo (Optional) -->
-        <div class="logo" aria-label="CirkleUp Logo">
-            <h1>CirkleUp</h1>
-        </div>
-        
-        <!-- Hero Section -->
-        <section class="hero">
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
             
-            <!-- Problem-Focused Headline -->
-            <h2 class="headline">Social media is broken.</h2>
+            <!-- Logo -->
+            <div class="logo">
+                <h1>CirkleUp</h1>
+            </div>
             
-            <!-- Exclusivity Statement -->
-            <p class="subheadline">Join the invite-only platform built for creators who deserve better.</p>
+            <!-- Badge -->
+            <span class="badge">🚀 Launching Soon</span>
+            
+            <!-- Headline -->
+            <h2 class="headline">
+                Social media is <span class="highlight">broken</span>.<br>
+                We're fixing it.
+            </h2>
+            
+            <!-- Subheadline -->
+            <p class="subheadline">
+                The invite-only platform where creators build real communities, not just follower counts. 
+                No algorithms. No bots. No corporate BS.
+            </p>
             
             <!-- Email Form -->
-            <form id="waitlistForm" class="form" novalidate>
-                <div class="form-group">
-                    <label for="email" class="visually-hidden">Email address</label>
+            <div class="form-wrapper">
+                <form id="waitlistForm" class="email-form">
                     <input 
                         type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="Enter your email"
+                        id="emailInput"
+                        placeholder="Enter your email" 
                         required
                         autocomplete="email"
-                        aria-required="true"
-                        aria-describedby="emailError"
                     >
-                    <span id="emailError" class="error-message" role="alert"></span>
+                    <button type="submit" class="btn-primary">
+                        <span class="btn-text">Request Invite</span>
+                        <span class="btn-loading">
+                            <span class="spinner"></span>
+                        </span>
+                    </button>
+                </form>
+                <p class="form-note">
+                    <strong>⚡ Limited invites released weekly</strong> · Creators & influencers first
+                </p>
+            </div>
+            
+            <!-- Social Proof with 3D Avatars -->
+            <div class="social-proof">
+                <p class="proof-text">Join 1,247+ creators on the waitlist</p>
+                <div class="avatar-group">
+                    <!-- Avatar 1 -->
+                    <div class="avatar avatar-1">
+                        <div class="avatar-inner">MR</div>
+                    </div>
+                    <!-- Avatar 2 -->
+                    <div class="avatar avatar-2">
+                        <div class="avatar-inner">JS</div>
+                    </div>
+                    <!-- Avatar 3 -->
+                    <div class="avatar avatar-3">
+                        <div class="avatar-inner">AK</div>
+                    </div>
+                    <!-- Avatar 4 -->
+                    <div class="avatar avatar-4">
+                        <div class="avatar-inner">TC</div>
+                    </div>
+                    <!-- Avatar 5 -->
+                    <div class="avatar avatar-5">
+                        <div class="avatar-inner">LP</div>
+                    </div>
+                    <span class="count">+1,242 more</span>
                 </div>
-                <button type="submit" class="btn-primary">
-                    <span class="btn-text">Request Invite</span>
-                    <span class="btn-loading" aria-hidden="true">
-                        <span class="spinner"></span>
-                    </span>
-                </button>
-            </form>
+            </div>
             
-            <!-- Urgency/Scarcity Note -->
-            <p class="form-note">⚡ Limited invites released weekly</p>
-            
-        </section>
-        
-        <!-- Success State (Hidden by default) -->
-        <div id="successMessage" class="success-message" role="status" aria-live="polite" hidden>
-            <div class="success-icon">✓</div>
-            <h3>You're on the list!</h3>
-            <p>Check your email to confirm your spot.</p>
         </div>
-        
-    </main>
+    </section>
     
-    <!-- Footer (Optional) -->
+    <!-- PROBLEM SECTION -->
+    <section class="problem section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label problem-label">The Problem</span>
+                <h3 class="section-title">You're building on rented land</h3>
+                <p class="section-subtitle">
+                    Mainstream platforms control your audience, hide your content, and change the rules overnight.
+                </p>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">📉</div>
+                    <h4>Algorithm manipulation</h4>
+                    <p>Your posts reach only 5-10% of your followers. The platform decides who sees your content.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">🤖</div>
+                    <h4>Bots everywhere</h4>
+                    <p>Fake accounts, spam comments, inflated metrics. You can't tell real engagement from noise.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h4>Platform takes the cut</h4>
+                    <p>YouTube keeps 45% of ad revenue. Twitch takes 50%. You do the work, they get paid.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h4>You don't own your audience</h4>
+                    <p>Build 100K followers and the platform can ban you overnight. All that work, gone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SOLUTION SECTION -->
+    <section class="solution section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label solution-label">The Solution</span>
+                <h3 class="section-title">Built for creators who want control</h3>
+                <p class="section-subtitle">
+                    CirkleUp gives you your audience back. Real community. Real reach. Real revenue.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Invite-only access</h4>
+                    <p>Every member is personally vouched for. Zero bots, zero spam, zero toxic trolls. Quality over quantity, always.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🌳</div>
+                    <h4>Your network tree</h4>
+                    <p>Track your lineage 5 generations deep. See who you invited and who they brought in. Build your actual community.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🚫</div>
+                    <h4>No algorithms</h4>
+                    <p>Your content reaches 100% of your audience. Chronological feeds. No platform deciding what people see.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h4>Keep 90% of revenue</h4>
+                    <p>Sell tickets, premium content, memberships. We take 10%, you keep the rest. Fair and transparent.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🎟️</div>
+                    <h4>Ticketed events</h4>
+                    <p>Host paid live sessions, workshops, Q&As. Your fans pay you directly. No middleman taking half.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📺</div>
+                    <h4>Content library</h4>
+                    <p>Organize your videos into series and episodes. Build a Netflix-style experience your audience will love.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label how-label">How It Works</span>
+                <h3 class="section-title">Join in three simple steps</h3>
+                <p class="section-subtitle">
+                    We're starting with creators and influencers. If you have an audience, you're exactly who we built this for.
+                </p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Request an invite</h4>
+                    <p>Join the waitlist. We review every request manually. Priority goes to active creators with engaged audiences.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Get early access</h4>
+                    <p>Receive your personal invite code. You're now a founding member. Set up your profile and start inviting your community.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Build your empire</h4>
+                    <p>Create content, host events, grow your lineage tree. You own the relationship with your audience. Forever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- COMPARISON TABLE -->
+    <section class="exclusive section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label exclusive-label">Why Exclusive Matters</span>
+                <h3 class="section-title">CirkleUp vs everyone else</h3>
+                <p class="section-subtitle">
+                    Here's what you get that you can't find on Instagram, TikTok, or YouTube.
+                </p>
+            </div>
+            
+            <div class="comparison-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>CirkleUp</th>
+                            <th>Instagram</th>
+                            <th>TikTok</th>
+                            <th>YouTube</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cirkleup-row">
+                            <td class="feature-name">Invite-only access</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">No bots or spam</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr class="cirkleup-row">
+                            <td class="feature-name">100% audience reach</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗ (5-10%)</span></td>
+                            <td><span class="cross">✗ (8-12%)</span></td>
+                            <td><span class="cross">✗ (varies)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Creator revenue share</td>
+                            <td><span class="check">✓ (90%)</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓ (50%)</span></td>
+                            <td><span class="check">✓ (55%)</span></td>
+                        </tr>
+                        <tr class="cirkleup-row">
+                            <td class="feature-name">Lineage tracking</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Ticketed events</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FINAL CTA -->
+    <section class="cta section">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h3 class="cta-title">Not everyone gets in</h3>
+                <p class="cta-subtitle">Limited invites for creators and influencers. Join the waitlist now.</p>
+                <button class="btn-cta" onclick="scrollToTop()">
+                    Request Your Invite
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
     <footer class="footer">
-        <p>&copy; 2026 CirkleUp. <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h5>Product</h5>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h5>Company</h5>
+                    <a href="#about">About</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#careers">Careers</a>
+                    <a href="mailto:hello@cirkleup.com">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h5>Legal</h5>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#cookies">Cookie Policy</a>
+                </div>
+                <div class="footer-section">
+                    <h5>Social</h5>
+                    <a href="#instagram">Instagram</a>
+                    <a href="#twitter">Twitter</a>
+                    <a href="#tiktok">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CirkleUp. All rights reserved. Built for creators who deserve better.</p>
+            </div>
+        </div>
     </footer>
     
-    <!-- JavaScript (Deferred for Performance) -->
-    <script src="js/main.js" defer></script>
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-body">
+                <div class="success-icon">✓</div>
+                <h4>You're on the list!</h4>
+                <p>Check your email to confirm your spot.</p>
+                <p class="modal-note">Want to skip the line? Refer 3 friends and move up 100 spots.</p>
+                <button class="btn-primary" onclick="closeModal()">Got it</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
     
 </body>
 </html>
+ 
