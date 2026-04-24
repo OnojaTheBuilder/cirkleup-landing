@@ -1,106 +1,94 @@
 /**
- * CIRKLEUP LANDING PAGE - MODERN JAVASCRIPT
- * 2025 Best Practices: ES6+, Async/Await, Proper Error Handling
+ * CIRKLEUP LANDING PAGE - JAVASCRIPT
+ * Complete functionality with form validation, modals, and animations
  */
 
 // ========================================
-// 1. CONFIGURATION
+// CONFIGURATION
 // ========================================
 
 const CONFIG = {
     // Email service endpoint (replace with your actual endpoint)
     apiEndpoint: 'YOUR_API_ENDPOINT_HERE',
     
-    // Form validation settings
+    // Form validation
     emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     
     // UI timing
-    successDisplayTime: 5000, // 5 seconds
+    successDisplayTime: 5000,
 };
 
 // ========================================
-// 2. DOM ELEMENTS
-// Cache DOM queries for performance
+// DOM ELEMENTS
 // ========================================
 
 const elements = {
     form: document.getElementById('waitlistForm'),
-    emailInput: document.getElementById('email'),
+    emailInput: document.getElementById('emailInput'),
     submitButton: document.querySelector('.btn-primary'),
-    errorMessage: document.getElementById('emailError'),
-    heroSection: document.querySelector('.hero'),
-    successMessage: document.getElementById('successMessage'),
+    successModal: document.getElementById('successModal'),
 };
 
 // ========================================
-// 3. FORM VALIDATION
+// FORM VALIDATION
 // ========================================
 
-/**
- * Validate email address
- * @param {string} email - Email to validate
- * @returns {boolean} - True if valid
- */
 function isValidEmail(email) {
     return CONFIG.emailRegex.test(email.trim());
 }
 
-/**
- * Show error message
- * @param {string} message - Error message to display
- */
-function showError(message) {
-    elements.errorMessage.textContent = message;
-    elements.emailInput.classList.add('error');
-    elements.emailInput.setAttribute('aria-invalid', 'true');
-}
-
-/**
- * Clear error message
- */
-function clearError() {
-    elements.errorMessage.textContent = '';
-    elements.emailInput.classList.remove('error');
-    elements.emailInput.setAttribute('aria-invalid', 'false');
-}
-
-/**
- * Real-time validation on input
- */
-elements.emailInput.addEventListener('input', () => {
-    if (elements.errorMessage.textContent) {
-        clearError();
+function showError(input, message) {
+    // Create error element if it doesn't exist
+    let errorElement = input.nextElementSibling;
+    if (!errorElement || !errorElement.classList.contains('error-message')) {
+        errorElement = document.createElement('span');
+        errorElement.className = 'error-message';
+        errorElement.style.cssText = 'display: block; color: #ef4444; font-size: 0.875rem; margin-top: 0.5rem; text-align: left;';
+        input.parentNode.insertBefore(errorElement, input.nextSibling);
     }
-});
+    errorElement.textContent = message;
+    input.style.borderColor = '#ef4444';
+}
+
+function clearError(input) {
+    const errorElement = input.nextElementSibling;
+    if (errorElement && errorElement.classList.contains('error-message')) {
+        errorElement.remove();
+    }
+    input.style.borderColor = '';
+}
+
+// Clear error on input
+if (elements.emailInput) {
+    elements.emailInput.addEventListener('input', function() {
+        clearError(this);
+    });
+}
 
 // ========================================
-// 4. FORM SUBMISSION
+// FORM SUBMISSION
 // ========================================
 
-/**
- * Handle form submission
- * @param {Event} e - Form submit event
- */
 async function handleSubmit(e) {
     e.preventDefault();
     
     const email = elements.emailInput.value.trim();
     
-    // Validate email
+    // Validate
     if (!email) {
-        showError('Please enter your email address');
+        showError(elements.emailInput, 'Please enter your email address');
         elements.emailInput.focus();
         return;
     }
     
     if (!isValidEmail(email)) {
-        showError('Please enter a valid email address');
+        showError(elements.emailInput, 'Please enter a valid email address');
         elements.emailInput.focus();
         return;
     }
     
-    // Clear any previous errors
-    clearError();
+    // Clear errors
+    clearError(elements.emailInput);
     
     // Set loading state
     setLoadingState(true);
@@ -110,10 +98,10 @@ async function handleSubmit(e) {
         const success = await submitToWaitlist(email);
         
         if (success) {
-            // Show success message
-            showSuccessMessage();
+            // Show success modal
+            showSuccessModal();
             
-            // Track event (if analytics is set up)
+            // Track event
             trackEvent('waitlist_signup', { email });
             
             // Clear form
@@ -123,17 +111,13 @@ async function handleSubmit(e) {
         }
     } catch (error) {
         console.error('Form submission error:', error);
-        showError('Something went wrong. Please try again.');
+        showError(elements.emailInput, 'Something went wrong. Please try again.');
     } finally {
         // Remove loading state
         setLoadingState(false);
     }
 }
 
-/**
- * Set form loading state
- * @param {boolean} isLoading - Loading state
- */
 function setLoadingState(isLoading) {
     if (isLoading) {
         elements.submitButton.disabled = true;
@@ -146,40 +130,17 @@ function setLoadingState(isLoading) {
     }
 }
 
-/**
- * Show success message
- */
-function showSuccessMessage() {
-    // Hide form
-    elements.heroSection.style.display = 'none';
-    
-    // Show success message
-    elements.successMessage.hidden = false;
-    
-    // Focus for screen readers
-    elements.successMessage.focus();
-    
-    // Optionally hide success message after delay
-    // setTimeout(() => {
-    //     elements.successMessage.hidden = true;
-    //     elements.heroSection.style.display = 'block';
-    // }, CONFIG.successDisplayTime);
+// Attach form submit handler
+if (elements.form) {
+    elements.form.addEventListener('submit', handleSubmit);
 }
 
-// Attach submit handler
-elements.form.addEventListener('submit', handleSubmit);
-
 // ========================================
-// 5. API SUBMISSION
+// API SUBMISSION
 // ========================================
 
-/**
- * Submit email to waitlist
- * @param {string} email - User's email
- * @returns {Promise<boolean>} - Success status
- */
 async function submitToWaitlist(email) {
-    // OPTION 1: Use your own backend API
+    // OPTION 1: Use your backend API
     if (CONFIG.apiEndpoint !== 'YOUR_API_ENDPOINT_HERE') {
         try {
             const response = await fetch(CONFIG.apiEndpoint, {
@@ -205,36 +166,12 @@ async function submitToWaitlist(email) {
         }
     }
     
-    // OPTION 2: Google Sheets (using Apps Script)
-    // Tutorial: https://github.com/jamiewilson/form-to-google-sheets
-    // Uncomment and add your script URL:
-    /*
-    try {
-        await fetch('YOUR_GOOGLE_SCRIPT_URL', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email }),
-        });
-        return true;
-    } catch (error) {
-        console.error('Google Sheets error:', error);
-        return false;
-    }
-    */
-    
-    // OPTION 3: For demo/testing - save to localStorage
+    // OPTION 2: For demo - save to localStorage
     console.log('📧 Email submitted (demo mode):', email);
     saveToLocalStorage(email);
     return true;
 }
 
-/**
- * Save email to localStorage (demo/testing only)
- * @param {string} email - Email to save
- */
 function saveToLocalStorage(email) {
     try {
         const emails = JSON.parse(localStorage.getItem('waitlistEmails') || '[]');
@@ -250,21 +187,71 @@ function saveToLocalStorage(email) {
 }
 
 // ========================================
-// 6. ANALYTICS TRACKING
+// MODAL FUNCTIONS
 // ========================================
 
-/**
- * Track analytics event
- * @param {string} eventName - Event name
- * @param {Object} params - Event parameters
- */
+function showSuccessModal() {
+    if (elements.successModal) {
+        elements.successModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal() {
+    if (elements.successModal) {
+        elements.successModal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close modal on overlay click
+if (elements.successModal) {
+    elements.successModal.addEventListener('click', function(e) {
+        if (e.target === this || e.target.classList.contains('modal-overlay')) {
+            closeModal();
+        }
+    });
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// ========================================
+// SCROLL FUNCTIONS
+// ========================================
+
+function scrollToTop() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Focus email input after scroll
+        setTimeout(() => {
+            if (elements.emailInput) {
+                elements.emailInput.focus();
+            }
+        }, 500);
+    }
+}
+
+// Make scrollToTop available globally
+window.scrollToTop = scrollToTop;
+
+// ========================================
+// ANALYTICS TRACKING
+// ========================================
+
 function trackEvent(eventName, params = {}) {
     // Google Analytics 4
     if (typeof gtag !== 'undefined') {
         gtag('event', eventName, params);
     }
     
-    // Plausible Analytics (privacy-friendly alternative)
+    // Plausible Analytics
     if (typeof plausible !== 'undefined') {
         plausible(eventName, { props: params });
     }
@@ -280,46 +267,92 @@ trackEvent('page_view', {
 });
 
 // ========================================
-// 7. KEYBOARD SHORTCUTS
+// SMOOTH SCROLL FOR ANCHOR LINKS
 // ========================================
 
-/**
- * Handle keyboard shortcuts
- * @param {KeyboardEvent} e - Keyboard event
- */
-function handleKeyboardShortcuts(e) {
-    // Escape key - clear form
-    if (e.key === 'Escape') {
-        elements.form.reset();
-        clearError();
-        elements.emailInput.blur();
-    }
-    
-    // Cmd/Ctrl + K - focus email input
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
         e.preventDefault();
-        elements.emailInput.focus();
-    }
-}
-
-document.addEventListener('keydown', handleKeyboardShortcuts);
+        const target = document.querySelector(href);
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
 
 // ========================================
-// 8. PERFORMANCE MONITORING
+// INTERSECTION OBSERVER (Animations on Scroll)
 // ========================================
 
-/**
- * Log page load performance
- */
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe elements for fade-in animation
+document.addEventListener('DOMContentLoaded', () => {
+    const animateElements = document.querySelectorAll(
+        '.problem-card, .feature, .step, .comparison-wrapper'
+    );
+    
+    animateElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(el);
+    });
+});
+
+// ========================================
+// AVATAR 3D TILT EFFECT
+// ========================================
+
+document.querySelectorAll('.avatar').forEach(avatar => {
+    avatar.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 5;
+        const rotateY = (centerX - x) / 5;
+        
+        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+    });
+    
+    avatar.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+    });
+});
+
+// ========================================
+// PERFORMANCE MONITORING
+// ========================================
+
 window.addEventListener('load', () => {
-    // Use Performance API
     if ('performance' in window) {
-        const perfData = window.performance.timing;
+        const perfData = performance.timing;
         const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
         
         console.log(`⚡ Page loaded in ${pageLoadTime}ms`);
         
-        // Track with analytics
         trackEvent('page_performance', {
             load_time: pageLoadTime,
             page: 'landing',
@@ -328,24 +361,17 @@ window.addEventListener('load', () => {
 });
 
 // ========================================
-// 9. ERROR HANDLING
+// ERROR HANDLING
 // ========================================
 
-/**
- * Global error handler
- */
 window.addEventListener('error', (event) => {
     console.error('Global error:', event.error);
-    // Optionally track errors with analytics
     trackEvent('javascript_error', {
         message: event.error?.message || 'Unknown error',
         stack: event.error?.stack || '',
     });
 });
 
-/**
- * Unhandled promise rejection handler
- */
 window.addEventListener('unhandledrejection', (event) => {
     console.error('Unhandled promise rejection:', event.reason);
     trackEvent('promise_rejection', {
@@ -354,100 +380,27 @@ window.addEventListener('unhandledrejection', (event) => {
 });
 
 // ========================================
-// 10. SERVICE WORKER (OPTIONAL)
-// For offline support and caching
+// ONLINE/OFFLINE DETECTION
 // ========================================
 
-/**
- * Register service worker
- * Uncomment to enable offline support
- */
-/*
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker
-            .register('/sw.js')
-            .then((registration) => {
-                console.log('✅ Service Worker registered:', registration);
-            })
-            .catch((error) => {
-                console.log('❌ Service Worker registration failed:', error);
-            });
-    });
-}
-*/
-
-// ========================================
-// 11. ACCESSIBILITY
-// ========================================
-
-/**
- * Announce to screen readers
- * @param {string} message - Message to announce
- */
-function announceToScreenReader(message) {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('role', 'status');
-    announcement.setAttribute('aria-live', 'polite');
-    announcement.className = 'sr-only';
-    announcement.textContent = message;
-    
-    document.body.appendChild(announcement);
-    
-    // Remove after announcement
-    setTimeout(() => {
-        document.body.removeChild(announcement);
-    }, 1000);
-}
-
-// ========================================
-// 12. UTILITY FUNCTIONS
-// ========================================
-
-/**
- * Debounce function
- * @param {Function} func - Function to debounce
- * @param {number} wait - Wait time in ms
- * @returns {Function} - Debounced function
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-/**
- * Check if user is online
- * @returns {boolean} - Online status
- */
-function isOnline() {
-    return navigator.onLine;
-}
-
-// Listen for online/offline events
-window.addEventListener('online', () => {
+function handleOnline() {
     console.log('✅ Back online');
-    announceToScreenReader('Connection restored');
-});
+}
 
-window.addEventListener('offline', () => {
+function handleOffline() {
     console.log('⚠️ Offline');
-    announceToScreenReader('No internet connection');
-});
+    if (elements.emailInput) {
+        showError(elements.emailInput, 'No internet connection. Please check your connection and try again.');
+    }
+}
+
+window.addEventListener('online', handleOnline);
+window.addEventListener('offline', handleOffline);
 
 // ========================================
-// 13. INITIALIZATION
+// INITIALIZATION
 // ========================================
 
-/**
- * Initialize app
- */
 function init() {
     console.log('🚀 CirkleUp Landing Page initialized');
     
@@ -457,18 +410,15 @@ function init() {
         return;
     }
     
-    // Set initial focus
-    elements.emailInput.focus();
-    
     // Log environment
     console.log('Environment:', {
-        online: isOnline(),
+        online: navigator.onLine,
         screen: `${window.innerWidth}x${window.innerHeight}`,
-        userAgent: navigator.userAgent,
+        userAgent: navigator.userAgent.split(' ').slice(-2).join(' '),
     });
 }
 
-// Run initialization when DOM is ready
+// Run initialization
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
@@ -476,14 +426,15 @@ if (document.readyState === 'loading') {
 }
 
 // ========================================
-// 14. EXPORT FOR TESTING (OPTIONAL)
+// EXPORT FOR TESTING
 // ========================================
 
-// Expose functions for console testing
 window.CirkleUpApp = {
     submitToWaitlist,
+    showSuccessModal,
+    closeModal,
+    scrollToTop,
     trackEvent,
-    showSuccessMessage,
     isValidEmail,
 };
 
