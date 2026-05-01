@@ -229,6 +229,24 @@ img{max-width:100%;display:block;}
   margin-top:8px;font-size:0.76rem;color:rgba(255,255,255,0.25);
   text-align:center;line-height:1.5;
 }
+.lineage-callout{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(145,71,255,0.1);
+  border:1px solid rgba(145,71,255,0.28);
+  border-radius:var(--r-md);
+  padding:14px 18px;
+  max-width:480px;width:100%;
+  margin-bottom:24px;
+  animation:fadeUp 0.7s ease 0.32s both;
+  text-align:left;
+}
+.lineage-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
+.lineage-callout p{
+  font-size:0.88rem;font-weight:600;
+  color:rgba(255,255,255,0.9);
+  line-height:1.5;
+  letter-spacing:0.005em;
+}
 .invite-note::before{
   content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);
   display:inline-block;flex-shrink:0;animation:pulseDot 2s ease-in-out infinite;
@@ -352,6 +370,15 @@ img{max-width:100%;display:block;}
 }
 .feat-card:hover .feat-icon{transform:scale(1.1) rotate(-4deg);background:rgba(145,71,255,0.15);}
 .feat-card h3{font-family:'Syne',sans-serif;font-size:0.98rem;font-weight:700;margin-bottom:8px;}
+.feat-card--highlight{background:var(--accent-lt)!important;}
+.feat-card--highlight .feat-icon{background:rgba(145,71,255,0.15);}
+.feat-card--highlight h3{color:var(--accent-dk);}
+.feat-highlight-line{
+  margin-top:12px;font-size:0.8rem;font-weight:600;
+  color:var(--accent-dk);font-style:italic;
+  border-top:1px solid rgba(145,71,255,0.2);
+  padding-top:10px;
+}
 .feat-card p{font-size:0.855rem;color:var(--ink-soft);line-height:1.65;}
 
 /* ══════════════════════════════════════════════
@@ -613,6 +640,11 @@ img{max-width:100%;display:block;}
       <li><span class="hb-icon">💸</span>Platforms take 45% of what you earn.</li>
     </ul>
 
+    <div class="lineage-callout">
+      <span class="lineage-icon">🌳</span>
+      <p>Your founding position is permanent — the people you invite build under you forever.</p>
+    </div>
+
     <div class="hero-form-wrap" id="waitlist">
       <form class="hero-form" id="heroForm" novalidate>
         <label for="heroEmail" class="sr-only">Email address</label>
@@ -712,10 +744,11 @@ img{max-width:100%;display:block;}
         <h3>Invite-only access</h3>
         <p>No bots. No trolls. No spam accounts. Every member is vouched for by someone already inside — quality control by design, not moderation.</p>
       </article>
-      <article class="feat-card">
+      <article class="feat-card feat-card--highlight">
         <div class="feat-icon">🌳</div>
-        <h3>Network tree</h3>
-        <p>See exactly how your network grows — who you invited, who they brought in, and how your influence compounds through real human connections.</p>
+        <h3>Permanent lineage system</h3>
+        <p>Your founding position is locked in forever. Everyone you invite builds under you — and everyone they invite builds under them. Your network compounds permanently, not algorithmically.</p>
+        <p class="feat-highlight-line">This is the only platform where your position gets more valuable the longer you hold it.</p>
       </article>
       <article class="feat-card">
         <div class="feat-icon">🚫</div>
@@ -754,7 +787,7 @@ img{max-width:100%;display:block;}
     <div class="steps-grid">
       <div class="step reveal">
         <div class="step-num">01</div>
-        <h3>Request your invite</h3>
+        <h3>Claim your invite</h3>
         <p>Drop your email on the waitlist. Every Monday we release a batch of invites — highest-quality creators get priority access first.</p>
       </div>
       <div class="step reveal d1">
@@ -854,7 +887,7 @@ img{max-width:100%;display:block;}
     <div class="cta-checks reveal d2">
       <div class="cta-check"><div class="cta-dot">✓</div>Founding members get 5 invites</div>
       <div class="cta-check"><div class="cta-dot">✓</div>Invites drop every Monday</div>
-      <div class="cta-check"><div class="cta-dot">✓</div>Cancel anytime</div>
+      <div class="cta-check"><div class="cta-dot">✓</div>Founding spot locked in</div>
     </div>
     <div class="reveal d3">
       <form class="cta-form" id="ctaForm" novalidate>
@@ -879,12 +912,6 @@ img{max-width:100%;display:block;}
       <a href="#">About</a>
       <span class="footer-sep" aria-hidden="true">•</span>
       <a href="#">Contact</a>
-      <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="https://instagram.com/cirkleup" target="_blank" rel="noopener">Instagram</a>
-      <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="https://twitter.com/cirkleup" target="_blank" rel="noopener">Twitter</a>
-      <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="https://tiktok.com/@cirkleup" target="_blank" rel="noopener">TikTok</a>
     </nav>
     <p class="footer-copy">© 2026 CirkleUp. All rights reserved.</p>
   </div>
