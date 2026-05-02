@@ -626,9 +626,16 @@ img{max-width:100%;display:block;}
 /* ══════════════════════════════════════════════
    SCROLL REVEAL
 ══════════════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.reveal.visible{opacity:1;transform:none;}
-.d1{transition-delay:0.08s;}.d2{transition-delay:0.16s;}.d3{transition-delay:0.24s;}.d4{transition-delay:0.32s;}
+.reveal{
+  opacity:1;transform:none;
+  transition:opacity 0.65s ease,transform 0.65s ease;
+}
+.js-loaded .reveal{opacity:0;transform:translateY(24px);}
+.js-loaded .reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:0.08s;}
+.d2{transition-delay:0.16s;}
+.d3{transition-delay:0.24s;}
+.d4{transition-delay:0.32s;}
 
 /* ══════════════════════════════════════════════
    KEYFRAMES
@@ -822,34 +829,34 @@ img{max-width:100%;display:block;}
       <p class="section-tag reveal">The Solution</p>
       <h2 class="reveal d1">We offer quality, <em>with tools<br>creators actually need</em></h2>
     </div>
-    <div class="features-grid reveal d1">
-      <article class="feat-card">
+    <div class="features-grid">
+      <article class="feat-card reveal">
         <div class="feat-icon">🔒</div>
         <h3>Invite-only access</h3>
         <p>No bots. No trolls. No spam accounts. Every member is vouched for by someone already inside — quality control by design, not moderation.</p>
       </article>
-      <article class="feat-card feat-card--highlight">
+      <article class="feat-card feat-card--highlight reveal d1">
         <div class="feat-icon">🌳</div>
         <h3>Permanent lineage system</h3>
         <p>Your founding position is locked in forever. Everyone you invite builds under you — and everyone they invite builds under them. Your network compounds permanently, not algorithmically.</p>
         <p class="feat-highlight-line">This is the only platform where your position gets more valuable the longer you hold it.</p>
       </article>
-      <article class="feat-card">
+      <article class="feat-card reveal d2">
         <div class="feat-icon">🚫</div>
         <h3>No algorithms</h3>
         <p>Your content reaches every subscriber — every single time. Chronological feeds, zero suppression. Your audience, your rules, always.</p>
       </article>
-      <article class="feat-card">
+      <article class="feat-card reveal d1">
         <div class="feat-icon">💰</div>
         <h3>Keep 90% revenue</h3>
         <p>Subscriptions, tips, digital products — you keep 90 cents of every dollar your community spends. We take 10% to keep the lights on.</p>
       </article>
-      <article class="feat-card">
+      <article class="feat-card reveal d2">
         <div class="feat-icon">🎟️</div>
         <h3>Ticketed events</h3>
         <p>Run paid live sessions, virtual workshops, and exclusive drops. Sell tickets, stream live, and interact with your real audience — all in one place.</p>
       </article>
-      <article class="feat-card">
+      <article class="feat-card reveal d3">
         <div class="feat-icon">📺</div>
         <h3>Content library</h3>
         <p>Upload videos, courses, and audio to a permanent, searchable library. Your content stays findable — not buried by a 48-hour news cycle.</p>
