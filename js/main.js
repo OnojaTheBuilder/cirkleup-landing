@@ -53,12 +53,15 @@ async function handleSubmit(form, input, errEl, btn) {
   btn.innerHTML = '<span class="spin">⟳</span> Joining…';
 
   /* Swap for your real endpoint: */
-  /* await fetch('https://your-endpoint.com/waitlist', {
-       method:'POST',
-       headers:{'Content-Type':'application/json'},
-       body: JSON.stringify({ email, ts: Date.now() })
-     }); */
-  await new Promise(r => setTimeout(r, 1200)); // simulated delay
+  await fetch('https://hook.us2.make.com/79b84uzzdt9900tixhvp35w6y3p4qxlo', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    email: email,
+    ts: new Date().toISOString(),
+    source: 'hero-form'
+  })
+});
 
   try { localStorage.setItem('cu_wl', JSON.stringify({ email, ts: Date.now() })); } catch(_) {}
 
