@@ -1,17 +1,25 @@
 /* ══════════════════════════════════════════════
-   SCRIPT
+   CIRKLEUP — script.js
+   Formspree endpoint: https://formspree.io/f/xdabakqy
 ══════════════════════════════════════════════ */
 'use strict';
+
+const FORMSPREE_WAITLIST = 'https://formspree.io/f/xdabakqy';
+const FORMSPREE_CONTACT  = 'https://formspree.io/f/xdabakqy'; // swap for a separate form ID when ready
 
 /* ── Scroll Reveal ── */
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
 }, { threshold: 0.1 });
 revealEls.forEach(el => io.observe(el));
 
 /* ── Helpers ── */
-function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
+function validEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+}
 
 function refCode(email) {
   let h = 5381;
@@ -21,23 +29,30 @@ function refCode(email) {
 
 /* ── Modal ── */
 const modal = document.getElementById('modal');
+
 function openModal(email) {
   document.getElementById('modalRef').textContent = 'Reference: #' + refCode(email);
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
   modal.classList.remove('open');
   document.body.style.overflow = '';
 }
+
 document.getElementById('modalClose').addEventListener('click', closeModal);
 document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-/* ── Form Handler ── */
+/* ══════════════════════════════════════════════
+   WAITLIST FORM HANDLER
+   Uses FormData — Formspree handles CORS correctly
+══════════════════════════════════════════════ */
 async function handleSubmit(form, input, errEl, btn) {
   const email = input.value.trim();
+
   input.classList.remove('err');
   errEl.classList.remove('show');
 
@@ -52,64 +67,139 @@ async function handleSubmit(form, input, errEl, btn) {
   btn.disabled = true;
   btn.innerHTML = '<span class="spin">⟳</span> Joining…';
 
-  /* Swap for your real endpoint: */
- const res = await fetch('https://formspree.io/f/xdabakqy', {
-  method: 'POST',
-  headers: { 'Accept': 'application/json' },
-  body: (() => {
+  try {
     const fd = new FormData();
-    fd.append('email', email);
-    fd.append('source', 'hero-waitlist');
+    fd.append('email',        email);
+    fd.append('source',       'waitlist');
     fd.append('submitted_at', new Date().toISOString());
-    return fd;
-  })()
-});
 
-if (!res.ok) throw new Error('Submission failed');
-  try { localStorage.setItem('cu_wl', JSON.stringify({ email, ts: Date.now() })); } catch(_) {}
+    const res = await fetch(FORMSPREE_WAITLIST, {
+      method:  'POST',
+      headers: { 'Accept': 'application/json' },
+      body:    fd
+    });
 
-  btn.disabled = false;
-  btn.innerHTML = orig;
-  input.value = '';
-  openModal(email);
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error || 'Submission failed — please try again.');
+    }
+
+    try {
+      localStorage.setItem('cu_wl', JSON.stringify({ email, ts: Date.now() }));
+    } catch (_) {}
+
+    input.value = '';
+    openModal(email);
+
+  } catch (err) {
+    console.error('Waitlist error:', err);
+    errEl.textContent = err.message || 'Something went wrong — please try again.';
+    errEl.classList.add('show');
+  } finally {
+    btn.disabled  = false;
+    btn.innerHTML = orig;
+  }
 }
 
 document.getElementById('heroForm').addEventListener('submit', e => {
   e.preventDefault();
-  handleSubmit(
-    e.target,
-    document.getElementById('heroEmail'),
-    document.getElementById('heroErr'),
-    document.getElementById('heroBtn')
-  );
+  handleSubmit(e.target, document.getElementById('heroEmail'), document.getElementById('heroErr'), document.getElementById('heroBtn'));
 });
 
 document.getElementById('ctaForm').addEventListener('submit', e => {
   e.preventDefault();
-  handleSubmit(
-    e.target,
-    document.getElementById('ctaEmail'),
-    document.getElementById('ctaErr'),
-    document.getElementById('ctaBtn')
-  );
+  handleSubmit(e.target, document.getElementById('ctaEmail'), document.getElementById('ctaErr'), document.getElementById('ctaBtn'));
 });
 
-/* Clear errors on input */
-['heroEmail','ctaEmail'].forEach(id => {
-  document.getElementById(id).addEventListener('input', function() {
+['heroEmail', 'ctaEmail'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function () {
     this.classList.remove('err');
-    const errId = id === 'heroEmail' ? 'heroErr' : 'ctaErr';
-    document.getElementById(errId).classList.remove('show');
+    document.getElementById(id === 'heroEmail' ? 'heroErr' : 'ctaErr').classList.remove('show');
   });
 });
+
+/* ══════════════════════════════════════════════
+   CONTACT / INVESTOR FORM HANDLER
+══════════════════════════════════════════════ */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const nameEl  = document.getElementById('cName');
+    const orgEl   = document.getElementById('cOrg');
+    const emailEl = document.getElementById('cEmail');
+    const typeEl  = document.getElementById('cType');
+    const msgEl   = document.getElementById('cMsg');
+    const errEl   = document.getElementById('contactErr');
+    const btn     = document.getElementById('contactBtn');
+
+    errEl.classList.remove('show');
+
+    if (!nameEl.value.trim()) {
+      errEl.textContent = 'Please enter your name.';
+      errEl.classList.add('show');
+      nameEl.focus();
+      return;
+    }
+    if (!emailEl.value.trim() || !validEmail(emailEl.value)) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.classList.add('show');
+      emailEl.focus();
+      return;
+    }
+
+    const orig = btn.innerHTML;
+    btn.disabled  = true;
+    btn.innerHTML = '<span class="spin">⟳</span> Sending…';
+
+    try {
+      const fd = new FormData();
+      fd.append('name',         nameEl.value.trim());
+      fd.append('organisation', orgEl.value.trim());
+      fd.append('email',        emailEl.value.trim());
+      fd.append('type',         typeEl.value || 'Not selected');
+      fd.append('message',      msgEl.value.trim());
+      fd.append('source',       'investor-contact');
+      fd.append('submitted_at', new Date().toISOString());
+
+      const res = await fetch(FORMSPREE_CONTACT, {
+        method:  'POST',
+        headers: { 'Accept': 'application/json' },
+        body:    fd
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || 'Submission failed — please try again.');
+      }
+
+      btn.innerHTML        = "✓ Enquiry received — we'll be in touch.";
+      btn.style.background = '#16a34a';
+      contactForm.reset();
+
+      setTimeout(() => {
+        btn.innerHTML        = orig;
+        btn.style.background = '';
+      }, 6000);
+
+    } catch (err) {
+      console.error('Contact error:', err);
+      errEl.textContent = err.message || 'Something went wrong — please try again.';
+      errEl.classList.add('show');
+      btn.disabled  = false;
+      btn.innerHTML = orig;
+    }
+  });
+}
 
 /* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if (!t) return;
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
     e.preventDefault();
-    window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 68, behavior: 'smooth' });
+    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 68, behavior: 'smooth' });
   });
 });
 
@@ -122,55 +212,4 @@ try {
       el.style.color = 'var(--accent)';
     });
   }
-} catch(_) {}
-
-/* ── Contact / Investor Form ── */
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const nameEl  = document.getElementById('cName');
-    const emailEl = document.getElementById('cEmail');
-    const errEl   = document.getElementById('contactErr');
-    const btn     = document.getElementById('contactBtn');
-    errEl.classList.remove('show');
-
-    if (!nameEl.value.trim() || !emailEl.value.trim() || !validEmail(emailEl.value)) {
-      errEl.textContent = !nameEl.value.trim()
-        ? 'Please enter your name.'
-        : 'Please enter a valid email address.';
-      errEl.classList.add('show');
-      return;
-    }
-
-    const orig = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spin">⟳</span> Sending…';
-
-    /* Wire to your endpoint:
-    await fetch('https://your-endpoint.com/contact', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        name:  nameEl.value.trim(),
-        org:   document.getElementById('cOrg').value.trim(),
-        email: emailEl.value.trim(),
-        type:  document.getElementById('cType').value,
-        msg:   document.getElementById('cMsg').value.trim(),
-        ts:    Date.now()
-      })
-    }); */
-
-    await new Promise(r => setTimeout(r, 1000));
-
-    btn.disabled = false;
-    btn.innerHTML = '✓ Enquiry received — we\'ll be in touch.';
-    btn.style.background = '#16a34a';
-    contactForm.reset();
-
-    setTimeout(() => {
-      btn.innerHTML = orig;
-      btn.style.background = '';
-    }, 5000);
-  });
-}
+} catch (_) {}
