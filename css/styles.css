@@ -614,9 +614,16 @@ img{max-width:100%;display:block;}
 /* ══════════════════════════════════════════════
    SCROLL REVEAL
 ══════════════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.reveal.visible{opacity:1;transform:none;}
-.d1{transition-delay:0.08s;}.d2{transition-delay:0.16s;}.d3{transition-delay:0.24s;}.d4{transition-delay:0.32s;}
+.reveal{
+  opacity:1;transform:none;
+  transition:opacity 0.65s ease,transform 0.65s ease;
+}
+.js-loaded .reveal{opacity:0;transform:translateY(24px);}
+.js-loaded .reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:0.08s;}
+.d2{transition-delay:0.16s;}
+.d3{transition-delay:0.24s;}
+.d4{transition-delay:0.32s;}
 
 /* ══════════════════════════════════════════════
    KEYFRAMES
