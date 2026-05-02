@@ -4,708 +4,42 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>CirkleUp — Social Media, Fixed.</title>
-<meta name="description" content="Invite-only. Creator-first. No algorithms. Join 1,247+ creators on the waitlist."/>
+<meta name="description" content="Invite-only. Creator-first. No algorithms. Join 2,400+ creators on the waitlist."/>
+<meta property="og:title" content="CirkleUp — Social Media, Fixed."/>
+<meta property="og:description" content="The only social platform you can't sign up for. Request your invite."/>
+<meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
-<style>
-
-/* ══════════════════════════════════════════════
-   RESET & BASE
-══════════════════════════════════════════════ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
-body{font-family:'DM Sans',sans-serif;background:#fff;color:#0e0e12;overflow-x:hidden;line-height:1.6;}
-a{text-decoration:none;color:inherit;}
-ul,ol{list-style:none;}
-button{cursor:pointer;border:none;background:none;font-family:inherit;}
-img{max-width:100%;display:block;}
-
-/* ══════════════════════════════════════════════
-   CSS VARIABLES (Xurya design system)
-══════════════════════════════════════════════ */
-:root{
-  --bg:       #ffffff;
-  --bg-soft:  #f7f7fa;
-  --bg-dark:  #0e0e12;
-  --bg-dark2: #13131a;
-  --bg-dark3: #1a1a26;
-
-  --ink:       #0e0e12;
-  --ink-soft:  #5a5a72;
-  --ink-muted: #9696ab;
-
-  --ink-w:     #ffffff;
-  --ink-ws:    rgba(255,255,255,0.70);
-  --ink-wm:    rgba(255,255,255,0.35);
-
-  --accent:     #9147ff;
-  --accent-lt:  #ede9ff;
-  --accent-dk:  #7c3aed;
-  --accent-gl:  rgba(145,71,255,0.28);
-
-  --border:    #e4e4ef;
-  --border-d:  rgba(255,255,255,0.08);
-  --border-dh: rgba(255,255,255,0.16);
-
-  --r-sm:  10px;
-  --r-md:  16px;
-  --r-lg:  20px;
-  --r-xl:  28px;
-  --r-pill:100px;
-
-  --shadow-sm: 0 2px 12px rgba(14,14,18,0.06);
-  --shadow-md: 0 4px 32px rgba(14,14,18,0.08);
-  --shadow-lg: 0 8px 48px rgba(14,14,18,0.12);
-
-  --container: 1160px;
-  --px: 5%;
-}
-
-/* ══════════════════════════════════════════════
-   LAYOUT UTILS
-══════════════════════════════════════════════ */
-.wrap{width:100%;max-width:var(--container);margin:0 auto;padding:0 var(--px);}
-.section{padding:88px 0;}
-.section--soft{background:var(--bg-soft);}
-.section--dark{background:var(--bg-dark);}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
-
-.section-tag{
-  display:inline-block;
-  font-family:'Syne',sans-serif;
-  font-size:0.72rem;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:12px;
-}
-.section-header{text-align:center;margin-bottom:56px;}
-.section-header h2{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(1.8rem,3.5vw,2.7rem);
-  font-weight:800;line-height:1.1;letter-spacing:-0.015em;
-}
-.section-header h2 em{font-style:normal;color:var(--ink-soft);}
-.section-header h2 em.on-dark{color:var(--ink-ws);}
-
-/* ══════════════════════════════════════════════
-   BUTTONS
-══════════════════════════════════════════════ */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  font-family:'Syne',sans-serif;font-weight:700;border-radius:var(--r-pill);
-  transition:all 0.22s ease;white-space:nowrap;cursor:pointer;
-}
-.btn:active{transform:scale(0.97)!important;}
-.btn .arr{display:inline-block;transition:transform 0.18s ease;}
-.btn:hover .arr{transform:translateX(3px);}
-
-.btn-sm{font-size:0.82rem;padding:9px 20px;}
-.btn-md{font-size:0.9rem;padding:13px 28px;}
-.btn-lg{font-size:1rem;padding:15px 34px;}
-
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-primary:hover{background:var(--accent-dk);transform:translateY(-2px);box-shadow:0 8px 28px var(--accent-gl);}
-
-.btn-dark{background:var(--ink);color:#fff;}
-.btn-dark:hover{background:#222233;transform:translateY(-1px);}
-
-.btn-outline-w{background:transparent;border:1.5px solid var(--border-d);color:#fff;}
-.btn-outline-w:hover{border-color:var(--border-dh);transform:translateY(-1px);}
-
-/* ══════════════════════════════════════════════
-   NAV
-══════════════════════════════════════════════ */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  height:64px;display:flex;align-items:center;
-  background:rgba(14,14,18,0.82);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border-d);
-}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{
-  display:flex;align-items:center;gap:10px;
-  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;
-  color:#fff;letter-spacing:-0.02em;
-}
-.logo-mark{
-  width:32px;height:32px;border-radius:8px;background:var(--accent);
-  display:grid;place-items:center;flex-shrink:0;
-}
-.logo-mark svg{width:16px;height:16px;}
-
-/* ══════════════════════════════════════════════
-   HERO
-══════════════════════════════════════════════ */
-.hero{
-  background:var(--bg-dark);
-  padding:96px var(--px) 64px;
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  min-height:auto;
-}
-.hero-bg{position:absolute;inset:0;pointer-events:none;}
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 100% 100% at 50% 50%,black 30%,transparent 100%);
-}
-.hero-orb{position:absolute;border-radius:50%;filter:blur(100px);}
-.hero-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(145,71,255,0.18) 0%,transparent 70%);top:-200px;left:-200px;}
-.hero-orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(145,71,255,0.12) 0%,transparent 70%);bottom:-100px;right:-100px;}
-.hero-orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(100,50,255,0.10) 0%,transparent 70%);top:30%;right:18%;}
-
-.hero-content{
-  position:relative;z-index:2;
-  max-width:700px;text-align:center;
-  display:flex;flex-direction:column;align-items:center;
-}
-
-/* Badge */
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,0.07);border:1px solid var(--border-d);
-  border-radius:var(--r-pill);padding:6px 16px;
-  font-size:0.8rem;font-weight:600;color:var(--ink-ws);
-  margin-bottom:18px;
-  animation:fadeUp 0.6s ease 0.05s both;
-}
-.badge-dot{
-  width:7px;height:7px;border-radius:50%;background:var(--accent);
-  animation:pulseDot 2s ease-in-out infinite;
-}
-
-/* Headline */
-.hero h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(2.2rem,4.8vw,3.6rem);
-  font-weight:800;line-height:1.1;letter-spacing:-0.022em;
-  color:#fff;margin-bottom:16px;
-  animation:fadeUp 0.7s ease 0.15s both;
-}
-.hero h1 .green{color:var(--accent);}
-
-.hero-bullets{
-  list-style:none;display:flex;flex-direction:column;gap:11px;text-align:left;
-  width:100%;max-width:400px;
-}
-.hero-bullets li{
-  display:flex;align-items:center;gap:12px;
-  font-family:'DM Sans',sans-serif;
-  font-size:1rem;font-weight:500;
-  color:rgba(255,255,255,0.75);
-  letter-spacing:0.01em;
-}
-.hb-icon{
-  font-size:0.85rem;flex-shrink:0;
-  color:var(--accent);
-  font-weight:700;
-  width:20px;text-align:center;
-  font-family:'Syne',sans-serif;
-}
-.hero-mechanism{
-  font-size:1rem;font-weight:600;color:var(--accent);
-  letter-spacing:0.01em;margin-bottom:14px;
-  animation:fadeUp 0.6s ease 0.2s both;
-}
-.hero-sub{
-  font-size:0.95rem;color:var(--ink-ws);line-height:1.65;
-  max-width:520px;margin-bottom:28px;
-  animation:fadeUp 0.7s ease 0.28s both;
-}
-
-/* Form */
-.hero-form-wrap{
-  width:100%;max-width:480px;
-  animation:fadeUp 0.7s ease 0.35s both;
-}
-.hero-form{display:flex;gap:8px;width:100%;}
-.hero-input{
-  flex:1;background:rgba(255,255,255,0.08);
-  border:1px solid var(--border-d);border-radius:var(--r-pill);
-  padding:13px 22px;font-family:'DM Sans',sans-serif;font-size:0.95rem;
-  color:#fff;outline:none;
-  transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;
-}
-.hero-input::placeholder{color:var(--ink-wm);}
-.hero-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-gl);background:rgba(255,255,255,0.12);}
-.hero-input.err{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,0.15);}
-.input-err{font-size:0.78rem;color:#ef4444;margin-top:6px;padding-left:4px;display:none;}
-.input-err.show{display:block;}
-
-.invite-note{
-  margin-top:10px;font-size:0.78rem;color:var(--ink-wm);
-  text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.what-next{
-  margin-top:8px;font-size:0.76rem;color:rgba(255,255,255,0.32);
-  text-align:center;line-height:1.3;white-space:nowrap;
-}
-.lineage-callout{
-  display:flex;align-items:flex-start;gap:12px;
-  background:rgba(145,71,255,0.1);
-  border:1px solid rgba(145,71,255,0.28);
-  border-radius:var(--r-md);
-  padding:14px 18px;
-  max-width:480px;width:100%;
-  margin-bottom:24px;
-  animation:fadeUp 0.7s ease 0.32s both;
-  text-align:left;
-}
-.lineage-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
-.lineage-callout p{
-  font-size:0.88rem;font-weight:600;
-  color:rgba(255,255,255,0.9);
-  line-height:1.5;
-  letter-spacing:0.005em;
-}
-.invite-note::before{
-  content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);
-  display:inline-block;flex-shrink:0;animation:pulseDot 2s ease-in-out infinite;
-}
-
-/* Avatar stack */
-.social-proof{
-  margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:12px;
-  animation:fadeUp 0.7s ease 0.5s both;
-}
-.avatar-stack{display:flex;align-items:center;}
-.av{
-  width:44px;height:44px;border-radius:50%;
-  display:grid;place-items:center;
-  font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;color:#fff;
-  border:2.5px solid var(--bg-dark);
-  margin-left:-12px;
-  position:relative;
-  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
-  /* 3D sphere effect */
-  box-shadow:
-    inset -4px -4px 8px rgba(0,0,0,0.35),
-    inset 3px 3px 6px rgba(255,255,255,0.18),
-    0 4px 16px rgba(0,0,0,0.3);
-}
-.av:first-child{margin-left:0;}
-.av:hover{transform:translateY(-7px) scale(1.13);z-index:10;}
-.av-1{background:linear-gradient(135deg,#7c3aed,#4f46e5);}
-.av-2{background:linear-gradient(135deg,#0ea5e9,#06b6d4);}
-.av-3{background:linear-gradient(135deg,#9147ff,#7c3aed);}
-.av-4{background:linear-gradient(135deg,#f59e0b,#ef4444);}
-.av-5{background:linear-gradient(135deg,#ec4899,#f43f5e);}
-
-.proof-text{font-size:0.88rem;color:var(--ink-ws);text-align:center;}
-.proof-text strong{color:#fff;font-weight:600;}
-
-/* ══════════════════════════════════════════════
-   STATS BAR — positioned INSIDE a normal flow section
-   (no translateY tricks that swallow content)
-══════════════════════════════════════════════ */
-.stats-section{
-  background:var(--bg);
-  padding:0 var(--px);
-}
-.stats-inner{
-  max-width:var(--container);margin:0 auto;
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:var(--r-xl);padding:36px 48px;
-  display:grid;grid-template-columns:repeat(3,1fr);
-  box-shadow:var(--shadow-md);
-  position:relative;z-index:10;
-  margin-top:-52px; /* overlap hero bottom only by 52px — safe */
-  margin-bottom:0;
-}
-.stat{
-  text-align:center;
-  border-right:1px solid var(--border);
-  padding:0 32px;
-}
-.stat:first-child{padding-left:0;}
-.stat:last-child{border-right:none;padding-right:0;}
-.stat-num{
-  font-family:'Syne',sans-serif;
-  font-size:2.2rem;font-weight:800;letter-spacing:-0.03em;
-  color:var(--ink);line-height:1;margin-bottom:6px;
-}
-.stat-label{font-size:0.83rem;color:var(--ink-soft);line-height:1.45;}
-
-/* ══════════════════════════════════════════════
-   PROBLEM SECTION
-══════════════════════════════════════════════ */
-.problem-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-}
-.problem-card{
-  background:var(--bg-dark2);border:1px solid var(--border-d);
-  border-radius:var(--r-lg);padding:28px 24px;color:#fff;
-  transition:border-color 0.22s,box-shadow 0.22s,transform 0.22s;
-}
-.problem-card:hover{
-  border-color:rgba(239,68,68,0.35);
-  box-shadow:0 8px 40px rgba(239,68,68,0.09);
-  transform:translateY(-4px);
-}
-.prob-icon{font-size:1.6rem;display:block;margin-bottom:14px;}
-.problem-card h3{
-  font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;
-  margin-bottom:8px;color:#fff;
-}
-.problem-card p{font-size:0.855rem;color:var(--ink-ws);line-height:1.62;}
-
-/* ══════════════════════════════════════════════
-   FEATURES / SOLUTION
-══════════════════════════════════════════════ */
-.features-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:2px;border-radius:var(--r-xl);overflow:hidden;
-  border:1px solid var(--border);
-}
-.feat-card{
-  background:#fff;padding:32px 26px;
-  transition:background 0.2s;
-  position:relative;
-  overflow:hidden;
-  min-height:0;
-}
-/* right border between cols */
-.feat-card:not(:nth-child(3n))::after{
-  content:'';position:absolute;top:16px;right:0;bottom:16px;
-  width:1px;background:var(--border);
-}
-/* bottom border between rows */
-.feat-card:not(:nth-child(n+4))::before{
-  content:'';position:absolute;bottom:0;left:16px;right:16px;
-  height:1px;background:var(--border);
-}
-.feat-card:hover{background:var(--accent-lt);}
-.feat-icon{
-  font-size:1.3rem;width:42px;height:42px;
-  border-radius:var(--r-sm);background:var(--bg-soft);
-  display:grid;place-items:center;margin-bottom:16px;flex-shrink:0;
-  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),background 0.2s;
-  line-height:1;
-}
-.feat-card:hover .feat-icon{transform:scale(1.1) rotate(-4deg);background:rgba(145,71,255,0.15);}
-.feat-card h3{font-family:'Syne',sans-serif;font-size:0.98rem;font-weight:700;margin-bottom:8px;}
-.feat-card--highlight{background:var(--accent-lt)!important;}
-.feat-card--highlight .feat-icon{background:rgba(145,71,255,0.15);}
-.feat-card--highlight h3{color:var(--accent-dk);}
-.feat-highlight-line{
-  margin-top:12px;font-size:0.8rem;font-weight:600;
-  color:var(--accent-dk);font-style:italic;
-  border-top:1px solid rgba(145,71,255,0.2);
-  padding-top:10px;
-}
-.feat-card p{font-size:0.855rem;color:var(--ink-soft);line-height:1.65;}
-
-/* ══════════════════════════════════════════════
-   HOW IT WORKS
-══════════════════════════════════════════════ */
-.steps-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
-  position:relative;
-}
-.steps-grid::before{
-  content:'';position:absolute;
-  top:27px;left:calc(16.67% + 28px);right:calc(16.67% + 28px);
-  height:2px;
-  background:repeating-linear-gradient(90deg,var(--border) 0,var(--border) 6px,transparent 6px,transparent 12px);
-}
-.step{text-align:center;position:relative;z-index:1;}
-.step-num{
-  width:56px;height:56px;border-radius:50%;
-  background:var(--accent);color:#fff;
-  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;
-  display:grid;place-items:center;margin:0 auto 20px;
-  box-shadow:0 0 0 8px rgba(145,71,255,0.15),0 8px 24px var(--accent-gl);
-  transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
-}
-.step:hover .step-num{transform:scale(1.08);}
-.step h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px;}
-.step p{font-size:0.875rem;color:var(--ink-soft);line-height:1.65;max-width:260px;margin:0 auto;}
-
-/* ══════════════════════════════════════════════
-   COMPARISON TABLE
-══════════════════════════════════════════════ */
-.table-wrap{
-  overflow-x:auto;
-  border-radius:var(--r-xl);border:1px solid var(--border-d);
-}
-.cmp-table{width:100%;border-collapse:collapse;font-size:0.9rem;}
-.cmp-table thead{background:var(--bg-dark2);}
-.cmp-table th{
-  padding:16px 22px;font-family:'Syne',sans-serif;
-  font-size:0.85rem;font-weight:700;color:#fff;text-align:left;
-  border-bottom:1px solid var(--border-d);
-}
-.cmp-table th.col-us{color:var(--accent);}
-.cmp-table th.col-us::after{
-  content:'✦ Us';font-size:0.62rem;background:var(--accent);color:#fff;
-  border-radius:100px;padding:2px 7px;margin-left:7px;vertical-align:middle;
-}
-.cmp-table td{
-  padding:14px 22px;border-bottom:1px solid var(--border-d);
-  color:var(--ink-ws);vertical-align:middle;
-}
-.cmp-table tr:last-child td{border-bottom:none;}
-.cmp-table tr:nth-child(odd) td{background:rgba(255,255,255,0.018);}
-.cmp-table td.col-feat{font-size:0.85rem;color:rgba(255,255,255,0.45);}
-.cmp-table td.col-us{color:#fff;font-weight:600;}
-.ck{color:var(--accent);font-size:1.05rem;}
-.cx{color:#444455;font-size:0.95rem;}
-
-/* ══════════════════════════════════════════════
-   FINAL CTA
-══════════════════════════════════════════════ */
-.cta-section{
-  background:var(--bg-dark);position:relative;overflow:hidden;
-  padding:100px var(--px);text-align:center;
-}
-.cta-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 55% 70% at 20% 50%,rgba(145,71,255,0.12) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 65% at 80% 50%,rgba(100,50,255,0.09) 0%,transparent 60%);
-  pointer-events:none;
-}
-.cta-inner{position:relative;z-index:1;max-width:660px;margin:0 auto;}
-.cta-eyebrow{
-  font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;
-  letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;
-}
-.cta-inner h2{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(2rem,4vw,3.1rem);font-weight:800;
-  letter-spacing:-0.03em;line-height:1.1;color:#fff;margin-bottom:16px;
-}
-.cta-inner p{font-size:1rem;color:var(--ink-ws);line-height:1.68;margin-bottom:28px;}
-.cta-checks{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:32px;}
-.cta-check{display:flex;align-items:center;gap:8px;font-size:0.875rem;color:var(--ink-ws);}
-.cta-dot{
-  width:18px;height:18px;border-radius:50%;background:var(--accent);
-  display:grid;place-items:center;color:#fff;font-size:0.6rem;font-weight:900;flex-shrink:0;
-}
-.cta-form{display:flex;gap:8px;max-width:430px;margin:0 auto;}
-.cta-form .hero-input{flex:1;}
-
-
-/* ══════════════════════════════════════════════
-   INVESTOR / PARTNERSHIP CONTACT
-══════════════════════════════════════════════ */
-.contact-section{
-  background:var(--bg-soft);
-  padding:88px 0;
-  border-top:1px solid var(--border);
-}
-.contact-inner{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:64px;align-items:start;
-}
-.contact-left{padding-top:8px;}
-.contact-headline{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(1.5rem,2.8vw,2.1rem);
-  font-weight:800;line-height:1.18;
-  letter-spacing:-0.02em;color:var(--ink);
-  margin-bottom:16px;margin-top:10px;
-}
-.contact-sub{
-  font-size:0.9rem;color:var(--ink-soft);
-  line-height:1.7;max-width:340px;
-}
-.contact-form{display:flex;flex-direction:column;gap:0;}
-.contact-fields{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:12px;margin-bottom:14px;
-}
-.cfield{display:flex;flex-direction:column;gap:5px;}
-.cfield--full{grid-column:1/-1;}
-.cfield-label{
-  font-size:0.75rem;font-weight:600;
-  color:var(--ink-soft);letter-spacing:0.04em;
-  text-transform:uppercase;
-}
-.cfield-optional{
-  font-weight:400;text-transform:none;
-  color:var(--ink-muted);font-size:0.72rem;
-}
-.cinput{
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:var(--r-sm);padding:11px 14px;
-  font-family:'DM Sans',sans-serif;font-size:0.9rem;
-  color:var(--ink);outline:none;width:100%;
-  transition:border-color 0.2s,box-shadow 0.2s;
-}
-.cinput::placeholder{color:var(--ink-muted);}
-.cinput:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-gl);}
-.cselect{appearance:none;-webkit-appearance:none;cursor:pointer;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%239696ab' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;
-  padding-right:32px;
-}
-.ctextarea{resize:vertical;min-height:80px;line-height:1.5;}
-.contact-submit{width:100%;justify-content:center;border-radius:var(--r-sm);}
-
-@media(max-width:900px){
-  .contact-inner{grid-template-columns:1fr;gap:40px;}
-  .contact-sub{max-width:100%;}
-}
-@media(max-width:600px){
-  .contact-fields{grid-template-columns:1fr;}
-}
-
-/* ══════════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════════ */
-.footer{
-  background:var(--bg-dark);
-  border-top:1px solid var(--border-d);
-  padding:28px var(--px);
-}
-.footer-bar{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:16px;
-}
-.footer-nav{display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
-.footer-nav a{
-  font-size:0.875rem;color:var(--ink-ws);
-  transition:color 0.15s;padding:2px 0;
-}
-.footer-nav a:hover{color:#fff;}
-.footer-sep{color:var(--ink-wm);font-size:0.75rem;user-select:none;}
-.footer-copy{font-size:0.8rem;color:var(--ink-wm);}
-
-/* ══════════════════════════════════════════════
-   SUCCESS MODAL
-══════════════════════════════════════════════ */
-.modal-overlay{
-  position:fixed;inset:0;z-index:200;
-  background:rgba(14,14,18,0.88);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  display:grid;place-items:center;padding:24px;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.25s ease;
-}
-.modal-overlay.open{opacity:1;pointer-events:auto;}
-.modal{
-  background:var(--bg-dark2);border:1px solid var(--border-d);
-  border-radius:var(--r-xl);padding:48px 40px;
-  max-width:420px;width:100%;text-align:center;position:relative;
-  transform:scale(0.9) translateY(16px);
-  transition:transform 0.38s cubic-bezier(0.34,1.56,0.64,1);
-}
-.modal-overlay.open .modal{transform:scale(1) translateY(0);}
-.modal-ico{
-  width:72px;height:72px;border-radius:50%;
-  background:var(--accent-lt);border:1px solid rgba(145,71,255,0.25);
-  display:grid;place-items:center;font-size:2rem;
-  margin:0 auto 20px;
-}
-.modal h2{
-  font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;
-  letter-spacing:-0.025em;color:#fff;margin-bottom:10px;
-}
-.modal p{font-size:0.9rem;color:var(--ink-ws);line-height:1.65;margin-bottom:20px;}
-.modal-ref{
-  font-size:0.75rem;color:var(--ink-wm);
-  padding:8px 16px;background:var(--bg-dark3);border-radius:var(--r-sm);
-  display:inline-block;margin-bottom:24px;
-  font-family:'Courier New',monospace;letter-spacing:0.05em;
-}
-.modal-close{
-  position:absolute;top:16px;right:16px;
-  width:32px;height:32px;border-radius:50%;
-  background:rgba(255,255,255,0.06);border:1px solid var(--border-d);
-  display:grid;place-items:center;
-  color:var(--ink-ws);font-size:1.1rem;line-height:1;
-  transition:background 0.15s,color 0.15s;
-}
-.modal-close:hover{background:rgba(255,255,255,0.13);color:#fff;}
-
-/* ══════════════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════════════ */
-.reveal{
-  opacity:1;transform:none;
-  transition:opacity 0.65s ease,transform 0.65s ease;
-}
-.js-loaded .reveal{opacity:0;transform:translateY(24px);}
-.js-loaded .reveal.visible{opacity:1;transform:none;}
-.d1{transition-delay:0.08s;}
-.d2{transition-delay:0.16s;}
-.d3{transition-delay:0.24s;}
-.d4{transition-delay:0.32s;}
-
-/* ══════════════════════════════════════════════
-   KEYFRAMES
-══════════════════════════════════════════════ */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
-@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.75);}}
-@keyframes spin{to{transform:rotate(360deg);}}
-.spin{animation:spin 0.75s linear infinite;display:inline-block;}
-
-/* ══════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════ */
-@media(max-width:1024px){
-  .problem-grid{grid-template-columns:repeat(2,1fr);}
-  .features-grid{grid-template-columns:repeat(2,1fr);}
-
-  .stats-inner{padding:28px 28px;}
-}
-@media(max-width:768px){
-  :root{--px:6%;}
-  .hero{padding:88px var(--px) 52px;}
-  .stats-section{padding:0 var(--px);}
-  .stats-inner{
-    grid-template-columns:1fr;margin-top:-32px;
-    padding:24px;gap:0;border-radius:var(--r-lg);
-  }
-  .stat{border-right:none;border-bottom:1px solid var(--border);padding:16px 0;}
-  .stat:last-child{border-bottom:none;padding-bottom:0;}
-  .stat:first-child{padding-top:0;}
-  .problem-grid{grid-template-columns:1fr;}
-  .features-grid{grid-template-columns:1fr;}
-  .steps-grid{grid-template-columns:1fr;gap:28px;}
-  .steps-grid::before{display:none;}
-  .hero-form{flex-direction:column;}
-  .cta-form{flex-direction:column;max-width:100%;}
-
-  .footer-bar{flex-direction:column;text-align:center;}
-  .modal{padding:32px 24px;}
-  .section{padding:64px 0;}
-  .cta-section{padding:72px var(--px);}
-}
-@media(max-width:480px){
-  .av{width:38px;height:38px;font-size:0.65rem;margin-left:-10px;}
-  .cta-checks{flex-direction:column;align-items:center;gap:12px;}
-  .stats-inner{margin-top:-20px;}
-}
-
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════
+
+<!-- ═══════════════════════════════════════════
      NAV
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <header class="nav">
   <div class="wrap nav-inner">
     <a href="#" class="nav-logo">
       <div class="logo-mark">
-        <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="2"/><circle cx="8" cy="8" r="2.5" fill="white"/></svg>
+        <svg viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="2"/>
+          <circle cx="8" cy="8" r="2.5" fill="white"/>
+        </svg>
       </div>
       CirkleUp
     </a>
-    <a href="#waitlist" class="btn btn-primary btn-sm">Claim Your Invite <span class="arr">↗</span></a>
+    <a href="#waitlist" class="btn btn-primary btn-sm">
+      Claim Your Invite <span class="arr">↗</span>
+    </a>
   </div>
 </header>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      HERO
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <section class="hero" id="home">
   <div class="hero-bg">
     <div class="hero-grid"></div>
@@ -721,11 +55,11 @@ img{max-width:100%;display:block;}
       🚀 Launching Soon
     </div>
 
-    <h1>Social media is broken.<br><span class="green">We're fixing it.</span></h1>
+    <h1>Social media is broken.<br><span class="accent">We're fixing it.</span></h1>
 
     <p class="hero-mechanism">The only social platform you can't sign up for.</p>
 
-    <ul class="hero-sub hero-bullets">
+    <ul class="hero-bullets">
       <li><span class="hb-icon" aria-hidden="true">↘</span>Algorithms kill your reach.</li>
       <li><span class="hb-icon" aria-hidden="true">⊘</span>Bots flood your community.</li>
       <li><span class="hb-icon" aria-hidden="true">⊖</span>Platforms take 45% of what you earn.</li>
@@ -739,34 +73,40 @@ img{max-width:100%;display:block;}
     <div class="hero-form-wrap" id="waitlist">
       <form class="hero-form" id="heroForm" novalidate>
         <label for="heroEmail" class="sr-only">Email address</label>
-        <input type="email" id="heroEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required/>
+        <input
+          type="email" id="heroEmail" name="email"
+          class="hero-input" placeholder="your@email.com"
+          autocomplete="email" required
+        />
         <button type="submit" class="btn btn-primary btn-md" id="heroBtn">
           Claim Your Invite <span class="arr">→</span>
         </button>
       </form>
-      <span class="input-err" id="heroErr">Please enter a valid email address.</span>
+      <span class="input-err" id="heroErr"></span>
       <p class="invite-note">Founding members get 5 invites to share with their circle.</p>
       <p class="what-next">We'll email you when your spot opens. You'll get access + 3 invites.</p>
     </div>
 
     <div class="social-proof">
       <div class="avatar-stack">
-        <div class="av av-1" title="MR">MR</div>
-        <div class="av av-2" title="JS">JS</div>
-        <div class="av av-3" title="AK">AK</div>
-        <div class="av av-4" title="TC">TC</div>
-        <div class="av av-5" title="LP">LP</div>
+        <div class="av av-1">MR</div>
+        <div class="av av-2">JS</div>
+        <div class="av av-3">AK</div>
+        <div class="av av-4">TC</div>
+        <div class="av av-5">LP</div>
       </div>
-      <p class="proof-text"><strong>2,400+ creators</strong> across music, tech &amp; fashion — already waiting</p>
+      <p class="proof-text">
+        <strong>2,400+ creators</strong> across music, tech &amp; fashion — already waiting
+      </p>
     </div>
 
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      STATS BAR
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="stats-section">
   <div class="stats-inner reveal">
     <div class="stat">
@@ -785,9 +125,9 @@ img{max-width:100%;display:block;}
 </div>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      PROBLEM
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <section class="section section--dark" id="problem">
   <div class="wrap">
     <div class="section-header">
@@ -813,16 +153,16 @@ img{max-width:100%;display:block;}
       <article class="problem-card reveal d3">
         <span class="prob-icon">🎯</span>
         <h3>You don't own your audience</h3>
-        <p>Get shadowbanned, go viral for the wrong reason, or simply wake up to a policy change — and every follower you built disappears overnight.</p>
+        <p>Get shadowbanned, go viral for the wrong reason, or wake up to a policy change — and every follower you built disappears overnight.</p>
       </article>
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SOLUTION / FEATURES
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <section class="section section--soft" id="features">
   <div class="wrap">
     <div class="section-header">
@@ -839,7 +179,7 @@ img{max-width:100%;display:block;}
         <div class="feat-icon">🌳</div>
         <h3>Permanent lineage system</h3>
         <p>Your founding position is locked in forever. Everyone you invite builds under you — and everyone they invite builds under them. Your network compounds permanently, not algorithmically.</p>
-        <p class="feat-highlight-line">This is the only platform where your position gets more valuable the longer you hold it.</p>
+        <p class="feat-highlight-line">The only platform where your position gets more valuable the longer you hold it.</p>
       </article>
       <article class="feat-card reveal d2">
         <div class="feat-icon">🚫</div>
@@ -866,9 +206,9 @@ img{max-width:100%;display:block;}
 </section>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      HOW IT WORKS
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <section class="section" id="how-it-works">
   <div class="wrap">
     <div class="section-header">
@@ -896,9 +236,9 @@ img{max-width:100%;display:block;}
 </section>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      COMPARISON TABLE
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <section class="section section--dark" id="comparison">
   <div class="wrap">
     <div class="section-header">
@@ -966,9 +306,9 @@ img{max-width:100%;display:block;}
 </section>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      FINAL CTA
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <section class="cta-section" id="cta">
   <div class="cta-bg"></div>
   <div class="cta-inner">
@@ -983,21 +323,24 @@ img{max-width:100%;display:block;}
     <div class="reveal d3">
       <form class="cta-form" id="ctaForm" novalidate>
         <label for="ctaEmail" class="sr-only">Email address</label>
-        <input type="email" id="ctaEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required/>
+        <input
+          type="email" id="ctaEmail" name="email"
+          class="hero-input" placeholder="your@email.com"
+          autocomplete="email" required
+        />
         <button type="submit" class="btn btn-primary btn-lg" id="ctaBtn">
           Claim Your Invite <span class="arr">→</span>
         </button>
       </form>
-      <span class="input-err" id="ctaErr">Please enter a valid email address.</span>
+      <span class="input-err" id="ctaErr"></span>
     </div>
   </div>
 </section>
 
 
-
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      INVESTOR & PARTNERSHIP CONTACT
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <section class="contact-section" id="contact">
   <div class="wrap">
     <div class="contact-inner reveal">
@@ -1011,19 +354,19 @@ img{max-width:100%;display:block;}
           <div class="contact-fields">
             <div class="cfield">
               <label for="cName" class="cfield-label">Full name</label>
-              <input type="text" id="cName" class="cinput" placeholder="Your name" autocomplete="name" required/>
+              <input type="text" id="cName" name="name" class="cinput" placeholder="Your name" autocomplete="name" required/>
             </div>
             <div class="cfield">
               <label for="cOrg" class="cfield-label">Organisation</label>
-              <input type="text" id="cOrg" class="cinput" placeholder="Company / Fund" autocomplete="organization"/>
+              <input type="text" id="cOrg" name="organisation" class="cinput" placeholder="Company / Fund" autocomplete="organization"/>
             </div>
             <div class="cfield">
               <label for="cEmail" class="cfield-label">Email address</label>
-              <input type="email" id="cEmail" class="cinput" placeholder="you@company.com" autocomplete="email" required/>
+              <input type="email" id="cEmail" name="email" class="cinput" placeholder="you@company.com" autocomplete="email" required/>
             </div>
             <div class="cfield">
               <label for="cType" class="cfield-label">Enquiry type</label>
-              <select id="cType" class="cinput cselect">
+              <select id="cType" name="type" class="cinput cselect">
                 <option value="" disabled selected>Select one</option>
                 <option value="investment">Investment</option>
                 <option value="sales">Sales / Enterprise</option>
@@ -1033,11 +376,13 @@ img{max-width:100%;display:block;}
               </select>
             </div>
             <div class="cfield cfield--full">
-              <label for="cMsg" class="cfield-label">Message <span class="cfield-optional">(optional)</span></label>
-              <textarea id="cMsg" class="cinput ctextarea" placeholder="Brief overview of your enquiry…" rows="3"></textarea>
+              <label for="cMsg" class="cfield-label">
+                Message <span class="cfield-optional">(optional)</span>
+              </label>
+              <textarea id="cMsg" name="message" class="cinput ctextarea" placeholder="Brief overview of your enquiry…" rows="3"></textarea>
             </div>
           </div>
-          <span class="input-err" id="contactErr">Please fill in all required fields.</span>
+          <span class="input-err" id="contactErr"></span>
           <button type="submit" class="btn btn-primary btn-md contact-submit" id="contactBtn">
             Send Enquiry <span class="arr">→</span>
           </button>
@@ -1047,30 +392,31 @@ img{max-width:100%;display:block;}
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
+
+<!-- ═══════════════════════════════════════════
      FOOTER
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="wrap footer-bar">
-    <nav class="footer-nav" aria-label="Footer navigation">
+  <div class="footer-bar">
+    <nav class="footer-nav" aria-label="Footer">
       <a href="#">About</a>
       <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="#">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
     <p class="footer-copy">© 2026 CirkleUp. All rights reserved.</p>
   </div>
 </footer>
 
 
-<!-- ════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SUCCESS MODAL
-════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal">
     <button class="modal-close" id="modalClose" aria-label="Close">×</button>
     <div class="modal-ico">🎉</div>
     <h2 id="modalTitle">You're on the list!</h2>
-    <p>We've added you to the CirkleUp waitlist. Invites drop every Monday — keep an eye on your inbox. The quality of what you're joining is worth the wait.</p>
+    <p>We've added you to the CirkleUp waitlist. Invites drop every Monday — keep an eye on your inbox.</p>
     <p class="modal-ref" id="modalRef"></p>
     <button class="btn btn-primary btn-md" id="modalCloseBtn">
       Got it — I'll watch my inbox <span class="arr">→</span>
@@ -1079,6 +425,6 @@ img{max-width:100%;display:block;}
 </div>
 
 
-<script src="js/script.js" defer></script>
+<script src="js/main.js"></script>
 </body>
 </html>
