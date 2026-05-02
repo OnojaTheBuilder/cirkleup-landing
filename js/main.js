@@ -117,3 +117,54 @@ try {
     });
   }
 } catch(_) {}
+
+/* ── Contact / Investor Form ── */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const nameEl  = document.getElementById('cName');
+    const emailEl = document.getElementById('cEmail');
+    const errEl   = document.getElementById('contactErr');
+    const btn     = document.getElementById('contactBtn');
+    errEl.classList.remove('show');
+
+    if (!nameEl.value.trim() || !emailEl.value.trim() || !validEmail(emailEl.value)) {
+      errEl.textContent = !nameEl.value.trim()
+        ? 'Please enter your name.'
+        : 'Please enter a valid email address.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    const orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spin">⟳</span> Sending…';
+
+    /* Wire to your endpoint:
+    await fetch('https://your-endpoint.com/contact', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        name:  nameEl.value.trim(),
+        org:   document.getElementById('cOrg').value.trim(),
+        email: emailEl.value.trim(),
+        type:  document.getElementById('cType').value,
+        msg:   document.getElementById('cMsg').value.trim(),
+        ts:    Date.now()
+      })
+    }); */
+
+    await new Promise(r => setTimeout(r, 1000));
+
+    btn.disabled = false;
+    btn.innerHTML = '✓ Enquiry received — we\'ll be in touch.';
+    btn.style.background = '#16a34a';
+    contactForm.reset();
+
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.style.background = '';
+    }, 5000);
+  });
+}
