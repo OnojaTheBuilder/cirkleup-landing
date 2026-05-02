@@ -53,16 +53,19 @@ async function handleSubmit(form, input, errEl, btn) {
   btn.innerHTML = '<span class="spin">⟳</span> Joining…';
 
   /* Swap for your real endpoint: */
-  await fetch('https://hook.us2.make.com/79b84uzzdt9900tixhvp35w6y3p4qxlo', {
+ const res = await fetch('https://formspree.io/f/xdabakqy', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    email: email,
-    ts: new Date().toISOString(),
-    source: 'hero-form'
-  })
+  headers: { 'Accept': 'application/json' },
+  body: (() => {
+    const fd = new FormData();
+    fd.append('email', email);
+    fd.append('source', 'hero-waitlist');
+    fd.append('submitted_at', new Date().toISOString());
+    return fd;
+  })()
 });
 
+if (!res.ok) throw new Error('Submission failed');
   try { localStorage.setItem('cu_wl', JSON.stringify({ email, ts: Date.now() })); } catch(_) {}
 
   btn.disabled = false;
