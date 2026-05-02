@@ -7,13 +7,24 @@
 const FORMSPREE_WAITLIST = 'https://formspree.io/f/xdabakqy';
 const FORMSPREE_CONTACT  = 'https://formspree.io/f/xdabakqy'; // swap for a separate form ID when ready
 
-/* ── Scroll Reveal ── */
+/* ── Scroll Reveal ──
+   Step 1: Add js-loaded to <body> — this activates the CSS
+           that hides .reveal elements. Without this class,
+           all content is visible regardless (safe fallback).
+   Step 2: IntersectionObserver adds .visible as each
+           section enters the viewport.
+── */
+document.body.classList.add('js-loaded');
+
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => io.observe(el));
 
 /* ── Helpers ── */
