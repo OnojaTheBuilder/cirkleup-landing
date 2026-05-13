@@ -216,7 +216,7 @@
       body.append('type',         typeEl.value || 'Not selected');
       body.append('message',      msgEl.value.trim());
       body.append('source',       'investor-contact');
-      body.append('_subject',     'New CirkleUp investor/partner enquiry');
+      body.append('_subject',     'New CirkleUp investor/partner inquiry');
       body.append('submitted_at', new Date().toISOString());
 
       fetch(ENDPOINT, {
@@ -243,7 +243,7 @@
           btn.innerHTML = orig;
           return;
         }
-        btn.innerHTML        = '\u2713 Enquiry received \u2014 we\'ll be in touch.';
+        btn.innerHTML        = '\u2713 Inquiry received \u2014 we\'ll be in touch.';
         btn.style.background = '#16a34a';
         contactForm.reset();
         setTimeout(function () {
