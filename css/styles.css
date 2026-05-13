@@ -412,8 +412,8 @@ img { max-width: 100%; display: block; }
 .contact-left { padding-top: 8px; }
 .contact-headline {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-  font-weight: 800; line-height: 1.18; letter-spacing: -0.02em;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 700; line-height: 1.35; letter-spacing: -0.01em;
   color: var(--ink); margin-bottom: 16px; margin-top: 10px;
 }
 .contact-sub { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; max-width: 340px; }
