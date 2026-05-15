@@ -4,7 +4,7 @@
    Fonts: Syne (display) + DM Sans (body)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
 /* ── Reset ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,16 +61,16 @@ img { max-width: 100%; display: block; }
 
 .section-tag {
   display: inline-block;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 12px;
 }
 .section-header { text-align: center; margin-bottom: 56px; }
 .section-header h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(1.8rem, 3.5vw, 2.7rem);
-  font-weight: 800; line-height: 1.1; letter-spacing: -0.015em;
+  font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
 }
 .section-header h2 em       { font-style: normal; color: var(--ink-soft); }
 .section-header h2 em.on-dark { color: var(--ink-ws); }
@@ -78,7 +78,7 @@ img { max-width: 100%; display: block; }
 /* ── Buttons ─────────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  font-family: 'Syne', sans-serif; font-weight: 700; border-radius: var(--r-pill);
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; border-radius: var(--r-pill);
   transition: all 0.22s ease; white-space: nowrap; cursor: pointer;
 }
 .btn:active { transform: scale(0.97) !important; }
@@ -105,8 +105,8 @@ img { max-width: 100%; display: block; }
 .nav-inner  { display: flex; align-items: center; justify-content: space-between; }
 .nav-logo   {
   display: flex; align-items: center; gap: 10px;
-  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800;
-  color: #fff; letter-spacing: -0.02em;
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700;
+  color: #fff; letter-spacing: -0.01em;
 }
 .logo-mark     { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
 .logo-mark svg { width: 16px; height: 16px; }
@@ -154,9 +154,9 @@ img { max-width: 100%; display: block; }
 
 /* H1 */
 .hero h1 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.2rem, 4.8vw, 3.6rem);
-  font-weight: 800; line-height: 1.1; letter-spacing: -0.022em;
+  font-weight: 700; line-height: 1.12; letter-spacing: -0.012em;
   color: #fff; margin-bottom: 14px;
   animation: fadeUp 0.7s ease 0.12s both;
 }
@@ -182,7 +182,7 @@ img { max-width: 100%; display: block; }
 .hb-icon {
   font-size: 0.85rem; flex-shrink: 0; color: var(--accent);
   font-weight: 700; width: 20px; text-align: center;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Lineage callout */
@@ -240,7 +240,7 @@ img { max-width: 100%; display: block; }
 .av {
   width: 44px; height: 44px; border-radius: 50%;
   display: grid; place-items: center;
-  font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; color: #fff;
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700; color: #fff;
   border: 2.5px solid var(--bg-dark); margin-left: -12px; position: relative;
   transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
   box-shadow: inset -4px -4px 8px rgba(0,0,0,0.35), inset 3px 3px 6px rgba(255,255,255,0.18), 0 4px 16px rgba(0,0,0,0.3);
@@ -269,8 +269,8 @@ img { max-width: 100%; display: block; }
 .stat:first-child { padding-left: 0; }
 .stat:last-child  { border-right: none; padding-right: 0; }
 .stat-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem; font-weight: 700; letter-spacing: -0.012em;
   color: var(--ink); line-height: 1; margin-bottom: 6px;
 }
 .stat-label { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.45; }
@@ -289,7 +289,7 @@ img { max-width: 100%; display: block; }
 }
 .prob-icon { font-size: 1.6rem; display: block; margin-bottom: 14px; }
 .problem-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700;
   margin-bottom: 8px; color: #fff;
 }
 .problem-card p { font-size: 0.855rem; color: var(--ink-ws); line-height: 1.62; }
@@ -317,7 +317,7 @@ img { max-width: 100%; display: block; }
 }
 .feat-card:hover .feat-icon { transform: scale(1.1) rotate(-4deg); background: rgba(145,71,255,0.15); }
 
-.feat-card h3 { font-family: 'Syne', sans-serif; font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; }
+.feat-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; }
 .feat-card p  { font-size: 0.855rem; color: var(--ink-soft); line-height: 1.65; }
 
 .feat-card--highlight                { background: var(--accent-lt) !important; }
@@ -344,13 +344,13 @@ img { max-width: 100%; display: block; }
 .step-num {
   width: 56px; height: 56px; border-radius: 50%;
   background: var(--accent); color: #fff;
-  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800;
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700;
   display: grid; place-items: center; margin: 0 auto 20px;
   box-shadow: 0 0 0 8px rgba(145,71,255,0.15), 0 8px 24px var(--accent-gl);
   transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
 }
 .step:hover .step-num { transform: scale(1.08); }
-.step h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.step h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
 .step p  { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.65; max-width: 260px; margin: 0 auto; }
 
 /* ── Comparison Table ────────────────────────────────────── */
@@ -358,7 +358,7 @@ img { max-width: 100%; display: block; }
 .cmp-table    { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .cmp-table thead { background: var(--bg-dark2); }
 .cmp-table th {
-  padding: 16px 22px; font-family: 'Syne', sans-serif;
+  padding: 16px 22px; font-family: 'Space Grotesk', sans-serif;
   font-size: 0.85rem; font-weight: 700; color: #fff; text-align: left;
   border-bottom: 1px solid var(--border-d);
 }
@@ -389,13 +389,13 @@ img { max-width: 100%; display: block; }
 }
 .cta-inner     { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
 .cta-eyebrow {
-  font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
 }
 .cta-inner h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem,4vw,3.1rem); font-weight: 800;
-  letter-spacing: -0.03em; line-height: 1.1; color: #fff; margin-bottom: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem,4vw,3.1rem); font-weight: 700;
+  letter-spacing: -0.015em; line-height: 1.12; color: #fff; margin-bottom: 16px;
 }
 .cta-inner p { font-size: 1rem; color: var(--ink-ws); line-height: 1.68; margin-bottom: 28px; }
 .cta-checks  { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 32px; }
@@ -411,7 +411,7 @@ img { max-width: 100%; display: block; }
 }
 .contact-left { padding-top: 8px; }
 .contact-headline {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-weight: 700; line-height: 1.35; letter-spacing: -0.01em;
   color: var(--ink); margin-bottom: 16px; margin-top: 10px;
@@ -484,8 +484,8 @@ img { max-width: 100%; display: block; }
   display: grid; place-items: center; font-size: 2rem; margin: 0 auto 20px;
 }
 .modal h2 {
-  font-family: 'Syne', sans-serif; font-size: 1.55rem; font-weight: 800;
-  letter-spacing: -0.025em; color: #fff; margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.55rem; font-weight: 700;
+  letter-spacing: -0.012em; color: #fff; margin-bottom: 10px;
 }
 .modal p { font-size: 0.9rem; color: var(--ink-ws); line-height: 1.65; margin-bottom: 20px; }
 .modal-ref {
