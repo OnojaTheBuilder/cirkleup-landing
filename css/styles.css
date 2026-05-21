@@ -72,8 +72,8 @@ img { max-width: 100%; display: block; }
   font-size: clamp(1.8rem, 3.5vw, 2.7rem);
   font-weight: 700; line-height: 1.15; letter-spacing: -0.01em;
 }
-.section-header h2 em       { font-style: normal; color: var(--ink-soft); }
-.section-header h2 em.on-dark { color: var(--ink-ws); }
+.section-header h2 em       { font-style: normal; }
+.section-header h2 em.on-dark { font-style: normal; }
 
 /* ── Buttons ─────────────────────────────────────────────── */
 .btn {
