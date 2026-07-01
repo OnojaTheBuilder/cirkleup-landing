@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -16,6 +16,674 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="css/styles.css"/>
+<style>
+
+/* ══════════════════════════════════════════
+   VISUAL UPGRADE STYLES
+══════════════════════════════════════════ */
+
+/* ── Hero Split Layout ── */
+.hero {
+  min-height: 100vh;
+  padding: 100px var(--px) 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+.hero-left { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.hero-left .hero-mechanism { text-align: left; }
+.hero-left .hero-bullets   { text-align: left; }
+.hero-left .hero-form-wrap { text-align: left; }
+.hero-left .invite-note    { justify-content: flex-start; }
+.hero-left .what-next      { text-align: left; }
+
+.hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* ── App Preview Mockup ── */
+.phone-mockup {
+  position: relative;
+  width: 280px;
+  height: 560px;
+  flex-shrink: 0;
+}
+
+.phone-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  border: 2px solid rgba(145,71,255,0.4);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 40px 80px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.phone-notch {
+  width: 100px;
+  height: 28px;
+  background: #0e0e12;
+  border-radius: 0 0 18px 18px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.phone-screen {
+  padding: 12px 16px 20px;
+  height: calc(100% - 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.phone-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.phone-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.phone-logo-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #8B5CF6;
+  display: grid;
+  place-items: center;
+}
+
+.phone-logo-icon svg { width: 12px; height: 12px; }
+
+.phone-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8B5CF6, #06b6d4);
+}
+
+/* Feed cards inside phone */
+.feed-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 12px;
+  animation: feedSlide 8s ease-in-out infinite;
+}
+
+.feed-card:nth-child(2) { animation-delay: 0.3s; }
+.feed-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes feedSlide {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  45%, 55% { transform: translateY(-2px); opacity: 0.9; }
+}
+
+.feed-user {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.feed-av {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.feed-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.feed-time {
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.3);
+  margin-left: auto;
+}
+
+.feed-content-bar {
+  height: 7px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 5px;
+}
+.feed-content-bar.w80 { width: 80%; }
+.feed-content-bar.w60 { width: 60%; }
+.feed-content-bar.w90 { width: 90%; }
+.feed-content-bar.w70 { width: 70%; }
+
+.feed-img-placeholder {
+  height: 70px;
+  border-radius: 10px;
+  margin: 8px 0;
+  background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(6,182,212,0.2));
+}
+
+.feed-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.feed-action {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.feed-earnings-badge {
+  background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(6,182,212,0.1));
+  border: 1px solid rgba(139,92,246,0.3);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feed-earnings-label {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.feed-earnings-amount {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #a78bfa;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Floating badges around phone */
+.phone-badge {
+  position: absolute;
+  background: rgba(14,14,18,0.9);
+  border: 1px solid rgba(145,71,255,0.3);
+  border-radius: 12px;
+  padding: 8px 14px;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  animation: floatBadge 4s ease-in-out infinite;
+}
+
+.phone-badge--1 {
+  top: 60px;
+  right: -20px;
+  animation-delay: 0s;
+}
+
+.phone-badge--2 {
+  bottom: 120px;
+  left: -30px;
+  animation-delay: 1.5s;
+}
+
+.phone-badge--3 {
+  bottom: 60px;
+  right: -20px;
+  animation-delay: 3s;
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+.phone-badge-icon { font-size: 0.9rem; margin-right: 4px; }
+.phone-badge-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.phone-badge-sub {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.45);
+  display: block;
+  margin-top: 1px;
+}
+
+/* ── Lineage Tree Section ── */
+.lineage-section {
+  background: var(--bg-dark);
+  padding: 96px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.lineage-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(145,71,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.lineage-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lineage-copy .section-tag { margin-bottom: 12px; }
+
+.lineage-copy h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: -0.015em;
+}
+
+.lineage-copy p {
+  font-size: 0.97rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  margin-bottom: 16px;
+  max-width: 400px;
+}
+
+.lineage-stats {
+  display: flex;
+  gap: 28px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.lineage-stat {
+  background: rgba(145,71,255,0.1);
+  border: 1px solid rgba(145,71,255,0.2);
+  border-radius: 12px;
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.lineage-stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #a78bfa;
+  display: block;
+}
+
+.lineage-stat-label {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+  display: block;
+  margin-top: 3px;
+}
+
+/* Tree SVG canvas */
+.tree-canvas {
+  width: 100%;
+  height: 420px;
+  position: relative;
+}
+
+.tree-canvas svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Tree node styles */
+.tree-node {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tree-node:hover circle { filter: brightness(1.3); }
+
+.node-pulse {
+  animation: nodePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes nodePulse {
+  0%, 100% { opacity: 0.3; r: 24; }
+  50%       { opacity: 0; r: 32; }
+}
+
+.tree-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawLine 1.5s ease forwards;
+}
+
+.tree-line-d1 { animation-delay: 0.3s; }
+.tree-line-d2 { animation-delay: 0.6s; }
+.tree-line-d3 { animation-delay: 0.9s; }
+.tree-line-d4 { animation-delay: 1.2s; }
+.tree-line-d5 { animation-delay: 1.5s; }
+.tree-line-d6 { animation-delay: 1.8s; }
+.tree-line-d7 { animation-delay: 2.1s; }
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+.tree-node-appear {
+  opacity: 0;
+  animation: nodeAppear 0.4s ease forwards;
+}
+
+.node-d1 { animation-delay: 0.4s; }
+.node-d2 { animation-delay: 0.7s; }
+.node-d3 { animation-delay: 1.0s; }
+.node-d4 { animation-delay: 1.3s; }
+.node-d5 { animation-delay: 1.6s; }
+.node-d6 { animation-delay: 1.9s; }
+.node-d7 { animation-delay: 2.2s; }
+
+@keyframes nodeAppear {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.tier-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── Video Section ── */
+.video-section {
+  background: var(--bg-soft);
+  padding: 96px 0;
+}
+
+.video-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.video-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-top: 10px;
+}
+
+.video-wrap {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(139,92,246,0.2), 0 8px 32px rgba(0,0,0,0.15);
+  background: var(--bg-dark);
+  aspect-ratio: 16/9;
+}
+
+/* VIDEO PLACEHOLDER — replace with iframe when video is ready */
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0e0e18 0%, #1a1040 50%, #0e1a1a 100%);
+  position: relative;
+  cursor: pointer;
+}
+
+.video-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.video-play-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(139,92,246,0.9);
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s ease, background 0.2s;
+  box-shadow: 0 0 0 16px rgba(139,92,246,0.15);
+  animation: playPulse 2.5s ease-in-out infinite;
+}
+
+.video-play-btn:hover {
+  transform: scale(1.1);
+  background: #8B5CF6;
+}
+
+@keyframes playPulse {
+  0%, 100% { box-shadow: 0 0 0 16px rgba(139,92,246,0.15); }
+  50%       { box-shadow: 0 0 0 24px rgba(139,92,246,0.06); }
+}
+
+.video-play-btn svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+}
+
+.video-placeholder-text {
+  margin-top: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  position: relative;
+  z-index: 1;
+}
+
+.video-placeholder-sub {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+/* To swap in real video, replace .video-placeholder div with:
+   <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+   title="CirkleUp" frameborder="0" allowfullscreen></iframe>
+*/
+
+/* ── Enhanced Problem Cards ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.problem-card {
+  background: var(--bg-dark2);
+  border: 1px solid var(--border-d);
+  border-radius: var(--r-lg);
+  padding: 32px 28px;
+  color: #fff;
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(239,68,68,0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.problem-card:hover::before { opacity: 1; }
+.problem-card:hover {
+  border-color: rgba(239,68,68,0.3);
+  box-shadow: 0 12px 48px rgba(239,68,68,0.08);
+  transform: translateY(-4px);
+}
+
+.prob-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.2);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.problem-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.problem-card p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.68;
+}
+
+/* ── Enhanced Features Grid ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.feat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  transition: box-shadow 0.22s, transform 0.22s, border-color 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+
+.feat-card::after { display: none; }
+.feat-card::before { display: none; }
+
+.feat-card:hover {
+  box-shadow: 0 12px 40px rgba(139,92,246,0.12);
+  transform: translateY(-4px);
+  border-color: rgba(139,92,246,0.3);
+}
+
+.feat-card--highlight {
+  background: linear-gradient(135deg, #f5f3ff, #ede9ff) !important;
+  border-color: rgba(139,92,246,0.25) !important;
+}
+
+/* ── Social Proof Strip ── */
+.platforms-strip {
+  background: var(--bg-dark2);
+  border-top: 1px solid var(--border-d);
+  border-bottom: 1px solid var(--border-d);
+  padding: 24px 0;
+  overflow: hidden;
+}
+
+.platforms-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 18px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.platforms-scroll {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 var(--px);
+}
+
+.platform-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.3);
+  text-decoration: line-through;
+  text-decoration-color: rgba(239,68,68,0.5);
+}
+
+.platform-item .platform-icon {
+  font-size: 1.1rem;
+  filter: grayscale(1) opacity(0.4);
+}
+
+/* ── Responsive overrides ── */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px var(--px) 60px;
+    text-align: center;
+  }
+  .hero-left { align-items: center; }
+  .hero-left .invite-note { justify-content: center; }
+  .hero-right { display: none; }
+  .lineage-inner { grid-template-columns: 1fr; gap: 48px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width: 600px) {
+  .features-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
@@ -26,8 +694,8 @@
 <header class="nav">
   <div class="wrap nav-inner">
     <a href="#" class="nav-logo">
-      <img src="/apple-touch-icon.png" alt="CirkleUp" style="width:36px;height:36px;border-radius:10px;"/>
-CirkleUp
+      <img src="/apple-touch-icon.png" alt="CirkleUp logo" style="width:34px;height:34px;border-radius:9px;"/>
+      CirkleUp
     </a>
     <a href="#waitlist" class="btn btn-primary btn-sm">
       Claim Your Invite <span class="arr">↗</span>
@@ -37,7 +705,7 @@ CirkleUp
 
 
 <!-- ═══════════════════════════════════════════
-     HERO
+     HERO — Split layout with phone mockup
 ═══════════════════════════════════════════ -->
 <section class="hero" id="home">
   <div class="hero-bg">
@@ -47,7 +715,8 @@ CirkleUp
     <div class="hero-orb hero-orb-3"></div>
   </div>
 
-  <div class="hero-content">
+  <!-- Left: copy + form -->
+  <div class="hero-left hero-content">
 
     <h1>Social media is broken.<br><span class="accent">We're fixing it.</span></h1>
 
@@ -67,11 +736,7 @@ CirkleUp
     <div class="hero-form-wrap" id="waitlist">
       <form class="hero-form" id="heroForm" novalidate>
         <label for="heroEmail" class="sr-only">Email address</label>
-        <input
-          type="email" id="heroEmail" name="email"
-          class="hero-input" placeholder="your@email.com"
-          autocomplete="email" required
-        />
+        <input type="email" id="heroEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required/>
         <button type="submit" class="btn btn-primary btn-md" id="heroBtn">
           Claim Your Invite <span class="arr">→</span>
         </button>
@@ -95,6 +760,103 @@ CirkleUp
     </div>
 
   </div>
+
+  <!-- Right: phone mockup -->
+  <div class="hero-right">
+    <div class="phone-mockup">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+
+          <div class="phone-header">
+            <div class="phone-logo">
+              <div class="phone-logo-icon">
+                <svg viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="5.5" stroke="white" stroke-width="1.5"/>
+                  <circle cx="8" cy="8" r="2.5" stroke="white" stroke-width="1.5"/>
+                  <circle cx="8" cy="8" r="1" fill="white"/>
+                </svg>
+              </div>
+              CirkleUp
+            </div>
+            <div class="phone-avatar"></div>
+          </div>
+
+          <!-- Earnings badge -->
+          <div class="feed-earnings-badge">
+            <div>
+              <div class="feed-earnings-label">This month's earnings</div>
+              <div class="feed-earnings-amount" id="earningsCounter">$0</div>
+            </div>
+            <span style="font-size:1.2rem;">💰</span>
+          </div>
+
+          <!-- Feed posts -->
+          <div class="feed-card">
+            <div class="feed-user">
+              <div class="feed-av" style="background:linear-gradient(135deg,#8B5CF6,#06b6d4)"></div>
+              <span class="feed-name">Alex K. — Creator</span>
+              <span class="feed-time">2m ago</span>
+            </div>
+            <div class="feed-img-placeholder"></div>
+            <div class="feed-content-bar w80"></div>
+            <div class="feed-content-bar w60"></div>
+            <div class="feed-actions">
+              <span class="feed-action">❤️ 248</span>
+              <span class="feed-action">💬 34</span>
+              <span class="feed-action">🎟️ Event</span>
+            </div>
+          </div>
+
+          <div class="feed-card">
+            <div class="feed-user">
+              <div class="feed-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"></div>
+              <span class="feed-name">Marcus R. — Music</span>
+              <span class="feed-time">8m ago</span>
+            </div>
+            <div class="feed-content-bar w90"></div>
+            <div class="feed-content-bar w70"></div>
+            <div class="feed-actions">
+              <span class="feed-action">❤️ 891</span>
+              <span class="feed-action">🎵 Listen</span>
+            </div>
+          </div>
+
+          <div class="feed-card">
+            <div class="feed-user">
+              <div class="feed-av" style="background:linear-gradient(135deg,#ec4899,#8B5CF6)"></div>
+              <span class="feed-name">Jordan T. — Film</span>
+              <span class="feed-time">12m ago</span>
+            </div>
+            <div class="feed-content-bar w80"></div>
+            <div class="feed-actions">
+              <span class="feed-action">❤️ 1.2K</span>
+              <span class="feed-action">📺 Watch</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Floating badges -->
+      <div class="phone-badge phone-badge--1">
+        <span class="phone-badge-icon">🔒</span>
+        <span class="phone-badge-text">Invite Only</span>
+        <span class="phone-badge-sub">No bots. Ever.</span>
+      </div>
+      <div class="phone-badge phone-badge--2">
+        <span class="phone-badge-icon">💸</span>
+        <span class="phone-badge-text">+$847 earned</span>
+        <span class="phone-badge-sub">This week</span>
+      </div>
+      <div class="phone-badge phone-badge--3">
+        <span class="phone-badge-icon">🌳</span>
+        <span class="phone-badge-text">Network growing</span>
+        <span class="phone-badge-sub">14 new members</span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 
@@ -120,35 +882,229 @@ CirkleUp
 
 
 <!-- ═══════════════════════════════════════════
+     PLATFORMS LEAVING BEHIND
+═══════════════════════════════════════════ -->
+<div class="platforms-strip">
+  <p class="platforms-label">Creators are leaving behind</p>
+  <div class="platforms-scroll">
+    <div class="platform-item"><span class="platform-icon">📸</span> Instagram</div>
+    <div class="platform-item"><span class="platform-icon">🎵</span> TikTok</div>
+    <div class="platform-item"><span class="platform-icon">▶️</span> YouTube</div>
+    <div class="platform-item"><span class="platform-icon">🐦</span> X / Twitter</div>
+    <div class="platform-item"><span class="platform-icon">🎵</span> Spotify</div>
+    <div class="platform-item"><span class="platform-icon">📘</span> Facebook</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
      PROBLEM
 ═══════════════════════════════════════════ -->
 <section class="section section--dark" id="problem">
   <div class="wrap">
     <div class="section-header">
       <p class="section-tag reveal">The Problem</p>
-      <h2 class="reveal d1">Why every creator is frustrated</h2>
+      <h2 class="reveal d1" style="color:#fff;">Why every creator is frustrated</h2>
     </div>
     <div class="problem-grid">
       <article class="problem-card reveal">
-        <span class="prob-icon">📉</span>
+        <div class="prob-icon-wrap">📉</div>
         <h3>Algorithm manipulation</h3>
         <p>Platforms decide who sees your content — and it's rarely the people who actually want to. Organic reach is down 90% unless you pay to boost.</p>
       </article>
       <article class="problem-card reveal d1">
-        <span class="prob-icon">🤖</span>
+        <div class="prob-icon-wrap">🤖</div>
         <h3>Bots everywhere</h3>
         <p>Your comments, your DMs, your follower count — all inflated by bots. Engagement metrics are meaningless while your real audience drowns.</p>
       </article>
       <article class="problem-card reveal d2">
-        <span class="prob-icon">💸</span>
+        <div class="prob-icon-wrap">💸</div>
         <h3>Platform takes the cut</h3>
         <p>YouTube takes 45%. Spotify takes 70%. You do the work, build the audience, and they take the money. You're a revenue source, not a partner.</p>
       </article>
       <article class="problem-card reveal d3">
-        <span class="prob-icon">🎯</span>
+        <div class="prob-icon-wrap">🎯</div>
         <h3>You don't own your audience</h3>
         <p>Get shadowbanned, go viral for the wrong reason, or wake up to a policy change — and every follower you built disappears overnight.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     VIDEO PREVIEW
+═══════════════════════════════════════════ -->
+<section class="video-section" id="preview">
+  <div class="wrap">
+    <div class="video-header reveal">
+      <p class="section-tag">See it in action</p>
+      <h2>A platform built different</h2>
+    </div>
+    <div class="video-wrap reveal d1">
+      <!-- ══════════════════════════════════════════
+           TO ADD YOUR VIDEO:
+           Replace the entire .video-placeholder div below with:
+           <iframe width="100%" height="100%"
+             src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=0&rel=0"
+             title="CirkleUp Preview" frameborder="0"
+             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+             allowfullscreen style="display:block;">
+           </iframe>
+      ══════════════════════════════════════════ -->
+      <div class="video-placeholder" id="videoPlaceholder">
+        <div class="video-play-btn" onclick="document.getElementById('videoPlaceholder').innerHTML='<p style=\'color:white;font-family:Space Grotesk;padding:20px;text-align:center;\'>Paste your YouTube embed here</p>'">
+          <svg viewBox="0 0 24 24" fill="white">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+        <p class="video-placeholder-text">CirkleUp — App Preview</p>
+        <p class="video-placeholder-sub">Coming soon · Upload your video to see it here</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     LINEAGE TREE
+═══════════════════════════════════════════ -->
+<section class="lineage-section" id="lineage">
+  <div class="wrap">
+    <div class="lineage-inner">
+
+      <div class="lineage-copy reveal">
+        <p class="section-tag">The Lineage System</p>
+        <h2>Your network compounds.<br>Forever.</h2>
+        <p>You're not just a user — you're a node in a permanent network. Every person you invite builds under your position. Everyone they invite builds under them.</p>
+        <p>Your founding position is locked in from day one. The earlier you join, the more valuable your position becomes as the platform grows.</p>
+        <div class="lineage-stats">
+          <div class="lineage-stat">
+            <span class="lineage-stat-num">∞</span>
+            <span class="lineage-stat-label">Levels deep</span>
+          </div>
+          <div class="lineage-stat">
+            <span class="lineage-stat-num">90%</span>
+            <span class="lineage-stat-label">Revenue to you</span>
+          </div>
+          <div class="lineage-stat">
+            <span class="lineage-stat-num">Forever</span>
+            <span class="lineage-stat-label">Position locked</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-canvas reveal d1">
+        <svg viewBox="0 0 500 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="rootGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="nodeGrad1" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#a78bfa"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </radialGradient>
+            <radialGradient id="nodeGrad2" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#60a5fa"/>
+              <stop offset="100%" stop-color="#2563eb"/>
+            </radialGradient>
+            <radialGradient id="nodeGrad3" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#34d399"/>
+              <stop offset="100%" stop-color="#059669"/>
+            </radialGradient>
+            <radialGradient id="nodeGrad4" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#fb923c"/>
+              <stop offset="100%" stop-color="#ea580c"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Root glow -->
+          <circle cx="250" cy="60" r="60" fill="url(#rootGlow)"/>
+
+          <!-- Level 1 → Level 2 lines -->
+          <line x1="250" y1="82" x2="130" y2="168" stroke="rgba(139,92,246,0.4)" stroke-width="1.5" stroke-dasharray="4 3" class="tree-line tree-line-d1"/>
+          <line x1="250" y1="82" x2="370" y2="168" stroke="rgba(139,92,246,0.4)" stroke-width="1.5" stroke-dasharray="4 3" class="tree-line tree-line-d2"/>
+
+          <!-- Level 2 → Level 3 lines -->
+          <line x1="130" y1="188" x2="70" y2="280" stroke="rgba(96,165,250,0.35)" stroke-width="1.2" stroke-dasharray="3 4" class="tree-line tree-line-d3"/>
+          <line x1="130" y1="188" x2="190" y2="280" stroke="rgba(96,165,250,0.35)" stroke-width="1.2" stroke-dasharray="3 4" class="tree-line tree-line-d4"/>
+          <line x1="370" y1="188" x2="310" y2="280" stroke="rgba(96,165,250,0.35)" stroke-width="1.2" stroke-dasharray="3 4" class="tree-line tree-line-d5"/>
+          <line x1="370" y1="188" x2="430" y2="280" stroke="rgba(96,165,250,0.35)" stroke-width="1.2" stroke-dasharray="3 4" class="tree-line tree-line-d6"/>
+
+          <!-- Level 3 → Level 4 hints -->
+          <line x1="70" y1="296" x2="44" y2="360" stroke="rgba(52,211,153,0.25)" stroke-width="1" stroke-dasharray="2 5" class="tree-line tree-line-d7"/>
+          <line x1="70" y1="296" x2="96" y2="360" stroke="rgba(52,211,153,0.25)" stroke-width="1" stroke-dasharray="2 5" class="tree-line tree-line-d7"/>
+          <line x1="430" y1="296" x2="404" y2="360" stroke="rgba(52,211,153,0.25)" stroke-width="1" stroke-dasharray="2 5" class="tree-line tree-line-d7"/>
+          <line x1="430" y1="296" x2="456" y2="360" stroke="rgba(52,211,153,0.25)" stroke-width="1" stroke-dasharray="2 5" class="tree-line tree-line-d7"/>
+
+          <!-- ROOT NODE — You -->
+          <g class="tree-node">
+            <circle cx="250" cy="60" r="30" fill="url(#nodeGrad1)" opacity="0.9"/>
+            <circle cx="250" cy="60" r="30" stroke="rgba(167,139,250,0.6)" stroke-width="2" fill="none"/>
+            <circle cx="250" cy="60" r="38" stroke="rgba(139,92,246,0.15)" stroke-width="1" fill="none" class="node-pulse"/>
+            <text x="250" y="55" text-anchor="middle" fill="white" font-size="11" font-family="Space Grotesk" font-weight="700">YOU</text>
+            <text x="250" y="68" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="7.5" font-family="Space Grotesk" class="tier-badge">FOUNDING</text>
+          </g>
+
+          <!-- LEVEL 2 — L -->
+          <g class="tree-node tree-node-appear node-d2">
+            <circle cx="130" cy="178" r="22" fill="url(#nodeGrad2)" opacity="0.85"/>
+            <circle cx="130" cy="178" r="22" stroke="rgba(96,165,250,0.5)" stroke-width="1.5" fill="none"/>
+            <text x="130" y="174" text-anchor="middle" fill="white" font-size="9" font-family="Space Grotesk" font-weight="700">L.P.</text>
+            <text x="130" y="185" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="7" font-family="Space Grotesk" class="tier-badge">TIER 1</text>
+          </g>
+
+          <!-- LEVEL 2 — R -->
+          <g class="tree-node tree-node-appear node-d3">
+            <circle cx="370" cy="178" r="22" fill="url(#nodeGrad2)" opacity="0.85"/>
+            <circle cx="370" cy="178" r="22" stroke="rgba(96,165,250,0.5)" stroke-width="1.5" fill="none"/>
+            <text x="370" y="174" text-anchor="middle" fill="white" font-size="9" font-family="Space Grotesk" font-weight="700">M.R.</text>
+            <text x="370" y="185" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="7" font-family="Space Grotesk" class="tier-badge">TIER 1</text>
+          </g>
+
+          <!-- LEVEL 3 nodes -->
+          <g class="tree-node tree-node-appear node-d4">
+            <circle cx="70" cy="286" r="17" fill="url(#nodeGrad3)" opacity="0.8"/>
+            <text x="70" y="282" text-anchor="middle" fill="white" font-size="8" font-family="Space Grotesk" font-weight="700">A.K.</text>
+            <text x="70" y="292" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="6.5" font-family="Space Grotesk">TIER 2</text>
+          </g>
+
+          <g class="tree-node tree-node-appear node-d5">
+            <circle cx="190" cy="286" r="17" fill="url(#nodeGrad3)" opacity="0.8"/>
+            <text x="190" y="282" text-anchor="middle" fill="white" font-size="8" font-family="Space Grotesk" font-weight="700">J.S.</text>
+            <text x="190" y="292" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="6.5" font-family="Space Grotesk">TIER 2</text>
+          </g>
+
+          <g class="tree-node tree-node-appear node-d5">
+            <circle cx="310" cy="286" r="17" fill="url(#nodeGrad3)" opacity="0.8"/>
+            <text x="310" y="282" text-anchor="middle" fill="white" font-size="8" font-family="Space Grotesk" font-weight="700">T.C.</text>
+            <text x="310" y="292" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="6.5" font-family="Space Grotesk">TIER 2</text>
+          </g>
+
+          <g class="tree-node tree-node-appear node-d6">
+            <circle cx="430" cy="286" r="17" fill="url(#nodeGrad3)" opacity="0.8"/>
+            <text x="430" y="282" text-anchor="middle" fill="white" font-size="8" font-family="Space Grotesk" font-weight="700">S.B.</text>
+            <text x="430" y="292" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="6.5" font-family="Space Grotesk">TIER 2</text>
+          </g>
+
+          <!-- LEVEL 4 hint dots -->
+          <g class="tree-node-appear node-d7">
+            <circle cx="44" cy="363" r="10" fill="url(#nodeGrad4)" opacity="0.6"/>
+            <circle cx="96" cy="363" r="10" fill="url(#nodeGrad4)" opacity="0.6"/>
+            <circle cx="404" cy="363" r="10" fill="url(#nodeGrad4)" opacity="0.6"/>
+            <circle cx="456" cy="363" r="10" fill="url(#nodeGrad4)" opacity="0.6"/>
+            <text x="250" y="400" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="9" font-family="Space Grotesk" font-style="italic">…and it keeps growing</text>
+          </g>
+
+          <!-- Earnings labels -->
+          <g class="tree-node-appear node-d4">
+            <rect x="170" y="44" width="72" height="18" rx="5" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+            <text x="206" y="57" text-anchor="middle" fill="#34d399" font-size="8.5" font-family="Space Grotesk" font-weight="700">+$2,840/mo</text>
+          </g>
+
+        </svg>
+      </div>
     </div>
   </div>
 </section>
@@ -161,7 +1117,7 @@ CirkleUp
   <div class="wrap">
     <div class="section-header">
       <p class="section-tag reveal">The Solution</p>
-      <h2 class="reveal d1">We offer quality, with tools creators actually need</h2>
+      <h2 class="reveal d1">Everything a creator needs.<br>Nothing they don't.</h2>
     </div>
     <div class="features-grid">
       <article class="feat-card reveal">
@@ -172,7 +1128,7 @@ CirkleUp
       <article class="feat-card feat-card--highlight reveal d1">
         <div class="feat-icon">🌳</div>
         <h3>Permanent lineage system</h3>
-        <p>Your founding position is locked in forever. Everyone you invite builds under you — and everyone they invite builds under them. Your network compounds permanently, not algorithmically.</p>
+        <p>Your founding position is locked in forever. Everyone you invite builds under you — and everyone they invite builds under them.</p>
         <p class="feat-highlight-line">The only platform where your position gets more valuable the longer you hold it.</p>
       </article>
       <article class="feat-card reveal d2">
@@ -237,7 +1193,7 @@ CirkleUp
   <div class="wrap">
     <div class="section-header">
       <p class="section-tag reveal">Honest comparison</p>
-      <h2 class="reveal d1">CirkleUp vs the rest</h2>
+      <h2 class="reveal d1" style="color:#fff;">CirkleUp vs the rest</h2>
     </div>
     <div class="table-wrap reveal d1">
       <table class="cmp-table">
@@ -317,11 +1273,7 @@ CirkleUp
     <div class="reveal d3">
       <form class="cta-form" id="ctaForm" novalidate>
         <label for="ctaEmail" class="sr-only">Email address</label>
-        <input
-          type="email" id="ctaEmail" name="email"
-          class="hero-input" placeholder="your@email.com"
-          autocomplete="email" required
-        />
+        <input type="email" id="ctaEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required/>
         <button type="submit" class="btn btn-primary btn-lg" id="ctaBtn">
           Claim Your Invite <span class="arr">→</span>
         </button>
@@ -397,7 +1349,12 @@ CirkleUp
       <span class="footer-sep" aria-hidden="true">•</span>
       <a href="#contact">Contact</a>
     </nav>
-    <p class="footer-copy">© 2026 CirkleUp. All rights reserved.</p>
+    <p class="footer-copy">© 2026 CirkleUp. All rights reserved. · Made by <a href="https://makeitandmarket.com" target="_blank" rel="noopener" style="color:inherit;opacity:0.6;text-decoration:underline;text-underline-offset:3px;">makeitandmarket.com</a></p>
+    <div style="margin-top:8px;font-size:0.75rem;">
+      <a href="/privacy" style="color:rgba(255,255,255,0.35);text-decoration:underline;text-underline-offset:2px;margin-right:16px;">Privacy Policy</a>
+      <a href="/child-safety" style="color:rgba(255,255,255,0.35);text-decoration:underline;text-underline-offset:2px;margin-right:16px;">Child Safety</a>
+      <a href="/support" style="color:rgba(255,255,255,0.35);text-decoration:underline;text-underline-offset:2px;">Support</a>
+    </div>
   </div>
 </footer>
 
@@ -420,5 +1377,31 @@ CirkleUp
 
 
 <script src="js/main.js"></script>
+<script>
+/* ── Earnings counter animation in phone mockup ── */
+(function() {
+  var el = document.getElementById('earningsCounter');
+  if (!el) return;
+  var target = 2840;
+  var duration = 2500;
+  var start = null;
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function tick(now) {
+    if (!start) start = now;
+    var progress = Math.min((now - start) / duration, 1);
+    el.textContent = '$' + Math.round(easeOut(progress) * target).toLocaleString();
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  // Start when phone is in view
+  var io = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      requestAnimationFrame(tick);
+      io.disconnect();
+    }
+  }, { threshold: 0.5 });
+  var phone = document.querySelector('.phone-mockup');
+  if (phone) io.observe(phone);
+})();
+</script>
 </body>
 </html>
