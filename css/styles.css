@@ -104,11 +104,11 @@ img { max-width: 100%; display: block; }
 }
 .nav-inner  { display: flex; align-items: center; justify-content: space-between; }
 .nav-logo   {
-  display: flex; align-items: center; gap: 10px;
-  font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700;
-  color: #fff; letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 800;
+  color: #fff; letter-spacing: -0.02em;
 }
-.logo-mark     { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
+.logo-mark     { width: 38px; height: 38px; border-radius: 10px; background: #8B5CF6; display: grid; place-items: center; flex-shrink: 0; overflow: hidden; padding: 5px; }
 .logo-mark svg { width: 16px; height: 16px; }
 
 /* ── Hero ────────────────────────────────────────────────── */
@@ -358,9 +358,27 @@ img { max-width: 100%; display: block; }
 .cmp-table    { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .cmp-table thead { background: var(--bg-dark2); }
 .cmp-table th {
-  padding: 16px 22px; font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem; font-weight: 700; color: #fff; text-align: left;
+  padding: 18px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem; font-weight: 700; color: #fff;
+  text-align: center;
   border-bottom: 1px solid var(--border-d);
+  white-space: nowrap;
+}
+.cmp-table th:first-child {
+  text-align: left;
+  width: 32%;
+}
+.cmp-table td {
+  text-align: center;
+}
+.cmp-table td.col-feat {
+  text-align: left;
+}
+.cmp-table td.col-us {
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
 }
 .cmp-table th.col-us { color: var(--accent); }
 .cmp-table th.col-us::after {
