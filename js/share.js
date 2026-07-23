@@ -47,7 +47,7 @@
     document.documentElement.classList.remove('no-post');
     document.title = 'Opening in CirkleUp…';
 
-    var deepLink = 'cirkleup://cirkleup.com/share/' + encodeURIComponent(postId);
+    var deepLink = 'cirkleup://cirkleup.com/postDetail?postId=' + encodeURIComponent(postId);
     var platform = getPlatform();
     var storeUrl = getStoreUrl(platform);
 
