@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="no-post">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Opening in CirkleUp…</title>
+<meta name="robots" content="noindex"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/css/share.css"/>
+<script>
+(function () {
+  var pathParts = window.location.pathname.split('/').filter(Boolean);
+  var hasPost = pathParts[0] === 'share' && pathParts[1];
+  document.documentElement.classList.add(hasPost ? 'has-post' : 'no-post');
+})();
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/apple-touch-icon.png" alt="CirkleUp"/>
+    CirkleUp
+  </a>
+  <a href="/" class="back">← Back to home</a>
+</nav>
+
+<main class="share-main">
+  <div class="share-card">
+
+    <div id="validState">
+      <p class="page-tag">Shared post</p>
+      <div class="share-loader" aria-hidden="true"></div>
+      <h1>Opening in CirkleUp</h1>
+      <p class="share-subtitle">Redirecting you to the post…</p>
+      <div class="share-actions">
+        <button type="button" class="btn btn-primary" id="openAppButton">Open in CirkleUp</button>
+        <a class="btn btn-store" id="iosStoreButton" href="https://apps.apple.com/sz/app/cirkleup/id6768386988">Download on App Store</a>
+        <a class="btn btn-store" id="androidStoreButton" href="https://play.google.com/store/apps/details?id=com.cirkleup.app">Get it on Google Play</a>
+      </div>
+    </div>
+
+    <div id="invalidState">
+      <p class="page-tag">Share link</p>
+      <h1>Invalid share link.</h1>
+      <p class="share-subtitle">This link doesn&apos;t look right. Ask the sender to share it again.</p>
+      <div class="share-actions">
+        <a href="/" class="btn btn-primary">Go to CirkleUp</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="footer-bar">
+  © 2026 CirkleUp. All rights reserved.
+  <a href="/privacy">Privacy Policy</a> ·
+  <a href="/child-safety">Child Safety</a> ·
+  <a href="/">Home</a>
+</div>
+
+<script src="/js/share.js"></script>
+</body>
+</html>

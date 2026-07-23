@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.cirkleup.app",
+      "sha256_cert_fingerprints": [
+        "B1:8F:8B:94:5D:C6:E8:B2:8D:3E:83:49:E5:63:FD:C7:EA:7D:7C:BC:75:06:2C:E3:BD:9D:B2:CE:B4:08:1D:07"
+      ]
+    }
+  }
+]
