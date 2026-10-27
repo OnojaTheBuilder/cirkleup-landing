@@ -750,7 +750,7 @@
       </form>
       <span class="input-err" id="heroErr"></span>
       <p class="invite-note" style="margin-top:12px;">Founding members get 5 invites to share with their circle.</p>
-      <p class="what-next">We'll email you when your spot opens. You'll get access + 3 invites.</p>
+      <p class="what-next">We'll email you when your spot opens. You'll get access + 5 invites.</p>
     </div>
 
     <div class="social-proof">
@@ -789,28 +789,28 @@
             <div class="phone-avatar"></div>
           </div>
 
-          <!-- Earnings badge -->
+          <!-- Invite strip -->
           <div class="feed-earnings-badge">
             <div>
-              <div class="feed-earnings-label">This month's earnings</div>
-              <div class="feed-earnings-amount" id="earningsCounter">$0</div>
+              <div class="feed-earnings-label">Your Cirkle</div>
+              <div class="feed-earnings-amount">Invite-only</div>
             </div>
-            <span style="font-size:1.2rem;">💰</span>
+            <span style="font-size:1.2rem;" aria-hidden="true">🔒</span>
           </div>
 
           <!-- Feed posts -->
           <div class="feed-card">
             <div class="feed-user">
               <div class="feed-av" style="background:linear-gradient(135deg,#8B5CF6,#06b6d4)"></div>
-              <span class="feed-name">Alex K. — Creator</span>
-              <span class="feed-time">2m ago</span>
+              <span class="feed-name">Creator</span>
+              
             </div>
             <div class="feed-img-placeholder"></div>
             <div class="feed-content-bar w80"></div>
             <div class="feed-content-bar w60"></div>
             <div class="feed-actions">
-              <span class="feed-action">❤️ 248</span>
-              <span class="feed-action">💬 34</span>
+              <span class="feed-action">❤️ Like</span>
+              <span class="feed-action">💬 Comment</span>
               <span class="feed-action">🎟️ Event</span>
             </div>
           </div>
@@ -818,13 +818,13 @@
           <div class="feed-card">
             <div class="feed-user">
               <div class="feed-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"></div>
-              <span class="feed-name">Marcus R. — Music</span>
-              <span class="feed-time">8m ago</span>
+              <span class="feed-name">Musician</span>
+              
             </div>
             <div class="feed-content-bar w90"></div>
             <div class="feed-content-bar w70"></div>
             <div class="feed-actions">
-              <span class="feed-action">❤️ 891</span>
+              <span class="feed-action">❤️ Like</span>
               <span class="feed-action">🎵 Listen</span>
             </div>
           </div>
@@ -832,12 +832,12 @@
           <div class="feed-card">
             <div class="feed-user">
               <div class="feed-av" style="background:linear-gradient(135deg,#ec4899,#8B5CF6)"></div>
-              <span class="feed-name">Jordan T. — Film</span>
-              <span class="feed-time">12m ago</span>
+              <span class="feed-name">Filmmaker</span>
+              
             </div>
             <div class="feed-content-bar w80"></div>
             <div class="feed-actions">
-              <span class="feed-action">❤️ 1.2K</span>
+              <span class="feed-action">❤️ Like</span>
               <span class="feed-action">📺 Watch</span>
             </div>
           </div>
@@ -845,7 +845,7 @@
         </div>
       </div>
 
-      <!-- Floating badges -->
+      <!-- Floating badges (illustrative preview) -->
       <div class="phone-badge phone-badge--1">
         <span class="phone-badge-icon">🔒</span>
         <span class="phone-badge-text">Invite Only</span>
@@ -853,13 +853,13 @@
       </div>
       <div class="phone-badge phone-badge--2">
         <span class="phone-badge-icon">💸</span>
-        <span class="phone-badge-text">+$847 earned</span>
-        <span class="phone-badge-sub">This week</span>
+        <span class="phone-badge-text">90% yours</span>
+        <span class="phone-badge-sub">Of what you earn</span>
       </div>
       <div class="phone-badge phone-badge--3">
         <span class="phone-badge-icon">🌳</span>
-        <span class="phone-badge-text">Network growing</span>
-        <span class="phone-badge-sub">14 new members</span>
+        <span class="phone-badge-text">Real community</span>
+        <span class="phone-badge-sub">Built on invites</span>
       </div>
     </div>
   </div>
@@ -1045,12 +1045,6 @@
             <circle cx="300" cy="72" r="50" stroke="rgba(139,92,246,0.15)" stroke-width="1.5" fill="none" class="node-pulse"/>
             <text x="300" y="66" text-anchor="middle" fill="white" font-size="13" font-family="Space Grotesk" font-weight="700">YOU</text>
             <text x="300" y="82" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="Space Grotesk" class="tier-badge">FOUNDING</text>
-          </g>
-
-          <!-- Earnings badge -->
-          <g class="tree-node-appear node-d2">
-            <rect x="200" y="54" width="86" height="22" rx="7" fill="rgba(52,211,153,0.18)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
-            <text x="243" y="69" text-anchor="middle" fill="#34d399" font-size="10" font-family="Space Grotesk" font-weight="700">+$2,840/mo</text>
           </g>
 
           <!-- LEVEL 2 — L -->
@@ -1382,31 +1376,5 @@
 
 
 <script src="js/main.js"></script>
-<script>
-/* ── Earnings counter animation in phone mockup ── */
-(function() {
-  var el = document.getElementById('earningsCounter');
-  if (!el) return;
-  var target = 2840;
-  var duration = 2500;
-  var start = null;
-  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-  function tick(now) {
-    if (!start) start = now;
-    var progress = Math.min((now - start) / duration, 1);
-    el.textContent = '$' + Math.round(easeOut(progress) * target).toLocaleString();
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-  // Start when phone is in view
-  var io = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting) {
-      requestAnimationFrame(tick);
-      io.disconnect();
-    }
-  }, { threshold: 0.5 });
-  var phone = document.querySelector('.phone-mockup');
-  if (phone) io.observe(phone);
-})();
-</script>
 </body>
 </html>
