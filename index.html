@@ -8,6 +8,10 @@
 <meta property="og:title" content="CirkleUp — Social Media, Fixed."/>
 <meta property="og:description" content="The only social platform you can't sign up for. Request your invite."/>
 <meta property="og:type" content="website"/>
+<meta property="og:url" content="https://cirkleup.com/"/>
+<meta property="og:image" content="https://cirkleup.com/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cirkleup.com/og-image.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
@@ -705,6 +709,10 @@
 .nav-app-link:hover{color:#fff;}
 @media (max-width:900px){.invite-path{text-align:center;}.invite-path .store-row{justify-content:center;}}
 @media (max-width:480px){.nav-app-link{display:none;}.store-btn{flex:1;min-width:0;}}
+
+.fine-print{font-size:0.75rem;line-height:1.6;color:rgba(255,255,255,0.45);max-width:620px;margin:14px auto 0;}
+.fine-print a{color:#a78bfa;}
+.fine-print--page{max-width:none;text-align:center;padding:20px 0;color:rgba(255,255,255,0.5);}
 </style>
 </head>
 <body>
@@ -753,7 +761,7 @@
 
     <div class="lineage-callout">
       <span class="lineage-icon">🌳</span>
-      <p>Creators keep 90% of what they earn — and grow their community by invitation.</p>
+      <p>Creators keep 90%* of what they earn — and grow their community by invitation.</p>
     </div>
 
     <div class="hero-form-wrap" id="waitlist">
@@ -766,13 +774,13 @@
         </button>
       </form>
       <span class="input-err" id="heroErr"></span>
-      <p class="invite-note" style="margin-top:12px;">Founding members get 5 invites to share with their circle.</p>
+      <p class="invite-note" style="margin-top:12px;">Every new member starts with 5 invites to share with their circle.</p>
       <p class="what-next">We'll email you when your spot opens. You'll get access + 5 invites.</p>
       <div class="invite-path" id="download">
         <p class="invite-path-label">I have an invite — download the app</p>
-        <p class="invite-path-sub">Got an invite code from a member? Download CirkleUp and sign up with it.</p>
+        <p class="invite-path-sub">Got an invite code by email or from a member? Download CirkleUp and enter it when you sign up. Each code works once.</p>
         <div class="store-row">
-          <a class="store-btn" href="https://apps.apple.com/sz/app/cirkleup/id6768386988" target="_blank" rel="noopener"><small>Download on the</small><strong>App Store</strong></a>
+          <a class="store-btn" href="https://apps.apple.com/app/cirkleup/id6768386988" target="_blank" rel="noopener"><small>Download on the</small><strong>App Store</strong></a>
           <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><small>Get it on</small><strong>Google Play</strong></a>
         </div>
       </div>
@@ -878,7 +886,7 @@
       </div>
       <div class="phone-badge phone-badge--2">
         <span class="phone-badge-icon">💸</span>
-        <span class="phone-badge-text">90% yours</span>
+        <span class="phone-badge-text">90%* yours</span>
         <span class="phone-badge-sub">Of what you earn</span>
       </div>
       <div class="phone-badge phone-badge--3">
@@ -902,7 +910,7 @@
       <p class="stat-label">Creators on the waitlist</p>
     </div>
     <div class="stat">
-      <p class="stat-num">90%</p>
+      <p class="stat-num">90%*</p>
       <p class="stat-label">Revenue goes straight to you</p>
     </div>
     <div class="stat">
@@ -981,7 +989,7 @@
         muted
         loop
         playsinline
-        preload="auto"
+        preload="metadata"
         style="display:block;width:100%;height:100%;object-fit:cover;">
         <source src="/cirkleUp.mp4" type="video/mp4"/>
         Your browser does not support the video tag.
@@ -1000,12 +1008,13 @@
 
       <div class="lineage-copy reveal">
         <p class="section-tag">Your Network</p>
-        <h2>Keep 90% of what you earn.<br>Grow with your community.</h2>
-        <p>On CirkleUp, creators keep 90% of their own earnings from subscriptions, tips, products and events. We take 10% to run the platform.</p>
-        <p>Membership is by invitation, so every member is vouched for by someone real. You can see who brought you in and who you've welcomed — a connected community, not a crowd of strangers.</p>
+        <h2>Keep 90%* of what you earn.<br>Grow with your community.</h2>
+        <p>On CirkleUp, creators keep 90%* of what they earn from ticketed events, with more ways to earn on the way. We take 10% to run the platform.</p>
+        <p>Membership is by invitation, so every member is vouched for by someone real. When you invite someone, you earn a referral bonus: 10% of their ticket sales during their first 30 days. It's a thank-you for bringing in good people, nothing more.</p>
+        <p class="fine-print">*New members are in a 30-day grace period: 80% to the creator, 10% referral bonus to whoever invited them, 10% platform. After 30 days, creators keep 90% and the platform keeps 10%. Applies to event ticket sales. <a href="/faq">Learn more</a></p>
         <div class="lineage-stats">
           <div class="lineage-stat">
-            <span class="lineage-stat-num">90%</span>
+            <span class="lineage-stat-num">90%*</span>
             <span class="lineage-stat-label">Of your earnings are yours</span>
           </div>
           <div class="lineage-stat">
@@ -1069,7 +1078,7 @@
             <circle cx="300" cy="72" r="38" stroke="rgba(167,139,250,0.7)" stroke-width="2.5" fill="none"/>
             <circle cx="300" cy="72" r="50" stroke="rgba(139,92,246,0.15)" stroke-width="1.5" fill="none" class="node-pulse"/>
             <text x="300" y="66" text-anchor="middle" fill="white" font-size="13" font-family="Space Grotesk" font-weight="700">YOU</text>
-            <text x="300" y="82" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="Space Grotesk" class="tier-badge">FOUNDING</text>
+            <text x="300" y="82" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="Space Grotesk" class="tier-badge">INVITER</text>
           </g>
 
           <!-- LEVEL 2 — L -->
@@ -1152,7 +1161,7 @@
         <div class="feat-icon">🌳</div>
         <h3>Invite network</h3>
         <p>Every member joins through an invite, so you can see who vouched for you and who you've brought in. A connected community built on trust.</p>
-        <p class="feat-highlight-line">Creators keep 90% of their own earnings.</p>
+        <p class="feat-highlight-line">Creators keep 90%* of their own earnings.</p>
       </article>
       <article class="feat-card reveal d2">
         <div class="feat-icon">🚫</div>
@@ -1161,8 +1170,8 @@
       </article>
       <article class="feat-card reveal d1">
         <div class="feat-icon">💰</div>
-        <h3>Keep 90% revenue</h3>
-        <p>Subscriptions, tips, digital products — you keep 90 cents of every dollar your community spends. We take 10% to keep the lights on.</p>
+        <h3>Keep 90%* of your earnings</h3>
+        <p>You keep 90% of what your events earn. We take 10% to keep the lights on. New members start with a 30-day grace period (see the note below).</p>
       </article>
       <article class="feat-card reveal d2">
         <div class="feat-icon">🎟️</div>
@@ -1239,14 +1248,14 @@
           </tr>
           <tr>
             <td class="col-feat">Revenue share to creator</td>
-            <td class="col-us"><span class="ck">✓</span> 90%</td>
+            <td class="col-us"><span class="ck">✓</span> 90%*</td>
             <td>~55%</td>
             <td>~54%</td>
             <td>~55%</td>
           </tr>
           <tr>
             <td class="col-feat">Bot-free community</td>
-            <td class="col-us"><span class="ck">✓</span> Guaranteed</td>
+            <td class="col-us"><span class="ck">✓</span> Invite-only</td>
             <td><span class="cx">✗</span></td>
             <td><span class="cx">✗</span></td>
             <td><span class="cx">✗</span></td>
@@ -1289,9 +1298,9 @@
     <h2 class="reveal d1">Not everyone gets in.</h2>
     <p class="reveal d2">We're building CirkleUp for creators who are serious about their craft and their community. Spots are limited. Every week a small batch opens up — and they go fast.</p>
     <div class="cta-checks reveal d2">
-      <div class="cta-check"><div class="cta-dot">✓</div>Founding members get 5 invites</div>
+      <div class="cta-check"><div class="cta-dot">✓</div>Every member starts with 5 invites</div>
       <div class="cta-check"><div class="cta-dot">✓</div>Invites drop every Monday</div>
-      <div class="cta-check"><div class="cta-dot">✓</div>Founding member status</div>
+      <div class="cta-check"><div class="cta-dot">✓</div>A vouched-for community</div>
     </div>
     <div class="reveal d3">
       <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">↓ Enter your email to claim your spot</p>
@@ -1305,9 +1314,9 @@
       <span class="input-err" id="ctaErr"></span>
       <div class="invite-path invite-path--center">
         <p class="invite-path-label">I have an invite — download the app</p>
-        <p class="invite-path-sub">Got an invite code from a member? Download CirkleUp and sign up with it.</p>
+        <p class="invite-path-sub">Got an invite code by email or from a member? Download CirkleUp and enter it when you sign up. Each code works once.</p>
         <div class="store-row">
-          <a class="store-btn" href="https://apps.apple.com/sz/app/cirkleup/id6768386988" target="_blank" rel="noopener"><small>Download on the</small><strong>App Store</strong></a>
+          <a class="store-btn" href="https://apps.apple.com/app/cirkleup/id6768386988" target="_blank" rel="noopener"><small>Download on the</small><strong>App Store</strong></a>
           <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><small>Get it on</small><strong>Google Play</strong></a>
         </div>
       </div>
@@ -1374,16 +1383,19 @@
 <!-- ═══════════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════════ -->
+<div class="wrap"><p class="fine-print fine-print--page">*New members are in a 30-day grace period: 80% to the creator, 10% referral bonus to whoever invited them, 10% platform. After 30 days, creators keep 90% and the platform keeps 10%. Applies to event ticket sales. <a href="/faq">Learn more</a></p></div>
+
 <footer class="footer">
   <div class="footer-bar">
     <nav class="footer-nav" aria-label="Footer">
-      <a href="#">About</a>
+      <a href="/faq">FAQ</a>
       <span class="footer-sep" aria-hidden="true">•</span>
       <a href="#contact">Contact</a>
     </nav>
     <p class="footer-copy">© 2026 CirkleUp. All rights reserved. · Made by <a href="https://makeitandmarket.com" target="_blank" rel="noopener" style="color:inherit;opacity:0.6;text-decoration:underline;text-underline-offset:3px;">makeitandmarket.com</a></p>
     <div style="margin-top:8px;font-size:0.75rem;">
       <a href="/privacy" style="color:rgba(255,255,255,0.35);text-decoration:underline;text-underline-offset:2px;margin-right:16px;">Privacy Policy</a>
+      <a href="/terms" style="color:rgba(255,255,255,0.35);text-decoration:underline;text-underline-offset:2px;margin-right:16px;">Terms</a>
       <a href="/child-safety" style="color:rgba(255,255,255,0.35);text-decoration:underline;text-underline-offset:2px;margin-right:16px;">Child Safety</a>
       <a href="/support" style="color:rgba(255,255,255,0.35);text-decoration:underline;text-underline-offset:2px;">Support</a>
     </div>

@@ -35,3 +35,24 @@ Status key: Done / In progress / Blocked / Needs-you
 - **Store listings:** add the Privacy, Terms and Support URLs in App Store Connect and Play Console (cannot be done from this repo).
 ## Task 8 — Invite path end to end (Needs-you: app/backend access)
 ## Task 9 — Safety tools (Needs-you: confirm in app)
+
+
+## Update after reading the team chat (Done)
+- **Store link bug:** the App Store URL used the Eswatini storefront (`/sz/`), which can show "not available" elsewhere. Changed to a storefront-neutral link in `index.html`, `js/share.js`, `404.html`, `share/index.html`.
+- **Invite number:** chat spec says every new member starts with 5 invite codes (trust tier based), so wording changed from "Founding members get 5" to "Every new member starts with 5" (hero, final CTA, FAQ, Support). "Founding member status" -> "A vouched-for community"; tree root label "FOUNDING" -> "INVITER".
+- **Age conflict resolved (13+):** the app enforces min age 13 (DOB). Privacy Policy section 7 changed from 18+ to 13+; Terms states 13 with a lawyer note on under-18s and payouts.
+- **Deletion/contact:** account deletion exists in-app (Apple requirement), so Privacy, Support, FAQ and Terms now say so; `contact@` -> `info@`.
+- **FAQ/Terms placeholders filled from chat:** Liberty Coins (bought via App Store/Google Play, spent on tickets/paid features; XP separate), reporting/blocking/moderation, age. Added an Apple/Google clause to Terms.
+- **Still open:** payout details (Stripe is mentioned, no withdrawal flow described), whether coins can be cashed out, company legal name/address, governing law, liability cap, Child Safety page claims, DRAFT banners on faq/terms.
+- **Tasks 8 and 9:** see `docs/INVITE-PATH-AND-SAFETY.md` (how the invite path works per chat, gaps, test script, safety checklist).
+- **Security:** the chat export contains passwords, login codes and invite codes in plain text. Rotate them and avoid sharing the export.
+
+## Big update after Eric's answers (Done)
+- **Confirmed by Eric:** 80/10/10 for a new creator's first 30 days with the referral bonus coming out of the new creator's share (platform keeps flat 10%); report/block live (report comments and people; blocked users can no longer interact); account deletion at Profile > Account Settings > Delete Account; invite codes are single-use and delivered by email; 80/10/10 recorded and earnings pending until event ends; withdrawals NOT built yet (next milestone); Terms/Privacy links can be added in-app; App Store live.
+- **FAQ:** DRAFT banner removed (no placeholders left). Payouts answer now says withdrawals are not available yet and will be announced; coins have no cash value; single-use invite codes by email; deletion path; blocking.
+- **Terms:** payout placeholder replaced with "not yet available" wording; coins no cash value; deletion path. Still DRAFT: company name/address, governing law, liability cap, lawyer review, unpaid-balance-on-deletion decision.
+- **Privacy:** Data Retention rewritten with what is deleted and what may be kept (security/moderation records up to 90 days; transaction/financial records as law requires; backups rolled within 90 days). Deletion path added. Husnain must confirm the app actually behaves this way.
+- **Child Safety:** rewritten to what the app does (13+ via DOB, in-app reporting, blocking, moderation by team, deletion). Removed unsupported claims: AI image/video scanning, ID-scan age verification, blocked channels, under-13 chat lock, "GmbH", ads section, 18+ channels.
+- **Homepage:** invite path text updated (code by email, single-use); comparison table "Bot-free: Guaranteed" -> "Invite-only"; video preload set to metadata; og:image/twitter card added.
+- **Assets (new files to upload):** favicon-16x16.png (837 KB -> 0.5 KB), favicon-32x32.png (883 KB -> 1.5 KB), apple-touch-icon.png (864 KB -> 23 KB), android-chrome-192x192.png and 512x512.png (new, the manifest referenced missing files), og-image.png (new), cirkleUp.mp4 (12.3 MB -> ~1 MB, audio removed since it autoplays muted; keep the original as a backup), site.webmanifest (name, icons, dark theme colors).
+- **Still open:** company legal name/address, governing law, liability cap and lawyer review (Carl); minimum age and under-18 rules, image/video scanning, Play Store build and share-link status (Husnain); moderation response time wording; unverified marketing claims ("2,400+ creators", "YouTube 45% / Spotify 70%", "reach down 90%", ~55% table).
