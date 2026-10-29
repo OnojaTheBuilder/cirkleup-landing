@@ -56,3 +56,18 @@ Status key: Done / In progress / Blocked / Needs-you
 - **Homepage:** invite path text updated (code by email, single-use); comparison table "Bot-free: Guaranteed" -> "Invite-only"; video preload set to metadata; og:image/twitter card added.
 - **Assets (new files to upload):** favicon-16x16.png (837 KB -> 0.5 KB), favicon-32x32.png (883 KB -> 1.5 KB), apple-touch-icon.png (864 KB -> 23 KB), android-chrome-192x192.png and 512x512.png (new, the manifest referenced missing files), og-image.png (new), cirkleUp.mp4 (12.3 MB -> ~1 MB, audio removed since it autoplays muted; keep the original as a backup), site.webmanifest (name, icons, dark theme colors).
 - **Still open:** company legal name/address, governing law, liability cap and lawyer review (Carl); minimum age and under-18 rules, image/video scanning, Play Store build and share-link status (Husnain); moderation response time wording; unverified marketing claims ("2,400+ creators", "YouTube 45% / Spotify 70%", "reach down 90%", ~55% table).
+
+## Store badges (Done, interim)
+- Replaced the text buttons with badge images (`img/app-store-badge.png`, `img/google-play-badge.png`) in the hero and final CTA of `index.html`; same store links.
+- The Apple badge is the current "Download on the App Store" design. The Google badge in the zip is the old "Android app on Google play" design (third-party seeklogo file). Replace it with the official "Get it on Google Play" badge from Google's badge page, using the same file name (img/google-play-badge.png), no code change needed.
+
+## Answers from the group (Done)
+- **Company:** "CirkleUp LLC" in Terms, Privacy overview/contact, Child Safety byline and all footers. No address given, so none shown.
+- **Governing law:** kept Delaware (Privacy) and made Terms match; removed Privacy's reference to a non-existent arbitration clause and "Terms & Conditions" wording.
+- **Liability cap:** standard wording: greater of amount paid in the previous 12 months or US$100. Recommend a short one-time lawyer review before scaling.
+- **18+:** hosting paid events and withdrawing earnings limited to 18+ (Terms, FAQ, Child Safety).
+- **Deletion with unpaid balance:** up to 30 days review to confirm earnings are valid, then confirmed earnings paid once withdrawals exist (Terms, FAQ).
+- **Reports:** no promised time; wording stays "we prioritize reports involving children".
+- **Marketing claims:** removed "2,400+ creators" (hero, stats bar, meta description), fake avatar stack, "YouTube 45% / Spotify 70%" (also factually shaky), "reach down 90%", the ~55% table figures (now "Varies"), "Platforms take 45%". Stat now shows "5 invites for every new member".
+- **Waitlist stage:** removed all "invites drop every Monday" claims (homepage, success modal, how-it-works, FAQ, Support). Copy now: have a code, download and enter it; otherwise request an invite and we email a code when a spot opens.
+- **Terms:** DRAFT banner removed; no placeholders remain.
