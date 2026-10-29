@@ -699,6 +699,9 @@
 .invite-path-label{font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:4px;}
 .invite-path-sub{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:12px;}
 .store-row{display:flex;gap:10px;flex-wrap:wrap;}
+.store-badge{display:inline-block;line-height:0;transition:transform .2s ease,opacity .2s ease;}
+.store-badge:hover{transform:translateY(-1px);opacity:.9;}
+.store-badge img{height:54px;width:auto;display:block;}
 .store-btn{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;padding:9px 18px;border-radius:12px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.18);color:#fff;text-decoration:none;font-family:'Space Grotesk',sans-serif;transition:all .2s ease;min-width:160px;}
 .store-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.35);transform:translateY(-1px);}
 .store-btn small{font-size:0.65rem;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:0.02em;}
@@ -708,7 +711,7 @@
 .nav-app-link{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.7);text-decoration:none;margin-right:18px;font-family:'Space Grotesk',sans-serif;}
 .nav-app-link:hover{color:#fff;}
 @media (max-width:900px){.invite-path{text-align:center;}.invite-path .store-row{justify-content:center;}}
-@media (max-width:480px){.nav-app-link{display:none;}.store-btn{flex:1;min-width:0;}}
+@media (max-width:480px){.nav-app-link{display:none;}.store-badge img{height:48px;}}
 
 .fine-print{font-size:0.75rem;line-height:1.6;color:rgba(255,255,255,0.45);max-width:620px;margin:14px auto 0;}
 .fine-print a{color:#a78bfa;}
@@ -780,8 +783,8 @@
         <p class="invite-path-label">I have an invite — download the app</p>
         <p class="invite-path-sub">Got an invite code by email or from a member? Download CirkleUp and enter it when you sign up. Each code works once.</p>
         <div class="store-row">
-          <a class="store-btn" href="https://apps.apple.com/app/cirkleup/id6768386988" target="_blank" rel="noopener"><small>Download on the</small><strong>App Store</strong></a>
-          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><small>Get it on</small><strong>Google Play</strong></a>
+          <a class="store-badge" href="https://apps.apple.com/app/cirkleup/id6768386988" target="_blank" rel="noopener"><img src="/img/app-store-badge.png" alt="Download on the App Store" height="54"/></a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><img src="/img/google-play-badge.png" alt="Get it on Google Play" height="54"/></a>
         </div>
       </div>
     </div>
@@ -1316,8 +1319,8 @@
         <p class="invite-path-label">I have an invite — download the app</p>
         <p class="invite-path-sub">Got an invite code by email or from a member? Download CirkleUp and enter it when you sign up. Each code works once.</p>
         <div class="store-row">
-          <a class="store-btn" href="https://apps.apple.com/app/cirkleup/id6768386988" target="_blank" rel="noopener"><small>Download on the</small><strong>App Store</strong></a>
-          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><small>Get it on</small><strong>Google Play</strong></a>
+          <a class="store-badge" href="https://apps.apple.com/app/cirkleup/id6768386988" target="_blank" rel="noopener"><img src="/img/app-store-badge.png" alt="Download on the App Store" height="54"/></a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><img src="/img/google-play-badge.png" alt="Get it on Google Play" height="54"/></a>
         </div>
       </div>
     </div>
