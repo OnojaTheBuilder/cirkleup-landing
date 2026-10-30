@@ -21,3 +21,9 @@ Avoid writing scripts directly into the app; keep it in the admin panel and Clou
 ## New policy to implement (stated publicly in Terms/FAQ)
 - 18+ only for hosting paid events and for withdrawing earnings (check DOB).
 - If an account with an unpaid earned balance is deleted: hold the balance up to 30 days for review, then pay confirmed earnings once withdrawals exist.
+
+## Update: minimum age is now 18 (site says 18+ everywhere)
+- Raise the signup date-of-birth gate from 13 to 18.
+- Update the Apple age-rating questionnaire and Google Play target audience / content rating to match an 18+ app.
+- Decide what happens to any existing accounts under 18 (notice, then removal) and tell Eric.
+- The separate "18+ for paid events and withdrawals" rule is no longer needed, since everyone is 18+.

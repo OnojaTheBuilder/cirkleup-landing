@@ -71,3 +71,9 @@ Status key: Done / In progress / Blocked / Needs-you
 - **Marketing claims:** removed "2,400+ creators" (hero, stats bar, meta description), fake avatar stack, "YouTube 45% / Spotify 70%" (also factually shaky), "reach down 90%", the ~55% table figures (now "Varies"), "Platforms take 45%". Stat now shows "5 invites for every new member".
 - **Waitlist stage:** removed all "invites drop every Monday" claims (homepage, success modal, how-it-works, FAQ, Support). Copy now: have a code, download and enter it; otherwise request an invite and we email a code when a spot opens.
 - **Terms:** DRAFT banner removed; no placeholders remain.
+
+## Past-waitlist layout, 18+ everywhere, reports first (Done)
+- **Homepage:** store badges now come first in the hero and final CTA ("I have an invite - download the app"); the email form is second, relabelled "No invite code yet? Request one" with "Request an Invite" buttons, so people can still ask for an invite. Nav link now "Download the app".
+- **Minimum age 18 everywhere:** Privacy, Terms, FAQ, Child Safety. Removed the 13-17 wording and the separate "18+ for paid events/withdrawals" lines (now redundant).
+- **Reports:** "reports involving children are reviewed first" in Child Safety and FAQ; no promised time.
+- **App must change:** signup DOB gate 13 -> 18, store age ratings, existing under-18 users. See FOR-HUSNAIN.md.

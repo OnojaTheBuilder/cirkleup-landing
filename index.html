@@ -702,6 +702,7 @@
 .store-badge{display:inline-block;line-height:0;transition:transform .2s ease,opacity .2s ease;}
 .store-badge:hover{transform:translateY(-1px);opacity:.9;}
 .store-badge img{height:54px;width:auto;display:block;}
+.invite-path--first{margin-top:0;padding-top:0;border-top:none;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.1);}
 .store-btn{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;padding:9px 18px;border-radius:12px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.18);color:#fff;text-decoration:none;font-family:'Space Grotesk',sans-serif;transition:all .2s ease;min-width:160px;}
 .store-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.35);transform:translateY(-1px);}
 .store-btn small{font-size:0.65rem;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:0.02em;}
@@ -713,6 +714,7 @@
 @media (max-width:900px){.invite-path{text-align:center;}.invite-path .store-row{justify-content:center;}}
 @media (max-width:480px){.nav-app-link{display:none;}.store-badge img{height:48px;}}
 
+.invite-path--center.invite-path--first{margin:0 auto 22px;}
 .fine-print{font-size:0.75rem;line-height:1.6;color:rgba(255,255,255,0.45);max-width:620px;margin:14px auto 0;}
 .fine-print a{color:#a78bfa;}
 .fine-print--page{max-width:none;text-align:center;padding:20px 0;color:rgba(255,255,255,0.5);}
@@ -730,9 +732,9 @@
       <img src="/apple-touch-icon.png" alt="CirkleUp logo" style="width:48px;height:48px;border-radius:12px;object-fit:cover;display:block;flex-shrink:0;"/>
       CirkleUp
     </a>
-    <a href="#download" class="nav-app-link">Have an invite?</a>
+    <a href="#download" class="nav-app-link">Download the app</a>
     <a href="#waitlist" class="btn btn-primary btn-sm">
-      Claim Your Invite <span class="arr">↗</span>
+      Request an Invite <span class="arr">↗</span>
     </a>
   </div>
 </header>
@@ -768,18 +770,7 @@
     </div>
 
     <div class="hero-form-wrap" id="waitlist">
-      <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">↓ Enter your email to claim your spot</p>
-      <form class="hero-form" id="heroForm" novalidate style="flex-direction:column;gap:12px;">
-        <label for="heroEmail" class="sr-only">Email address</label>
-        <input type="email" id="heroEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required style="border-radius:14px;padding:18px 24px;font-size:1.05rem;background:rgba(255,255,255,0.1);border:2px solid rgba(145,71,255,0.5);"/>
-        <button type="submit" class="btn btn-primary btn-lg" id="heroBtn" style="border-radius:14px;width:100%;font-size:1.05rem;padding:18px 24px;justify-content:center;background:#9147ff;box-shadow:0 8px 32px rgba(145,71,255,0.4);">
-          Claim Your Invite →
-        </button>
-      </form>
-      <span class="input-err" id="heroErr"></span>
-      <p class="invite-note" style="margin-top:12px;">Every new member starts with 5 invites to share with their circle.</p>
-      <p class="what-next">We'll email you when your spot opens. You'll get access + 5 invites.</p>
-      <div class="invite-path" id="download">
+      <div class="invite-path invite-path--first" id="download">
         <p class="invite-path-label">I have an invite — download the app</p>
         <p class="invite-path-sub">Got an invite code by email or from a member? Download CirkleUp and enter it when you sign up. Each code works once.</p>
         <div class="store-row">
@@ -787,6 +778,17 @@
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><img src="/img/google-play-badge.png" alt="Get it on Google Play" height="54"/></a>
         </div>
       </div>
+      <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">No invite code yet? Request one</p>
+      <form class="hero-form" id="heroForm" novalidate style="flex-direction:column;gap:12px;">
+        <label for="heroEmail" class="sr-only">Email address</label>
+        <input type="email" id="heroEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required style="border-radius:14px;padding:18px 24px;font-size:1.05rem;background:rgba(255,255,255,0.1);border:2px solid rgba(145,71,255,0.5);"/>
+        <button type="submit" class="btn btn-primary btn-lg" id="heroBtn" style="border-radius:14px;width:100%;font-size:1.05rem;padding:18px 24px;justify-content:center;background:#9147ff;box-shadow:0 8px 32px rgba(145,71,255,0.4);">
+          Request an Invite →
+        </button>
+      </form>
+      <span class="input-err" id="heroErr"></span>
+      <p class="invite-note" style="margin-top:12px;">Every new member starts with 5 invites to share with their circle.</p>
+      <p class="what-next">We'll email you an invite code when a spot opens.</p>
     </div>
 
     <div class="social-proof">
@@ -1299,16 +1301,7 @@
       <div class="cta-check"><div class="cta-dot">✓</div>A vouched-for community</div>
     </div>
     <div class="reveal d3">
-      <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">↓ Enter your email to claim your spot</p>
-      <form class="cta-form" id="ctaForm" novalidate style="flex-direction:column;gap:12px;max-width:480px;margin:0 auto;">
-        <label for="ctaEmail" class="sr-only">Email address</label>
-        <input type="email" id="ctaEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required style="border-radius:14px;padding:18px 24px;font-size:1.05rem;background:rgba(255,255,255,0.1);border:2px solid rgba(145,71,255,0.5);text-align:center;"/>
-        <button type="submit" class="btn btn-primary btn-lg" id="ctaBtn" style="border-radius:14px;width:100%;font-size:1.05rem;padding:18px 24px;justify-content:center;background:#9147ff;box-shadow:0 8px 32px rgba(145,71,255,0.4);">
-          Claim Your Invite →
-        </button>
-      </form>
-      <span class="input-err" id="ctaErr"></span>
-      <div class="invite-path invite-path--center">
+      <div class="invite-path invite-path--center invite-path--first">
         <p class="invite-path-label">I have an invite — download the app</p>
         <p class="invite-path-sub">Got an invite code by email or from a member? Download CirkleUp and enter it when you sign up. Each code works once.</p>
         <div class="store-row">
@@ -1316,6 +1309,15 @@
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.cirkleup.app" target="_blank" rel="noopener"><img src="/img/google-play-badge.png" alt="Get it on Google Play" height="54"/></a>
         </div>
       </div>
+      <p style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;">No invite code yet? Request one</p>
+      <form class="cta-form" id="ctaForm" novalidate style="flex-direction:column;gap:12px;max-width:480px;margin:0 auto;">
+        <label for="ctaEmail" class="sr-only">Email address</label>
+        <input type="email" id="ctaEmail" name="email" class="hero-input" placeholder="your@email.com" autocomplete="email" required style="border-radius:14px;padding:18px 24px;font-size:1.05rem;background:rgba(255,255,255,0.1);border:2px solid rgba(145,71,255,0.5);text-align:center;"/>
+        <button type="submit" class="btn btn-primary btn-lg" id="ctaBtn" style="border-radius:14px;width:100%;font-size:1.05rem;padding:18px 24px;justify-content:center;background:#9147ff;box-shadow:0 8px 32px rgba(145,71,255,0.4);">
+          Request an Invite →
+        </button>
+      </form>
+      <span class="input-err" id="ctaErr"></span>
     </div>
   </div>
 </section>
